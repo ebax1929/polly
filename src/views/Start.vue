@@ -1,6 +1,5 @@
 <template>
   <div id="nav">
-    <h1>test</h1>
     <button v-on:click="switchLanguage">{{uiLabels.changeLanguage}}</button>
     <router-link v-bind:to="'/create/'+lang">{{uiLabels.createPoll}}</router-link>
     <label>
