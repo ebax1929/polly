@@ -27,7 +27,6 @@ export default {
   width: 50px;
   vertical-align: bottom;
 }
-
 .bar span {
   position: relative;
   top: -1.2em;
