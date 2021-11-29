@@ -1,15 +1,15 @@
 <template>
   <div>
-    Poll link:
-    <div>
+    <div id="create_pollId" style="display:block">
+      Poll link:
     <input type="text" v-model="pollId">
     <button v-on:click="createPoll">
       Create poll
     </button>
-      <div id="display_pollId" style="display:none" >
-        Your poll-id:
-        {{pollID}}
-      </div>
+    </div>
+    <div id="display_pollId" style="display:none" >
+      Your poll-id:
+      {{pollId}}
     </div>
     <div id="create_question" style="display:none">
     <div>
@@ -25,9 +25,18 @@
         </button>
       </div>
     </div>
-    <button v-on:click="addQuestion">
-      Add question
-    </button>
+      <button v-on:click="addQuestion">
+        Add question
+      </button>
+
+      <div id="display_previousQuestion">
+        Question number: {{number}}
+        Question: {{question}}
+        Answers: {{answers}}
+      </div>
+
+
+
     </div>
     <div id="start_poll" style="display:none">
     <input type="number" v-model="questionNumber">
@@ -52,7 +61,8 @@ export default {
       pollId: "",
       question: "",
       answers: ["", ""],
-      questionNumber: 0,
+      number: 0,
+      questionNumber: 1,
       data: {},
       uiLabels: {}
     }
@@ -74,14 +84,20 @@ export default {
       socket.emit("createPoll", {pollId: this.pollId, lang: this.lang })
       document.getElementById("create_question").style.display = "block";
       document.getElementById("display_pollId").style.display = "block";
+      document.getElementById("create_pollId").style.display = "none";
     },
     addQuestion: function () {
-      socket.emit("addQuestion", {pollId: this.pollId, q: this.question, a: this.answers } )
+      socket.emit("addQuestion", {pollId: this.pollId, q: this.question, a: this.answers, number: this.number } )
       document.getElementById("start_poll").style.display = "block";
+      this.number+=1
     },
     addAnswer: function () {
       this.answers.push("");
     },
+    addNewQuestion: function() {
+      document.getElementById("create_question").style.display = "block";
+    },
+
     runQuestion: function () {
       socket.emit("runQuestion", {pollId: this.pollId, questionNumber: this.questionNumber})
     }
