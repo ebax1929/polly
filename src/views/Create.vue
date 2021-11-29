@@ -9,6 +9,7 @@
       {{uiLabels.question}}:
       <input type="text" v-model="question">
       <div>
+        
         Answers:
         <input v-for="(_, i) in answers" 
                v-model="answers[i]" 
