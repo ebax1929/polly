@@ -1,10 +1,26 @@
 <template>
+  <div v-show="showDisplay" id="firstpage">
   <h1>Welcome to Quiz</h1>
   <div>
-    {{pollId}}
+    Poll-id:{{pollId}}
     <Question v-bind:question="question"
               v-on:answer="submitAnswer"/>
   </div>
+
+  <div id="headlines">
+    <h2>Choose you character</h2>
+  </div>
+
+
+  <label for="name"></label>
+  <input type="text" id="name" v-model="fn" required="required" placeholder="Enter your name">
+
+
+  <button v-on:click="enterGameButton" id="enterGameButton">
+    Enter game
+  </button>
+  </div>
+
 </template>
 
 <script>
@@ -24,8 +40,10 @@ export default {
         q: "",
         a: []
       },
-      pollId: "inactive poll"
+      pollId: "inactive poll",
+      showDisplay:true
     }
+
   },
   created: function () {
     this.pollId = this.$route.params.id
@@ -37,7 +55,26 @@ export default {
   methods: {
     submitAnswer: function (answer) {
       socket.emit("submitAnswer", {pollId: this.pollId, answer: answer})
+    },
+    enterGameButton: function(){
+      this.showDisplay=false
+
     }
   }
 }
 </script>
+
+<style>
+
+#firstpage{
+  display:block;
+}
+#enterGameButton{
+  color:blue;
+}
+#headlines{
+
+
+}
+
+</style>

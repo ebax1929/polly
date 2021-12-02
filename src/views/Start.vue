@@ -7,16 +7,19 @@
       <button id="LanguageButton" v-on:click="switchLanguage">{{uiLabels.changeLanguage}}</button>
     <div id="Links">
     <label>
-      Write poll id:
-      <input type="text" v-model="id">
+      {{uiLabels.poll_id}}
+      <div id="pollfield">
+      <input type="text" v-model="id" placeholder="Enter poll id" >
+      </div>
     </label><br>
-    <router-link v-bind:to="'/poll/'+id" tag="button">{{uiLabels.participatePoll}}</router-link>
+    <router-link v-bind:to="'/poll/'+id" tag="button" >{{uiLabels.participatePoll}} </router-link>
     </div>
     </div>
   </div>
 </template>
 
 <script>
+
 import io from 'socket.io-client';
 const socket = io();
 
@@ -46,6 +49,13 @@ export default {
 }
 </script>
 <style>
+#nav a{color: black;}
+#nav a:hover{color: Plum;}
+#nav a{
+  text-decoration:none;
+}
+
+
 
 .Split {
   height: 100%;
@@ -58,23 +68,34 @@ export default {
 }
 .Left {
   left: 0;
-  background-color: navajowhite;
+  background-color: LightSlateGray;
+
 }
 .Right {
   right: 0;
-  background-color: mediumseagreen;
+  background-color: SeaShell;
+
 }
 #Links {
+
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
   font-size: 20pt;
-  border: 2px solid;
+
 }
 
 #LanguageButton{
   margin-left: 34em;
 }
+
+input{
+  width: 50%;
+  padding:12px 20px;
+ 
+}
+
+
 </style>
