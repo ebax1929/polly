@@ -7,7 +7,7 @@
       <button id="LanguageButton" v-on:click="switchLanguage">{{uiLabels.changeLanguage}}</button>
     <div id="Links">
     <label>
-      Write poll id:
+      {{uiLabels.pollID}}
       <input type="text" v-model="id">
     </label><br>
     <router-link v-bind:to="'/poll/'+id" tag="button">{{uiLabels.participatePoll}}</router-link>
