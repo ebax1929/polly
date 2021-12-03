@@ -21,6 +21,10 @@
   </button>
   </div>
 
+  <div id="vidare_pil">
+    <img src="pngpilen.png">
+  </div>
+
 </template>
 
 <script>
@@ -65,6 +69,7 @@ export default {
 </script>
 
 <style>
+
 
 #firstpage{
   display:block;
