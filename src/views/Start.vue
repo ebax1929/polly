@@ -9,7 +9,7 @@
     <label>
       {{uiLabels.poll_id}}
       <div id="pollfield">
-      <input type="text" v-model="id" placeholder="Enter poll id" >
+      <input type="text" v-model="id" placeholder="enter poll-id" >
       </div>
     </label><br>
     <router-link v-bind:to="'/poll/'+id" tag="button" >{{uiLabels.participatePoll}} </router-link>
@@ -89,13 +89,16 @@ export default {
 
 #LanguageButton{
   margin-left: 34em;
+  background-color: white;
+  border-radius:20px;
 }
 
 input{
   width: 50%;
   padding:12px 20px;
- 
+
 }
+
 
 
 </style>
