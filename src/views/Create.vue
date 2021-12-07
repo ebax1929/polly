@@ -1,32 +1,113 @@
 <template>
-  <div>
-    Poll link: 
-    <input type="text" v-model="pollId">
-    <button v-on:click="createPoll">
-      Create poll
+  <div class="gridContainer">
+    <div v-show="showPollId" id="create_pollId">
+     Please enter a poll-id to create a game!<br>
+      <input type="text" v-model="pollId" id="inputCreatPollId" placeholder="Enter Poll-Id..." > <br>
+    <button v-on:click="createPoll" id="createPollButton">
+    Create poll
     </button>
-    <div>
-      {{uiLabels.question}}:
-      <input type="text" v-model="question">
+    </div>
+
+    <div v-show="showDisplayPollId" id="display_pollId" class="gridColumnThree">
+      Your poll-id:
+      {{pollId}}
+    </div>
+
+    <div class="gridColumnTwo" v-show="showGridColumnTwo">
+      <button v-on:click="createQuiz" id="createQuiz" v-show="showCreateQuiz">
+        Creat a quiz-question, this is a mulitoptional question with one or many correct answers
+      </button>
+
+       <button v-on:click="createVote" id="createVote" v-show="showCreateVote">
+         Create a vote-quetsion, this is a multioptional question with no correct answers
+       </button>
+    </div>
+
+    <div v-show="showQuestion" id="create_question" class="gridColumnTwo">
       <div>
-        Answers:
-        <input v-for="(_, i) in answers" 
-               v-model="answers[i]" 
-               v-bind:key="'answer'+i">
-        <button v-on:click="addAnswer">
-          Add answer alternative
+        {{uiLabels.question}}:
+        <input type="text" v-model="question">
+        <div>
+          <label for="answers"></label>
+          <input v-for="(_, i) in answers"
+                 v-model="answers[i]"
+                 v-bind:key="'answer'+i">
+
+          <button v-on:click="addAnswer" id="addAnswers" v-show="addAnswers">
+            Add answer alternative
+          </button>
+
+          <button v-on:click="removeAnswer" id="removeAnswers" v-show="removeAnswers">
+            Remove the last answer alternative
+          </button>
+
+          <button v-on:click="addAnsVote" id="addAnsVote_id" v-show="addAnsVote_id">
+            Add answer alternative
+          </button>
+
+          <button v-on:click="removeAnswerVote" id="removeAnswersVote" v-show="removeAnswersVote">
+            Remove the last answer alternative                                             
+          </button>
+        </div>
+
+        <div>
+
+
+          <div id="correctAnswer" v-show="showAnswer1">
+             <p>Check the box/es for the correct the answer/s:</p>
+            <input type="checkbox" id="answer" name="anwser" value="answer1" v-model="correctAnswer1">
+            <label for="answer">Answer 1</label>
+          </div>
+
+          <div id="correctAnswer" v-show="showAnswer2">
+            <input type="checkbox" id="answer" name="anwser" value="answer2" v-model="correctAnswer2">
+            <label for="answer">Answer 2</label>
+          </div>
+
+          <div id="correctAnswer" v-show="showAnswer3">
+            <input type="checkbox" id="answer" name="anwser" value="answer3" v-model="correctAnswer3">
+            <label for="answer">Answer 3</label>
+          </div>
+
+          <div id="correctAnswer" v-show="showAnswer4">
+            <input type="checkbox" id="answer" name="anwser" value="answer4" v-model="correctAnswer4">
+            <label for="answer">Answer 4</label>
+          </div>
+
+        </div>
+      </div>
+        <button v-on:click="addQuestion">
+          Add question
         </button>
       </div>
+
+          <div v-show="showStartAndPrevious" id="previousQuestionAndStartPoll" class="gridColumnOne">
+        <div id="display_previousQuestion">
+          {{listOfAll}}
+        </div>
+            </div>
+
+    <div v-show="showPlayPoll" class="gridColumnTwo" id="gridPlayPoll">
+      <button v-on:click="playPoll">
+        Are you finished with your poll?
+      </button>
     </div>
-    <button v-on:click="addQuestion">
-      Add question
-    </button>
+
+    <div v-show="showGoBackEditing">
+      <button v-on:click="goBackEditing">
+        Go back and continue editing poll
+      </button>
+    </div>
+
+
+    <div id="start_poll" v-show="showStartPoll">
     <input type="number" v-model="questionNumber">
     <button v-on:click="runQuestion">
       Run question
     </button>
     {{data}}
-    <router-link v-bind:to="'/result/'+pollId">Check result</router-link>
+     <router-link v-bind:to="'/result/'+pollId">Check result</router-link>
+    </div>
   </div>
 </template>
 
@@ -41,10 +122,35 @@ export default {
       lang: "",
       pollId: "",
       question: "",
-      answers: ["", ""],
+      answers: ["Answer 1", "Answer 2 "],
+      countAnswer: 2,
       questionNumber: 0,
       data: {},
-      uiLabels: {}
+      uiLabels: {},
+      listOfQuestionAndNumber:{},
+      listOfAll:[],
+      showPollId: true,
+      showQuestion: false,
+      showStartAndPrevious: false,
+      showStartPoll: false,
+      showDisplayPollId: false,
+      addAnswers: false,
+      addAnsVote_id:false,
+      removeAnswers: false,
+      removeAnswersVote: false,
+      showAnswer1: false,
+      showAnswer2: false,
+      showAnswer3: false,
+      showAnswer4: false,
+      correctAnswer1: false,
+      correctAnswer2: false,
+      correctAnswer3: false,
+      correctAnswer4: false,
+      showCreateQuiz: false,
+      showCreateVote: false,
+      showPlayPoll: false,
+      showGoBackEditing: false,
+      showGridColumnTwo: false,
     }
   },
   created: function () {
@@ -62,16 +168,235 @@ export default {
   methods: {
     createPoll: function () {
       socket.emit("createPoll", {pollId: this.pollId, lang: this.lang })
+      this.showPollId = false;
+      this.showDisplayPollId = true;
+      this.showCreateQuiz=true;
+      this.showCreateVote=true;
+      this.showStartAndPrevious = true;
+      this.showGridColumnTwo = true;
     },
+    createQuiz: function() {
+      this.listOfAll.push("New question")
+      this.showPlayPoll = false;
+      this.addAnsVote_id = false;
+      this.removeAnswersVote = false;
+      this.correctAnswer1 = false;
+      this.correctAnswer2 = false;
+      this.correctAnswer3 = false;
+      this.correctAnswer4 = false;
+      this.showAnswer1=true;
+      this.showAnswer2=true;
+      this.showQuestion = true;
+      this.addAnswers=true;
+      this.showCreateQuiz=false;
+      this.showCreateVote=false;
+      if (this.countAnswer === 4 ){
+        this.answers.pop();
+        this.countAnswer -=1
+      }
+      if (this.countAnswer ===3 ) {
+        this.answers.pop();
+        this.countAnswer -=1
+      }
+    },
+    createVote: function() {
+      this.showPlayPoll = false;
+      this.listOfAll.push("New question")
+      this.addAnswers = false;
+      this.removeAnswers = false;
+      this.correctAnswer1 = true;
+      this.correctAnswer2 = true;
+      this.correctAnswer3 = true;
+      this.correctAnswer4 = true;
+      this.showAnswer1=false;
+      this.showAnswer2=false;
+      this.showAnswer3 = false;
+      this.showAnswer4 = false;
+      this.showQuestion = true;
+      this.addAnsVote_id=true;
+      this.showCreateQuiz=false;
+      this.showCreateVote=false;
+      if (this.countAnswer === 4 ){
+        this.answers.pop();
+        this.countAnswer -=1
+      }
+      if (this.countAnswer ===3 ) {
+        this.answers.pop();
+        this.countAnswer -=1
+      }
+    } ,
+
     addQuestion: function () {
-      socket.emit("addQuestion", {pollId: this.pollId, q: this.question, a: this.answers } )
+      this.questionNumber+=1;
+      socket.emit("addQuestion",
+          { pollId: this.pollId,
+                       q: this.question,
+                       a: this.answers,
+          questionNumber: this.questionNumber,
+          correctAnswer1: this.correctAnswer1,
+          correctAnswer2: this.correctAnswer2,
+          correctAnswer3: this.correctAnswer3,
+          correctAnswer4: this.correctAnswer4
+          })
+      this.showCreateQuiz=true;
+      this.showCreateVote=true;
+      this.showQuestion = false;
+      this.showPlayPoll = true;
+
+      
+      this.listOfQuestionAndNumber=[];
+      this.listOfQuestionAndNumber.push(this.questionNumber , this.question)
+      this.listOfAll.pop()
+      this.listOfAll.push(this.listOfQuestionAndNumber)
+       console.log(this.listOfAll)
     },
+
+    playPoll: function () {
+      this.showPlayPoll = false;
+      this.showStartAndPrevious = false;
+      this.showQuestion  = false;
+      this.showCreateQuiz=false;
+      this.showCreateVote=false;
+      this.showStartPoll = true;
+      this.showGoBackEditing = true;
+    },
+
+    goBackEditing: function () {
+       this.showPlayPoll = true;
+       this.showStartAndPrevious = true;
+       this.showCreateQuiz=true;
+       this.showCreateVote=true;
+       this.showStartPoll = false;
+       this.showGoBackEditing = false;
+    },
+
     addAnswer: function () {
-      this.answers.push("");
+      this.countAnswer+=1
+      this.answers.push("Answer " + this.countAnswer);
+      this.removeAnswers=true;
+      if(this.countAnswer > 3) {
+        this.addAnswers=false;
+      }
+      if(this.countAnswer == 3) {
+        this.showAnswer3 = true;
+      }
+      if (this.countAnswer == 4){
+        this.showAnswer4 = true;
+      }
     },
+
+    removeAnswer: function(){
+      this.countAnswer-=1
+      this.answers.pop();
+      this.addAnswers=true;
+      if(this.countAnswer < 3) {
+        this.removeAnswers = false;
+      }
+      if(this.countAnswer== 3) {
+        this.showAnswer4 = false;
+      }
+      if (this.countAnswer == 2) {
+        this.showAnswer3 = false;
+      }
+    },
+     addAnsVote: function(){
+       this.countAnswer+=1
+       this.answers.push("Answer " + this.countAnswer);
+       this.removeAnswersVote=true;
+       if(this.countAnswer > 3) {
+         this.addAnsVote_id=false;
+       }
+     },
+
+     removeAnswerVote: function(){
+       this.countAnswer-=1
+       this.answers.pop();
+       this.addAnsVote_id=true;
+       if(this.countAnswer < 3) {
+         this.removeAnswersVote = false;
+       }
+     },
+
+
+
     runQuestion: function () {
       socket.emit("runQuestion", {pollId: this.pollId, questionNumber: this.questionNumber})
     }
   }
 }
 </script>
+<style>
+  .gridContainer {
+    background-color: aliceblue;
+    height: 100%;
+    width: 100%;
+    display:grid;
+  }
+  .gridColumnOne {
+    border: groove #00BFFF;
+    grid-column: 1;
+    grid-row: 1;
+    width: 8em;
+    height: 40em;
+  }
+  .gridColumnTwo{
+    border: groove #00BFFF;
+    grid-column: 2;
+    grid-row:1;
+    width: 100%;
+  }
+  .gridColumnThree {
+    border: groove #00BFFF;
+    grid-column: 3;
+    height: 100%;
+    width: 20em;
+  }
+
+  #gridPlayPoll{
+    margin: 10% 0% 10% 0%;
+  }
+  #createQuiz{
+  grid-column: 1;
+    width: 50%;
+
+  }
+  #createVote{
+  grid-column: 2;
+    width: 50%;
+  }
+
+  #create_pollId{
+    color: #FF1493;
+    align-self: right;
+    justify-self: right;
+    margin-top: 30%;
+    font-size: 200%;
+
+  }
+
+  #createPollButton{
+   transition-duration: 0.4s;
+    width: 12em;
+    height: 6em;
+    background-color: #1E90FF;
+    border-radius: 25px;
+
+}
+  #createPollButton:hover {
+    background-color: #00BFFF;
+    color: #FF1493;
+    width: 13em;
+    height: 7em;
+    border-radius: 25px;
+  }
+  #inputCreatPollId  {
+    border-radius: 25px;
+    border: 3px double #00BFFF;
+    color: #FF1493;
+    margin: 10% 20% 10% 20%;
+    width: 50%;
+    height: 15%;
+    text-align: center;
+  }
+
+</style>
