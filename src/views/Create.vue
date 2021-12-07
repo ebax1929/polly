@@ -1,10 +1,10 @@
 <template>
   <div class="gridContainer">
     <div v-show="showPollId" id="create_pollId">
-      Poll link:
-    <input type="text" v-model="pollId">
-    <button v-on:click="createPoll">
-      Create poll
+     Please enter a poll-id to create a game!<br>
+      <input type="text" v-model="pollId" id="inputCreatPollId" placeholder="Enter Poll-Id..." > <br>
+    <button v-on:click="createPoll" id="createPollButton">
+    Create poll
     </button>
     </div>
 
@@ -13,7 +13,7 @@
       {{pollId}}
     </div>
 
-    <div class="gridColumnTwo">
+    <div class="gridColumnTwo" v-show="showGridColumnTwo">
       <button v-on:click="createQuiz" id="createQuiz" v-show="showCreateQuiz">
         Creat a quiz-question, this is a mulitoptional question with one or many correct answers
       </button>
@@ -150,6 +150,7 @@ export default {
       showCreateVote: false,
       showPlayPoll: false,
       showGoBackEditing: false,
+      showGridColumnTwo: false,
     }
   },
   created: function () {
@@ -172,6 +173,7 @@ export default {
       this.showCreateQuiz=true;
       this.showCreateVote=true;
       this.showStartAndPrevious = true;
+      this.showGridColumnTwo = true;
     },
     createQuiz: function() {
       this.listOfAll.push("New question")
@@ -324,64 +326,34 @@ export default {
 }
 </script>
 <style>
-
-  #create_pollId{
-   display:block
-}
-  #create_question{
-   display:block
-  }
-  #previousQuestionAndStartPoll {
-   display:block
-  }
-  #display_pollId{
-    display:block
-  }
-  #addAnswers{
-    display:block
-  }
-  #removeAnswers{
-    display:block
-  }
-  #correctAnswer{
-    display:block
-  }
-  #addAnsVote{
-    display:block
-  }
-  #removeAnswersVote{
-    display:block
-  }
   .gridContainer {
+    background-color: aliceblue;
     height: 100%;
     width: 100%;
     display:grid;
   }
   .gridColumnOne {
+    border: groove #00BFFF;
     grid-column: 1;
     grid-row: 1;
-    width: 12em;
-    height: 100%;
-
-
+    width: 8em;
+    height: 40em;
   }
   .gridColumnTwo{
+    border: groove #00BFFF;
     grid-column: 2;
     grid-row:1;
     width: 100%;
-    height: 100%;
-
-
   }
   .gridColumnThree {
+    border: groove #00BFFF;
     grid-column: 3;
     height: 100%;
     width: 20em;
-
   }
 
   #gridPlayPoll{
-    grid-row: 3;
+    margin: 10% 0% 10% 0%;
   }
   #createQuiz{
   grid-column: 1;
@@ -393,5 +365,38 @@ export default {
     width: 50%;
   }
 
+  #create_pollId{
+    color: #FF1493;
+    align-self: right;
+    justify-self: right;
+    margin-top: 30%;
+    font-size: 200%;
+
+  }
+
+  #createPollButton{
+   transition-duration: 0.4s;
+    width: 12em;
+    height: 6em;
+    background-color: #1E90FF;
+    border-radius: 25px;
+
+}
+  #createPollButton:hover {
+    background-color: #00BFFF;
+    color: #FF1493;
+    width: 13em;
+    height: 7em;
+    border-radius: 25px;
+  }
+  #inputCreatPollId  {
+    border-radius: 25px;
+    border: 3px double #00BFFF;
+    color: #FF1493;
+    margin: 10% 20% 10% 20%;
+    width: 50%;
+    height: 15%;
+    text-align: center;
+  }
 
 </style>
