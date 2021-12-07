@@ -8,7 +8,6 @@
               v-on:answer="submitAnswer"/>
   </div>
 
-
     <section id="characters">
       <div id="headLine">
         <h2>Choose your character</h2>
@@ -16,43 +15,28 @@
 
       <div class="wrapper">
 <!--        <p id="boat" v-on:click=characterChosen(pngpilen.png)>-->
-
-
         <div v-on:click='characterChosen("boat")'><img  src="boat.png" ></div>
-
         <div v-on:click='characterChosen("dog")'><img  src="hunden.png" ></div>
         <div v-on:click='characterChosen("hat")'><img  src="hatten.png" ></div>
         <div v-on:click='characterChosen("car")'><img  src="bilen.png" ></div>
 
-
-
       </div>
+    </section>
       <div v-if="myCharacter!=''">
         <label for="name"></label>
         <input type="text" id="name" v-model="fn" required="required" placeholder="Enter your name">
       </div>
-
-    </section>
-
-
+    <div v-if="this.fn!=''" id="enterGame" v-on:click=enterGameButton><img id="picture" src="pngpilen.png" > <h1>LETS GO</h1> </div>
   </div>
-
-
-  <div v-if="this.fn!=''" id="enterGame" v-on:click=enterGameButton><img id="picture" src="pngpilen.png" > <h1>LETS GO</h1> </div>
-
-    <p v-else label style="background:skyblue"></p>
-
-
-
-
-
-
-  <div v-show="showDisplaySecondPage" id="secondPage">
-    {{fn}}
-
-
+  <section v-show="showDisplaySecondPage" id="secondPage">
+    <div class="characterBox">
+    This is you: {{fn}} <br>
+    <div class="displayCharacter" v-if="myCharacter==='boat'"> <img  src="boat.png"> </div>
+    <div class="displayCharacter" v-else-if="myCharacter==='dog'"><img src="hunden.png"> </div>
+    <div class="displayCharacter" v-else-if="myCharacter==='hat'"><img src="hatten.png"> </div>
+    <div class="displayCharacter" v-else-if="myCharacter==='car'"><img src="bilen.png"> </div>
     </div>
-
+  </section>
 
 
 </template>
@@ -111,10 +95,7 @@ export default {
 
     },
     characterChosen: function(character){
-      let myCharacter=character;
-      console.log(myCharacter);
-
-
+      this.myCharacter=character;
 
     },
     // displayCharacter: function(){
@@ -131,31 +112,31 @@ export default {
 cursor:pointer;
   width:10em;
   height:10em;
-
 }
-
 .wrapper{
   display: grid;
   grid-gap: 5em;
   grid-template-columns: 10em 10em 10em 10em;
   position: relative;
   padding-left: 11em;
-
-
-
-
 }
 .wrapper > div > img{
   cursor:pointer;
   height:10em;
   width: 13em;
-
-
 }
-
-
 #firstpage{
   display:block;
+}
+.displayCharacter > img {
+  height: 5em;
+  width:5em;
+}
+.characterBox{
+  border: 2px lightblue solid;
+  position:absolute;
+  top:0;
+  left:0;
 }
 
 #headlines{
