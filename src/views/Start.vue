@@ -12,6 +12,7 @@
       <input type="text" v-model="id" placeholder="enter poll-id" >
       </div>
     </label><br>
+
     <router-link v-bind:to="'/poll/'+id" tag="button" >{{uiLabels.participatePoll}} </router-link>
     </div>
     </div>
@@ -44,7 +45,8 @@ export default {
       else
         this.lang = "en"
       socket.emit("switchLanguage", this.lang)
-    }
+    },
+
   }
 }
 </script>

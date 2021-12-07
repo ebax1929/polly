@@ -11,7 +11,7 @@
 
     <section id="characters">
       <div id="headLine">
-        <h2>Choose you character</h2>
+        <h2>Choose your character</h2>
       </div>
 
       <div class="wrapper">
@@ -27,20 +27,26 @@
 
 
       </div>
-
+      <div v-if="myCharacter!=''">
+        <label for="name"></label>
+        <input type="text" id="name" v-model="fn" required="required" placeholder="Enter your name">
+      </div>
 
     </section>
 
 
-  <label for="name"></label>
-  <input type="text" id="name" v-model="fn" required="required" placeholder="Enter your name">
-
-    <p id="enterGame" v-on:click=enterGameButton><img id="picture" src="pngpilen.png" ></p>
-
-    <h3>LETS GO</h3>
-
-
   </div>
+
+
+  <div v-if="this.fn!=''" id="enterGame" v-on:click=enterGameButton><img id="picture" src="pngpilen.png" > <h1>LETS GO</h1> </div>
+
+    <p v-else label style="background:skyblue"></p>
+
+
+
+
+
+
   <div v-show="showDisplaySecondPage" id="secondPage">
     {{fn}}
 
@@ -89,7 +95,12 @@ export default {
     },
     enterGameButton: function(){
       if (this.fn===""){
-        console.log('insert name')
+
+        console.log('insert name');
+
+      }
+      else if(this.myCharacter===""){
+        console.log('choose character')
       }
       else
       {
@@ -100,7 +111,7 @@ export default {
 
     },
     characterChosen: function(character){
-      var myCharacter=character;
+      let myCharacter=character;
       console.log(myCharacter);
 
 
@@ -122,6 +133,7 @@ cursor:pointer;
   height:10em;
 
 }
+
 .wrapper{
   display: grid;
   grid-gap: 5em;
