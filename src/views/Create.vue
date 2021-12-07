@@ -1,6 +1,6 @@
 <template>
   <div class="gridContainer">
-    <div v-show="showPollId" id="create_pollId">
+    <div v-show="showPollId" id="create_pollId"> <br><br>
      Please enter a poll-id to create a game!<br>
       <input type="text" v-model="pollId" id="inputCreatPollId" placeholder="Enter Poll-Id..." > <br>
     <button v-on:click="createPoll" id="createPollButton">
@@ -88,7 +88,7 @@
             </div>
 
     <div v-show="showPlayPoll" class="gridColumnTwo" id="gridPlayPoll">
-      <button v-on:click="playPoll">
+      <button v-on:click="playPoll" id="playPollButton">
         Are you finished with your poll?
       </button>
     </div>
@@ -327,7 +327,6 @@ export default {
 </script>
 <style>
   .gridContainer {
-    background-color: aliceblue;
     height: 100%;
     width: 100%;
     display:grid;
@@ -340,7 +339,6 @@ export default {
     height: 40em;
   }
   .gridColumnTwo{
-    border: groove #00BFFF;
     grid-column: 2;
     grid-row:1;
     width: 100%;
@@ -353,25 +351,44 @@ export default {
   }
 
   #gridPlayPoll{
-    margin: 10% 0% 10% 0%;
+    border: groove #00BFFF;
+    grid-row: 1;
+    width: 100%;
+    height: 20%;
+    margin-top: 100% ;
   }
   #createQuiz{
-  grid-column: 1;
+  border: groove #00BFFF;
+    margin-bottom: 0%;
+    grid-column: 1;
     width: 50%;
+    height: 80%;
+    background-color: #00BFFF;
+    color: #FFFFFF;
+    font-size: 200%;
+    text-align: center;
 
   }
   #createVote{
-  grid-column: 2;
+  border: groove #00BFFF;
+    margin-bottom: 0%; 
+    grid-column: 2;
     width: 50%;
+    height: 80%;
+    background-color: #00BFFF;
+    color: #FFFFFF; 
+    font-size: 200%;
+    text-align: center;
   }
 
   #create_pollId{
+    background-color: aliceblue;
+    border: groove #00BFFF;
     color: #FF1493;
-    align-self: right;
-    justify-self: right;
-    margin-top: 30%;
     font-size: 200%;
-
+    text-align: center;
+    height: 150%;
+    width: 100% ;
   }
 
   #createPollButton{
@@ -395,8 +412,27 @@ export default {
     color: #FF1493;
     margin: 10% 20% 10% 20%;
     width: 50%;
-    height: 15%;
+    height: 5%;
     text-align: center;
   }
+
+  #playPollButton {
+    transition-duration: 0.4s;
+    width: 12em;
+    height: 6em;
+    background-color: #1E90FF;
+    border-radius: 25px;
+  }
+
+  #playPollButton:hover {
+    background-color: #00BFFF;
+    color: #FF1493;
+    width: 13em;
+    height: 7em;
+    border-radius: 25px;
+  }
+
+
+
 
 </style>
