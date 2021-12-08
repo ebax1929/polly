@@ -14,7 +14,15 @@ function sockets(io, socket, data) {
   });
 
   socket.on('addQuestion', function(d) {
-    data.addQuestion(d.pollId, {q: d.q, a: d.a});
+    data.addQuestion(     d.pollId,
+        {              q: d.q,
+                       a: d.a,
+          questionNumber: d.questionNumber,
+          correctAnswer1: d.correctAnswer1,
+          correctAnswer2: d.correctAnswer2,
+          correctAnswer3: d.correctAnswer3,
+          correctAnswer4: d.correctAnswer4
+        });
     socket.emit('dataUpdate', data.getAnswers(d.pollId));
   });
 
