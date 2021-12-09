@@ -2,11 +2,7 @@
 
   <div v-show="showDisplay" id="firstpage">
   <h1>Welcome to Quiz</h1>
-  <div>
     Poll-id:{{pollId}}
-    <Question v-bind:question="question"
-              v-on:answer="submitAnswer"/>
-  </div>
 
     <section id="characters">
       <div id="headLine">
@@ -20,6 +16,12 @@
         <div class="fig" v-on:click='characterChosen("hat")'><img  src="hatten.png" ></div>
         <div class="fig" v-on:click='characterChosen("car")'><img  src="bilen.png" ></div>
 
+      </div>
+      <div class="imageBorder">
+        <div class="displayCharacter" v-if="myCharacter==='boat'"> <img  src="boat.png"> </div>
+        <div class="displayCharacter" v-else-if="myCharacter==='dog'"><img src="hunden.png"> </div>
+        <div class="displayCharacter" v-else-if="myCharacter==='hat'"><img src="hatten.png"> </div>
+        <div class="displayCharacter" v-else-if="myCharacter==='car'"><img src="bilen.png"> </div>
       </div>
     </section>
       <div v-if="myCharacter!=''">
@@ -36,6 +38,13 @@
     <div class="displayCharacter" v-else-if="myCharacter==='hat'"><img src="hatten.png"> </div>
     <div class="displayCharacter" v-else-if="myCharacter==='car'"><img src="bilen.png"> </div>
     </div>
+
+    <div>
+      Poll-id:{{pollId}}
+      <Question v-bind:question="question"
+                v-on:answer="submitAnswer"/>
+    </div>
+
   </section>
 
 
@@ -119,12 +128,14 @@ export default {
 cursor:pointer;
   width:10em;
   height:10em;
+
 }
 .wrapper{
   display: grid;
   grid-gap: 5em;
   grid-template-columns: 10em 10em 10em 10em;
   position: relative;
+
   padding-left: 11em;
 }
 .wrapper > div > img{
@@ -138,6 +149,7 @@ cursor:pointer;
 .displayCharacter > img {
   height: 5em;
   width:5em;
+
 }
 
 
