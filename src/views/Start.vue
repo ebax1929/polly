@@ -1,5 +1,8 @@
 <template>
   <div id="nav">
+    <div class="middle">
+      <img  src="gubbenhej.png" >
+    </div>
     <div class="Split Left">
     <router-link id="Links" v-bind:to="'/create/'+lang">{{uiLabels.createPoll}}</router-link>
     </div>
@@ -67,14 +70,25 @@ export default {
 }
 .Left {
   left: 0;
-  background-color: LightSlateGray;
+
 
 }
 .Right {
   right: 0;
-  background-color: SeaShell;
+
 
 }
+.middle>img{
+  background-color: #FFFFFF;
+  color: aliceblue;
+  margin: 20% 45% 50% 45%;
+  width: 7em;
+  height: 10em;
+}
+.middle{
+  border: black solid 3px;
+}
+
 #Links {
 
   position: absolute;
