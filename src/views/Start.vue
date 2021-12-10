@@ -70,21 +70,22 @@ export default {
 }
 .Left {
   left: 0;
+  background: lightslategray;
 
 
 }
 .Right {
   right: 0;
-
+  background: seashell;
 
 }
 .middle>img{
   background-color: #FFFFFF;
   color: aliceblue;
-  margin: 20% 45% 50% 45%;
   width: 7em;
   height: 10em;
 }
+
 .middle{
   border: black solid 3px;
 }
