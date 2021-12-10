@@ -26,12 +26,14 @@
     <div v-show="showQuestion" id="create_question" class="gridColumnTwo">
       <div>
         {{uiLabels.question}}:
-        <input type="text" v-model="question">
+        <br><br>
+        Please enter your question!<br>
+        <input type="text" v-model="question" id ="inputQuestion" placeholder="Enter your question...">
         <div>
           <label for="answers"></label>
           <input v-for="(_, i) in answers"
                  v-model="answers[i]"
-                 v-bind:key="'answer'+i">
+                 v-bind:key="'answer'+i" id="inputAnswer">
 
           <button v-on:click="addAnswer" id="addAnswers" v-show="addAnswers">
             Add answer alternative
@@ -50,33 +52,33 @@
           </button>
         </div>
 
-        <div>
+        <div id="checkBoxes">
 
 
-          <div id="correctAnswer" v-show="showAnswer1">
+          <div class="correctAnswer" v-show="showAnswer1">
              <p>Check the box/es for the correct the answer/s:</p>
-            <input type="checkbox" id="answer" name="anwser" value="answer1" v-model="correctAnswer1">
-            <label for="answer">Answer 1</label>
+            <input type="checkbox" id="answer1" name="anwser" value="answer1" v-model="correctAnswer1">
+            <label for="answer1">Answer 1</label>
           </div>
 
-          <div id="correctAnswer" v-show="showAnswer2">
-            <input type="checkbox" id="answer" name="anwser" value="answer2" v-model="correctAnswer2">
-            <label for="answer">Answer 2</label>
+          <div class="correctAnswer" v-show="showAnswer2">
+            <input type="checkbox" id="answer2" name="anwser" value="answer2" v-model="correctAnswer2">
+            <label for="answer2">Answer 2</label>
           </div>
 
-          <div id="correctAnswer" v-show="showAnswer3">
-            <input type="checkbox" id="answer" name="anwser" value="answer3" v-model="correctAnswer3">
-            <label for="answer">Answer 3</label>
+          <div class="correctAnswer" v-show="showAnswer3">
+            <input type="checkbox" id="answer3" name="anwser" value="answer3" v-model="correctAnswer3">
+            <label for="answer3">Answer 3</label>
           </div>
 
-          <div id="correctAnswer" v-show="showAnswer4">
-            <input type="checkbox" id="answer" name="anwser" value="answer4" v-model="correctAnswer4">
-            <label for="answer">Answer 4</label>
+          <div class="correctAnswer" v-show="showAnswer4">
+            <input type="checkbox" id="answer4" name="anwser" value="answer4" v-model="correctAnswer4">
+            <label for="answer4">Answer 4</label>
           </div>
 
         </div>
       </div>
-        <button v-on:click="addQuestion">
+        <button v-on:click="addQuestion" id="addQuestionButton">
           Add question
         </button>
       </div>
@@ -94,15 +96,15 @@
     </div>
 
     <div v-show="showGoBackEditing">
-      <button v-on:click="goBackEditing">
+      <button v-on:click="goBackEditing" id="goBackEditingButton">
         Go back and continue editing poll
       </button>
     </div>
 
 
     <div id="start_poll" v-show="showStartPoll">
-    <input type="number" v-model="questionNumber">
-    <button v-on:click="runQuestion">
+    <input type="number" v-model="questionNumber" id="inputQuestionNumber">
+    <button v-on:click="runQuestion" id="runQuestionButton">
       Run question
     </button>
     {{data}}
@@ -431,8 +433,130 @@ export default {
     height: 7em;
     border-radius: 25px;
   }
+  #inputQuestion{
+    border-radius: 25px;
+    border: 3px double #00BFFF;
+    color: #FF1493;
+    margin: 5% 20% 5% 20%;
+    width: 50%;
+    height: 5%;
+    text-align: center;
+
+  }
+  #inputAnswer{
+    border-radius: 25px;
+    border: 3px double #00BFFF;
+    color: #FF1493;
+    margin: 1% 20% 1% 20%;
+    width: 50%;
+    height: 5%;
+    text-align: center;
+  }
+  #addAnswers {
+    transition-duration: 0.4s;
+    width: 30%;
+    height: 5%;
+    background-color: #1E90FF;
+    border-radius: 25px;
+  }
+
+  #addAnswers:hover {
+    background-color: #00BFFF;
+    color: #FF1493;
+    border-radius: 25px;
+  }
+  #removeAnswers{
+    transition-duration: 0.4s;
+    width: 30%;
+    height: 5%;
+    background-color: #1E90FF;
+    border-radius: 25px;
+  }
+  #removeAnswers:hover {
+    background-color: #00BFFF;
+    color: #FF1493;
+    border-radius: 25px;
+  }
+
+  #addAnsVote_id {
+    transition-duration: 0.4s;
+    width: 30%;
+    height: 5%;
+    background-color: #1E90FF;
+    border-radius: 25px;
+  }
+  #addAnsVote_id:hover {
+    background-color: #00BFFF;
+    color: #FF1493;
+    border-radius: 25px;
+  }
+#removeAnswersVote{
+  transition-duration: 0.4s;
+  width: 30%;
+  height: 5%;
+  background-color: #1E90FF;
+  border-radius: 25px;
+}
+  #removeAnswersVote:hover {
+    background-color: #00BFFF;
+    color: #FF1493;
+    border-radius: 25px;
+  }
+  #checkBoxes{
+    border-radius: 25px;
+    border: 3px double #00BFFF;
+    margin: 1% 20% 1% 20%;
+    width: 50%;
+    height: 5%;              
+    text-align: center;
+  }
+  #addQuestionButton {
+   transition-duration: 0.4s;
+   width: 30%;
+   height: 5%;
+   background-color: #1E90FF;
+   border-radius: 25px;
+  }
+  #addQuestionButton:hover {
+    background-color: #00BFFF;
+    color: #FF1493;
+    border-radius: 25px;
+  }
+  #goBackEditingButton{
+    transition-duration: 0.4s;
+    width: 100%;
+    height: 30%;
+    background-color: #1E90FF;
+    border-radius: 25px;
+  }
+  #goBackEditingButton:hover {
+    background-color: #00BFFF;
+    color: #FF1493;
+    border-radius: 25px;
+  }
+
+  #runQuestionButton {
+    transition-duration: 0.4s;
+    width: 100%;
+    height: 30%;
+    background-color: #1E90FF;
+    border-radius: 25px;
+  }
+  #runQuestionButton:hover {
+    background-color: #00BFFF;
+    color: #FF1493;
+    border-radius: 25px;
+  }
 
 
-
+  #inputQuestionNumber{
+    border-radius: 25px;
+    border: 3px double #00BFFF;
+    color: #FF1493;
+    margin: 1% 20% 1% 20%;
+    width: 50%;
+    height: 5%;
+    text-align: center;
+  }
 
 </style>
