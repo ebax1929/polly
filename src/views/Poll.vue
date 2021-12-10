@@ -2,11 +2,7 @@
 
   <div v-show="showDisplay" id="firstpage">
   <h1>Welcome to Quiz</h1>
-  <div>
     Poll-id:{{pollId}}
-    <Question v-bind:question="question"
-              v-on:answer="submitAnswer"/>
-  </div>
 
     <section id="characters">
       <div id="headLine">
@@ -15,11 +11,17 @@
 
       <div class="wrapper">
 <!--        <p id="boat" v-on:click=characterChosen(pngpilen.png)>-->
-        <div v-on:click='characterChosen("boat")'><img  src="boat.png" ></div>
-        <div v-on:click='characterChosen("dog")'><img  src="hunden.png" ></div>
-        <div v-on:click='characterChosen("hat")'><img  src="hatten.png" ></div>
-        <div v-on:click='characterChosen("car")'><img  src="bilen.png" ></div>
+        <div class="fig" v-on:click='characterChosen("boat")'><img  src="boat.png" ></div>
+        <div class="fig" v-on:click='characterChosen("dog")'><img  src="hunden.png" ></div>
+        <div class="fig" v-on:click='characterChosen("hat")'><img  src="hatten.png" ></div>
+        <div class="fig" v-on:click='characterChosen("car")'><img  src="bilen.png" ></div>
 
+      </div>
+      <div class="imageBorder">
+        <div class="displayCharacter" v-if="myCharacter==='boat'"> <img  src="boat.png"> </div>
+        <div class="displayCharacter" v-else-if="myCharacter==='dog'"><img src="hunden.png"> </div>
+        <div class="displayCharacter" v-else-if="myCharacter==='hat'"><img src="hatten.png"> </div>
+        <div class="displayCharacter" v-else-if="myCharacter==='car'"><img src="bilen.png"> </div>
       </div>
     </section>
       <div v-if="myCharacter!=''">
@@ -36,6 +38,13 @@
     <div class="displayCharacter" v-else-if="myCharacter==='hat'"><img src="hatten.png"> </div>
     <div class="displayCharacter" v-else-if="myCharacter==='car'"><img src="bilen.png"> </div>
     </div>
+
+    <div>
+      Poll-id:{{pollId}}
+      <Question v-bind:question="question"
+                v-on:answer="submitAnswer"/>
+    </div>
+
   </section>
 
 
@@ -96,6 +105,13 @@ export default {
     },
     characterChosen: function(character){
       this.myCharacter=character;
+      console.log(character);
+
+
+        }
+
+
+
 
     },
     // displayCharacter: function(){
@@ -103,7 +119,7 @@ export default {
     //
     //   }
     // }
-  }
+
 }
 </script>
 
@@ -112,12 +128,14 @@ export default {
 cursor:pointer;
   width:10em;
   height:10em;
+
 }
 .wrapper{
   display: grid;
   grid-gap: 5em;
   grid-template-columns: 10em 10em 10em 10em;
   position: relative;
+
   padding-left: 11em;
 }
 .wrapper > div > img{
@@ -131,7 +149,12 @@ cursor:pointer;
 .displayCharacter > img {
   height: 5em;
   width:5em;
+
 }
+
+
+
+
 .characterBox{
   border: 2px lightblue solid;
   position:absolute;
@@ -143,5 +166,27 @@ cursor:pointer;
 
 
 }
+img:hover { /*https://www.w3schools.com/howto/howto_css_shake_image.asp*/
+  /* Start the shake animation and make the animation last for 0.5 seconds */
+  animation: shake 0.7s;
+
+  /* When the animation is finished, start again */
+  animation-iteration-count: infinite;
+}
+
+@keyframes shake {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  70% { transform: translate(3px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(1px, 2px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+
 
 </style>

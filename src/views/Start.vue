@@ -6,14 +6,11 @@
     <div class="Split Right" >
       <button id="LanguageButton" v-on:click="switchLanguage">{{uiLabels.changeLanguage}}</button>
     <div id="Links">
-    <label>
+    <label id="fillInId">
       {{uiLabels.poll_id}}
-      <div id="pollfield">
       <input type="text" v-model="id" placeholder="enter poll-id" >
-      </div>
-    </label><br>
-
-    <router-link v-bind:to="'/poll/'+id" tag="button" >{{uiLabels.participatePoll}} </router-link>
+    </label>
+      <div v-if="id!=''"><router-link id="participateLink" v-bind:to="'/poll/'+id" tag="button" >{{uiLabels.participatePoll}}</router-link></div>
     </div>
     </div>
   </div>
@@ -84,10 +81,12 @@ export default {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  text-align: center;
   font-size: 20pt;
-
 }
+#participateLink{
+  position: absolute;
+}
+
 
 #LanguageButton{
   margin-left: 34em;
@@ -100,6 +99,10 @@ input{
   padding:12px 20px;
 
 }
+#fillInId{
+  margin-top: 20em;
+}
+
 
 
 
