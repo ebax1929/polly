@@ -1,10 +1,13 @@
 <template>
+
 <p>{{question.q}}</p>
 <button v-for="a in question.a" v-on:click="answer(a)" v-bind:key="a">
   {{ a }}
 </button>
+
 </template>
 <script>
+
 export default {
   name: 'Bars',
   props: {
@@ -13,7 +16,18 @@ export default {
   methods: {
     answer: function (answer) {
       this.$emit("answer", answer);
-    } 
+
+    }
+
+  },
+
+  data: function(){
+    return{
+
+    }
   }
 }
 </script>
+<style>
+
+</style>

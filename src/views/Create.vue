@@ -1,8 +1,9 @@
 <template>
   <div class="gridContainer">
     <div v-show="showPollId" id="create_pollId"> <br><br>
-     Please enter a poll-id to create a game!<br>
-      <input type="text" v-model="pollId" id="inputCreatPollId" placeholder="Enter Poll-Id..." > <br>
+      <h1>Please enter a poll-id to create a game!</h1><br>
+      <input type="text" v-model="pollId" id="inputCreatPollId" placeholder="Enter Poll-Id..." >
+      <br>
     <button v-on:click="createPoll" id="createPollButton">
     Create poll
     </button>
@@ -384,10 +385,11 @@ export default {
   }
 
   #create_pollId{
-    background-color: aliceblue;
-    border: groove #00BFFF;
-    color: #FF1493;
-    font-size: 200%;
+    background-color: white;
+    /*border: groove #00BFFF;*/
+    color: slategray;
+    /*font-family: "Times New Roman", Times, serif;*/
+    font-size: 100%;
     text-align: center;
     height: 150%;
     width: 100% ;
@@ -397,20 +399,22 @@ export default {
    transition-duration: 0.4s;
     width: 12em;
     height: 6em;
-    background-color: #1E90FF;
+    background-color: slategray;
+    color: white;
     border-radius: 25px;
 
 }
   #createPollButton:hover {
-    background-color: #00BFFF;
+    background-color: plum;
     color: #FF1493;
     width: 13em;
     height: 7em;
+    color: white;
     border-radius: 25px;
   }
   #inputCreatPollId  {
     border-radius: 25px;
-    border: 3px double #00BFFF;
+    border: 3px double plum;
     color: #FF1493;
     margin: 10% 20% 10% 20%;
     width: 50%;
@@ -558,5 +562,6 @@ export default {
     height: 5%;
     text-align: center;
   }
+
 
 </style>

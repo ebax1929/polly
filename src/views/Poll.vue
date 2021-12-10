@@ -39,8 +39,10 @@
     <div class="displayCharacter" v-else-if="myCharacter==='car'"><img src="bilen.png"> </div>
     </div>
 
-    <div>
+
+
       Poll-id:{{pollId}}
+    <div v-show="showDisplayQuestion" id="question">
       <Question v-bind:question="question"
                 v-on:answer="submitAnswer"/>
     </div>
@@ -71,7 +73,8 @@ export default {
       showDisplay:true,
       showDisplaySecondPage:false,
       fn:"",
-      myCharacter:""
+      myCharacter:"",
+      showDisplayQuestion:true
     }
 
   },
@@ -79,12 +82,13 @@ export default {
     this.pollId = this.$route.params.id
     socket.emit('joinPoll', this.pollId)
     socket.on("newQuestion", q =>
-      this.question = q
-    )
+      this.question = q)
+
   },
   methods: {
     submitAnswer: function (answer) {
       socket.emit("submitAnswer", {pollId: this.pollId, answer: answer})
+      this.showDisplayQuestion=false;
     },
     enterGameButton: function(){
       if (this.fn===""){
@@ -108,7 +112,9 @@ export default {
       console.log(character);
 
 
-        }
+        },
+
+
 
 
 
