@@ -81,9 +81,9 @@ export default {
   created: function () {
     this.pollId = this.$route.params.id
     socket.emit('joinPoll', this.pollId)
-    socket.on("newQuestion", q =>
-      this.question = q)
-
+    socket.on("newQuestion", q => {
+      this.question = q
+    this.showDisplayQuestion=true;})
   },
   methods: {
     submitAnswer: function (answer) {
@@ -92,9 +92,7 @@ export default {
     },
     enterGameButton: function(){
       if (this.fn===""){
-
         console.log('insert name');
-
       }
       else if(this.myCharacter===""){
         console.log('choose character')
@@ -103,21 +101,13 @@ export default {
       {
         this.showDisplay = false
         this.showDisplaySecondPage = true;
-
       }
-
     },
     characterChosen: function(character){
       this.myCharacter=character;
       console.log(character);
 
-
         },
-
-
-
-
-
 
     },
     // displayCharacter: function(){
@@ -157,9 +147,6 @@ cursor:pointer;
   width:5em;
 
 }
-
-
-
 
 .characterBox{
   border: 2px lightblue solid;
