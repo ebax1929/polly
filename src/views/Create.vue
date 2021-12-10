@@ -86,7 +86,9 @@
 
           <div v-show="showStartAndPrevious" id="previousQuestionAndStartPoll" class="gridColumnOne">
         <div id="display_previousQuestion">
-          {{listOfAll}}
+          <li v-for="(item,index) in listOfAll" v-bind:key="index">
+            {{item[0]}} {{item[1]}}
+          </li>
         </div>
             </div>
 
