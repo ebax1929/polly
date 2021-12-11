@@ -93,7 +93,7 @@
           <div v-show="showStartAndPrevious" id="previousQuestionAndStartPoll" class="gridColumnOne">
         <div id="display_previousQuestion">
           <div v-for="(item,index) in listOfAll" v-bind:key="index">
-            <button v-on:click="editQuestion" id="editQuestionButton">
+            <button v-on:click="editQuestion(item[0])"  id="editQuestionButton">
               {{item[0]}} {{item[1]}}
             </button>
           </div>
@@ -238,6 +238,13 @@ export default {
         this.countAnswer -=1
       }
     } ,
+
+    editQuestion: function (question) {
+      socket.emit("editQuestion", {
+        pollId: this.pollId,
+        questionNumber:question
+      })
+    },
 
     addQuestion: function () {
       this.questionNumber+=1;
