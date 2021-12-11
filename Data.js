@@ -24,7 +24,7 @@ Data.prototype.createPoll = function(pollId, lang="en") {
     poll.lang = lang;  
     poll.questions = [];
     poll.answers = [];
-    poll.currentQuestion = 0;              
+    poll.currentQuestion = 1;
     this.polls[pollId] = poll;
     console.log("poll created", pollId, poll);
   }
@@ -49,6 +49,18 @@ Data.prototype.getQuestion = function(pollId, qId=null) {
     return poll.questions[poll.currentQuestion];
   }
   return []
+}
+
+Data.prototype.editQuestion = function(pollId, qId=null){
+  const poll = this.polls[pollId];
+  console.log("requested edit for ", pollId, qId)
+  if (typeof poll !== 'undefined') {
+    if (qId !== null) {
+      poll.questionNumber = qId;
+    }
+    return poll.questions[poll.questionNumber]
+  }
+
 }
 
 Data.prototype.submitAnswer = function(pollId, answer) {

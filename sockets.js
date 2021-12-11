@@ -32,6 +32,8 @@ function sockets(io, socket, data) {
     socket.emit('dataUpdate', data.getAnswers(pollId));
   });
 
+
+
   socket.on('runQuestion', function(d) {
     io.to(d.pollId).emit('newQuestion', data.getQuestion(d.pollId, d.questionNumber));
     io.to(d.pollId).emit('dataUpdate', data.getAnswers(d.pollId));
