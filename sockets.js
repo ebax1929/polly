@@ -12,7 +12,7 @@ function sockets(io, socket, data) {
   socket.on('createPoll', function(d) {
     socket.emit('pollCreated', data.createPoll(d.pollId, d.lang));
   });
-
+  
   socket.on('addQuestion', function(d) {
     data.addQuestion(     d.pollId,
         {              q: d.q,

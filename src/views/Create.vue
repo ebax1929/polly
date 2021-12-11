@@ -10,9 +10,15 @@
     </div>
 
     <div v-show="showDisplayPollId" id="display_pollId" class="gridColumnThree">
+      <br><br>
       Your poll-id:
       {{pollId}}
-    </div>
+      <br><br><br><br><br><br>
+      <div id="displayGubben" >
+        <img  src="gubbenpekar.png" >
+      </div>
+    </div >
+
 
     <div class="gridColumnTwo" v-show="showGridColumnTwo">
       <button v-on:click="createQuiz" id="createQuiz" v-show="showCreateQuiz">
@@ -87,7 +93,9 @@
           <div v-show="showStartAndPrevious" id="previousQuestionAndStartPoll" class="gridColumnOne">
         <div id="display_previousQuestion">
           <div v-for="(item,index) in listOfAll" v-bind:key="index">
-            {{item[0]}} {{item[1]}}
+            <button v-on:click="editQuestion" id="editQuestionButton">
+              {{item[0]}} {{item[1]}}
+            </button>
           </div>
         </div>
             </div>
@@ -372,8 +380,6 @@ export default {
     overflow: hidden;
   }
 
-
-
   #createQuiz{
   border: groove #00BFFF;
     margin-bottom: 0%;
@@ -434,6 +440,19 @@ export default {
     width: 50%;
     height: 5%;
     text-align: center;
+  }
+
+  #display_pollId{
+    border-radius: 25px;
+    border: 3px double plum;
+    color: #1E90FF;
+    background-color: aliceblue;
+    height: 100%;
+
+  }
+  #displayGubben > img{
+    height: 20em;
+    width:8em;
   }
 
   #playPollButton {
