@@ -86,9 +86,9 @@
 
           <div v-show="showStartAndPrevious" id="previousQuestionAndStartPoll" class="gridColumnOne">
         <div id="display_previousQuestion">
-          <li v-for="(item,index) in listOfAll" v-bind:key="index">
+          <div v-for="(item,index) in listOfAll" v-bind:key="index">
             {{item[0]}} {{item[1]}}
-          </li>
+          </div>
         </div>
             </div>
 
@@ -362,6 +362,18 @@ export default {
     height: 20%;
     margin-top: 100% ;
   }
+  #display_previousQuestion{
+    margin-left: 0.3em;
+    margin-top: 0.5em;
+    text-align: left;
+    width: 7em;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+
+
   #createQuiz{
   border: groove #00BFFF;
     margin-bottom: 0%;
