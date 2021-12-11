@@ -81,9 +81,12 @@ export default {
   created: function () {
     this.pollId = this.$route.params.id
     socket.emit('joinPoll', this.pollId)
-    socket.on("newQuestion", q => {
+    socket.on("newQuestion", q =>
+    {
       this.question = q
-    this.showDisplayQuestion=true;})
+      this.showDisplayQuestion=true;
+    }
+    )
   },
   methods: {
     submitAnswer: function (answer) {
