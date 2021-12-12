@@ -1,7 +1,7 @@
 <template>
   <div class="gridContainer">
     <div v-show="showPollId" id="create_pollId"> <br><br>
-      <h1>Please enter a poll-id to create a game!</h1><br>
+      <h1>{{uiLabels.enterPollId}}</h1><br>
       <input type="text" v-model="pollId" id="inputCreatPollId" placeholder="Enter Poll-Id..." >
       <br>
     <button v-on:click="createPoll" id="createPollButton">
@@ -40,7 +40,7 @@
           <label for="answers"></label>
           <input v-for="(_, i) in answers"
                  v-model="answers[i]"
-                 v-bind:key="'answer'+i" id="inputAnswer">
+                 v-bind:key="'answer'+i" id="inputAnswer" placeholder="Placeholder">
 
           <button v-on:click="addAnswer" id="addAnswers" v-show="addAnswers">
             Add answer alternative
@@ -135,7 +135,7 @@ export default {
       lang: "",
       pollId: "",
       question: "",
-      answers: ["Answer 1", "Answer 2 "],
+      answers: ["",""],
       countAnswer: 2,
       questionNumber: 0,
       data: {},
@@ -551,8 +551,11 @@ export default {
     border: 3px double #00BFFF;
     margin: 1% 20% 1% 20%;
     width: 50%;
-    height: 5%;              
+    height: 5%;
     text-align: center;
+  }
+  .correctAnswer{
+
   }
   #addQuestionButton {
    transition-duration: 0.4s;

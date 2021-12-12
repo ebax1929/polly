@@ -5,7 +5,7 @@
 	"participatePoll": "DELTA I POLL",
 	"question": "Fråga",
 	"changeLanguage": "Change to English",
-	"poll_id": ""
-
+	"poll_id": "",
+	"enterPollId":"Vänligen skriv in ett poll-ID för att skapa en poll!"
 
 }

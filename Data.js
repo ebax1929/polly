@@ -54,12 +54,12 @@ Data.prototype.getQuestion = function(pollId, qId=null) {
 Data.prototype.editQuestion = function(pollId, qId=null){
   const poll = this.polls[pollId];
   console.log("requested edit for ", pollId, qId)
-  if (typeof poll !== 'undefined') {
-    if (qId !== null) {
+  if (typeof poll != 'undefined') {
+    if (qId != null) {
       poll.questionNumber = qId;
-      console.log(poll.questions[poll.currentQuestion])
     }
-    return poll.questions[poll.currentQuestion]
+    console.log(poll.questions.questionNumber)
+    return poll.questions.questionNumber
   }
 }
 

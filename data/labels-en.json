@@ -5,7 +5,7 @@
 	"participatePoll": "PARTICIPATE IN POLL",
 	"question": "Question",
 	"changeLanguage": "Byt till svenska",
-	"poll_id": ""
-
+	"poll_id": "",
+	"enterPollId":"Please enter a poll-id to create a game!"
 
 }
