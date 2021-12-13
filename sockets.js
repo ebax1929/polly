@@ -41,6 +41,7 @@ function sockets(io, socket, data) {
   socket.on('runQuestion', function(d) {
     io.to(d.pollId).emit('newQuestion', data.getQuestion(d.pollId, d.questionNumber));
     io.to(d.pollId).emit('dataUpdate', data.getAnswers(d.pollId));
+    io.to(d.pollId).emit('getCorrect', data.getCorrectAnswers(d.pollId, d.questionNumber));
   });
 
   socket.on('submitAnswer', function(d) {

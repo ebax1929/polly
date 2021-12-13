@@ -38,6 +38,25 @@ Data.prototype.addQuestion = function(pollId, q) {
     poll.questions.push(q);
   }
 }
+Data.prototype.getCorrectAnswers = function(pollId, qId=null) {
+  const poll = this.polls[pollId];
+  if (typeof poll !== 'undefined') {
+
+    if (typeof poll.questions[poll.currentQuestion] !== 'undefined') {
+      console.log(poll.questions[poll.currentQuestion.correctAnswer1])
+      console.log(poll.questions[poll.currentQuestion.correctAnswer2])
+      console.log(poll.questions[poll.currentQuestion.correctAnswer3])
+      console.log(poll.questions[poll.currentQuestion.correctAnswer4])
+      return {
+        correctAnswer1: poll.questions[poll.currentQuestion.correctAnswer1],
+        correctAnswer2: poll.questions[poll.currentQuestion.correctAnswer2],
+        correctAnswer3: poll.questions[poll.currentQuestion.correctAnswer3],
+        correctAnswer4: poll.questions[poll.currentQuestion.correctAnswer4]
+      }
+    }
+    return {}
+  }
+}
 
 Data.prototype.getQuestion = function(pollId, qId=null) {
   const poll = this.polls[pollId];
@@ -91,6 +110,13 @@ Data.prototype.getAnswers = function(pollId) {
   }
   return {}
 }
+
+
+
+
+
+
+
 module.exports = Data;
 
 
