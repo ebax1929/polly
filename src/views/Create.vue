@@ -1,4 +1,5 @@
 <template>
+  <body>
   <div class="gridContainer">
     <div v-show="showPollId" id="create_pollId"> <br><br>
       <h1 class="enterPollId">{{uiLabels.enterPollId}}</h1><br>
@@ -17,10 +18,15 @@
       <div id="displayGubben" >
         <img  src="gubbenpekar.png" >
       </div>
+      <div v-show="showPlayPoll" id="gridPlayPoll">
+        <button v-on:click="playPoll" id="playPollButton">
+          {{uiLabels.finishedPoll}}
+        </button>
+      </div>
     </div >
 
 
-    <div  v-show="showGridColumnTwo">
+    <div v-show="showGridColumnTwo">
       <button v-on:click="createQuiz" id="createQuiz" v-show="showCreateQuiz">
         {{uiLabels.createQuizQuestion}}
       </button>
@@ -30,7 +36,7 @@
        </button>
     </div>
 
-    <div v-show="showQuestion" id="create_question" class="gridColumnTwo">
+    <div v-show="showQuestion" id="create_question">
       <div>
         {{uiLabels.question}}:
         <br><br>
@@ -90,7 +96,7 @@
         </button>
       </div>
 
-          <div v-show="showStartAndPrevious" id="previousQuestionAndStartPoll" class="gridColumnOne">
+          <div v-show="showStartAndPrevious" class="gridColumnOne">
         <div id="display_previousQuestion">
           <div v-for="(item,index) in listOfAll" v-bind:key="index">
             <button v-on:click="editQuestion(item[0])"  id="editQuestionButton">
@@ -100,11 +106,7 @@
         </div>
             </div>
 
-    <div v-show="showPlayPoll" class="gridColumnTwo" id="gridPlayPoll">
-      <button v-on:click="playPoll" id="playPollButton">
-        {{uiLabels.finishedPoll}}
-      </button>
-    </div>
+
 
     <div v-show="showGoBackEditing">
       <button v-on:click="goBackEditing" id="goBackEditingButton">
@@ -122,6 +124,7 @@
      <router-link v-bind:to="'/result/'+pollId">{{uiLabels.checkResult}}</router-link>
     </div>
   </div>
+  </body>
 </template>
 
 <script>
@@ -346,41 +349,53 @@ export default {
 }
 </script>
 <style>
+
+body {
+  background:lightslategray;
+}
   .gridContainer {
-    height: 100%;
-    width: 100%;
     display:grid;
-  }
-  .gridColumnOne {
-    border: groove seashell;
-    grid-column: 1;
-    grid-row: 1;
-    width: 8em;
-    height: 40em;
-    border-radius: 20px;
-  }
-  .gridColumnTwo{
-    grid-column: 2;
-    grid-row:1;
-    width: 100%;
-    border-radius: 20px;
-  }
-  .gridColumnThree {
-    border: groove seashell;
-    grid-column: 4;
-    height: 100%;
-    width: 20em;
-  }
-  .enterPollId{
+    grid-template-areas:
+        "a b b e"
+        "a b b e"
+        "a b b e"
+        "a b b c";
 
   }
-  #gridPlayPoll{
-    border: groove #00BFFF;
-    grid-row: 1;
-    width: 100%;
-    height: 20%;
-    margin-top: 100% ;
+  .gridColumnOne {
+    border: double mediumpurple;
+    border-radius: 20px;
+    grid-area:a;
+    width:12em;
+    margin-top: 10px;
+    background:aliceblue;
+    opacity: 70%;
   }
+  #editQuestionButton {
+    margin:2px;
+    height:3.5em;
+    width:13.3em;
+    border-radius: 8px;
+    background:slategray;
+    overflow:hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color:white;
+    border:mediumpurple double;
+  }
+  /*.gridColumnTwo{
+    !*grid-column: 2;
+    grid-row:1;
+    width: 100%;*!
+    border-radius: 20px;
+  }*/
+ /* .gridColumnThree {
+    border: groove seashell;
+   !* grid-column: 4;
+    height: 100%;*!
+    width: 20em;
+  }*/
+
   #display_previousQuestion{
     margin-left: 0.3em;
     margin-top: 0.5em;
@@ -388,35 +403,32 @@ export default {
     width: 7em;
     text-overflow: ellipsis;
     white-space: nowrap;
-    overflow: hidden;
   }
-
   #createQuiz{
-  border: seashell groove;
-    margin-top:5em;
-    margin-right:5px;
-    width: 10em;
-    height: 10em;
-    background-color: lightslategray;
-    color: #FFFFFF;
-    font-size: 200%;
+    border: double mediumpurple;
+    margin-right:10px;
+    width: 12em;
+    height: 26em;
+    background-color: aliceblue;
+    color: slategray;
+    font-size: 150%;
     text-align: center;
     border-radius: 20px;
-    grid-column: 2;
+    grid-area:b;
+    opacity: 85%;
   }
   #createVote{
-  border: seashell groove;
-    margin-left:5px;
-    margin-top:5em;
-    grid-column: 2;
-    width: 10em;
-    height: 10em;
-    background-color: lightslategray;
-    color: #FFFFFF; 
-    font-size: 200%;
+    margin-top: 10px;
+    border: double mediumpurple;
+    width: 12em;
+    height: 26em;
+    background-color: aliceblue;
+    color: slategray;
+    font-size: 150%;
     text-align: center;
     border-radius: 20px;
-    grid-column:3;
+    grid-area:b;
+    opacity: 85%;
   }
 
   #create_pollId{
@@ -434,7 +446,7 @@ export default {
    transition-duration: 0.4s;
     width: 12em;
     height: 6em;
-    background-color: slategray;
+    background-color: lightslategray;
     color: white;
     border-radius: 25px;
 
@@ -458,45 +470,41 @@ export default {
   }
 
   #display_pollId{
-    border-radius: 25px;
-    border: 3px double plum;
-    color: #1E90FF;
-    background-color: aliceblue;
-    height: 100%;
-
+    grid-area:e;
+    color:lightslategray;
   }
   #displayGubben > img{
     height: 20em;
-    width:8em;
+    width:13em;
+    opacity:90%
   }
 
   #playPollButton {
     transition-duration: 0.4s;
-    width: 12em;
-    height: 6em;
-    background-color: #1E90FF;
-    border-radius: 25px;
+    width: 8em;
+    height: 5em;
+    background-color: mediumpurple;
+    border-radius: 10px;
+    color:white;
   }
 
   #playPollButton:hover {
-    background-color: #00BFFF;
-    color: #FF1493;
-    width: 13em;
-    height: 7em;
-    border-radius: 25px;
+    color:white;
+    width: 10em;
+    height: 6em;
+    border-radius: 10px;
   }
   #inputQuestion{
-    border-radius: 25px;
+    border-radius: 10px;
     border: 3px double #00BFFF;
     color: #FF1493;
     margin: 5% 20% 5% 20%;
     width: 50%;
     height: 5%;
     text-align: center;
-
   }
   #inputAnswer{
-    border-radius: 25px;
+    border-radius: 10px;
     border: 3px double #00BFFF;
     color: #FF1493;
     margin: 1% 20% 1% 20%;
@@ -509,25 +517,25 @@ export default {
     width: 30%;
     height: 5%;
     background-color: #1E90FF;
-    border-radius: 25px;
+    border-radius: 10px;
   }
 
   #addAnswers:hover {
     background-color: #00BFFF;
     color: #FF1493;
-    border-radius: 25px;
+    border-radius: 10px;
   }
   #removeAnswers{
     transition-duration: 0.4s;
     width: 30%;
     height: 5%;
     background-color: #1E90FF;
-    border-radius: 25px;
+    border-radius: 10px;
   }
   #removeAnswers:hover {
     background-color: #00BFFF;
     color: #FF1493;
-    border-radius: 25px;
+    border-radius: 10px;
   }
 
   #addAnsVote_id {
@@ -535,27 +543,27 @@ export default {
     width: 30%;
     height: 5%;
     background-color: #1E90FF;
-    border-radius: 25px;
+    border-radius: 10px;
   }
   #addAnsVote_id:hover {
     background-color: #00BFFF;
     color: #FF1493;
-    border-radius: 25px;
+    border-radius: 10px;
   }
 #removeAnswersVote{
   transition-duration: 0.4s;
   width: 30%;
   height: 5%;
   background-color: #1E90FF;
-  border-radius: 25px;
+  border-radius: 10px;
 }
   #removeAnswersVote:hover {
     background-color: #00BFFF;
     color: #FF1493;
-    border-radius: 25px;
+    border-radius: 10px;
   }
   #checkBoxes{
-    border-radius: 25px;
+    border-radius: 10px;
     border: 3px double #00BFFF;
     margin: 1% 20% 1% 20%;
     width: 50%;
@@ -570,24 +578,24 @@ export default {
    width: 30%;
    height: 5%;
    background-color: #1E90FF;
-   border-radius: 25px;
+   border-radius: 10px;
   }
   #addQuestionButton:hover {
     background-color: #00BFFF;
     color: #FF1493;
-    border-radius: 25px;
+    border-radius: 10px;
   }
   #goBackEditingButton{
     transition-duration: 0.4s;
     width: 100%;
     height: 30%;
     background-color: #1E90FF;
-    border-radius: 25px;
+    border-radius: 10px;
   }
   #goBackEditingButton:hover {
     background-color: #00BFFF;
     color: #FF1493;
-    border-radius: 25px;
+    border-radius: 10px;
   }
 
   #runQuestionButton {
@@ -595,17 +603,16 @@ export default {
     width: 100%;
     height: 30%;
     background-color: #1E90FF;
-    border-radius: 25px;
+    border-radius: 10px;
   }
   #runQuestionButton:hover {
     background-color: #00BFFF;
     color: #FF1493;
-    border-radius: 25px;
+    border-radius: 10px;
   }
 
-
   #inputQuestionNumber{
-    border-radius: 25px;
+    border-radius: 10px;
     border: 3px double #00BFFF;
     color: #FF1493;
     margin: 1% 20% 1% 20%;
