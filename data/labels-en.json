@@ -6,6 +6,24 @@
 	"question": "Question",
 	"changeLanguage": "Byt till svenska",
 	"poll_id": "",
-	"enterPollId":"Please enter a poll-id to create a game!"
+	"enterPollId":"Please enter a poll-id to create a game!",
+	"createPollButton": "Create poll",
+	"yourPollId": "Your poll-id:",
+	"createQuizQuestion": "Creat a Quiz-Question, this is a mulitoptional question with one or many correct answers",
+	"createVoteQuestion": "Create a Vote-Quetsion, this is a multioptional question with no correct answers",
+	"Enterquestion": "Please enter your question",
+	"addAnswerAlternative": "Add answer alternative",
+	"removeAnswerAlternative": " Remove the last answer alternative",
+	"checkboxes": "Check the box/es for the correct the answer/s:",
+	"ans1": "Answer 1",
+	"ans2": "Answer 2",
+	"ans3": "Answer 3",
+	"ans4": "Answer 4",
+	"addQusetion": "Add Question",
+	"finishedPoll": "Are you finished with your poll?",
+	"goBackEdit": "Go back and continue editing poll",
+	"runQ": "Run question",
+	"checkResult": "Check result"
+
 
 }

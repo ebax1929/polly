@@ -6,6 +6,22 @@
 	"question": "Fråga",
 	"changeLanguage": "Change to English",
 	"poll_id": "",
-	"enterPollId":"Vänligen skriv in ett poll-ID för att skapa en poll!"
-
+	"enterPollId":"Vänligen skriv in ett poll-ID för att skapa en poll!",
+	"createPollButton": "Skapa poll",
+	"yourPollId": "Ditt poll-id:",
+	"createQuizQuestion": "Skapa en Quiz-fråga, detta är en flervalsfråga med ett eller flera korrekta svarsalternativ",
+	"createVoteQuestion": "Skapa en Vote-fråga, detta är en flervalsfråga där man kan rösta på svarsalternativ",
+	"Enterquestion": "Vänligen skriv in din fråga",
+	"addAnswerAlternative": "Skapa ett till svarsalternativ",
+	"removeAnswerAlternative": " Ta bort det sista svarsalternativet",
+	"checkboxes": "Tryck i rutan för de svarsalternativ som är korrekta",
+	"ans1": "Svar 1",
+	"ans2": "Svar 2",
+	"ans3": "Svar 3",
+	"ans4": "Svar 4",
+	"addQusetion": "Lägg till fråga",
+	"finishedPoll": "Är du färdig med din poll?",
+	"goBackEdit": "Gå tillbaka och forstätt redigera poll",
+	"runQ": "Spela frågan",
+	"checkResult": "Se resultat"
 }

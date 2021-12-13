@@ -5,13 +5,13 @@
       <input type="text" v-model="pollId" id="inputCreatPollId" placeholder="Enter Poll-Id..." >
       <br>
     <button v-on:click="createPoll" id="createPollButton">
-    Create poll
+      {{uiLabels.createPollButton}}
     </button>
     </div>
 
     <div v-show="showDisplayPollId" id="display_pollId" class="gridColumnThree">
       <br><br>
-      Your poll-id:
+      {{uiLabels.yourPollId}}
       {{pollId}}
       <br><br><br><br><br><br>
       <div id="displayGubben" >
@@ -22,11 +22,11 @@
 
     <div class="gridColumnTwo" v-show="showGridColumnTwo">
       <button v-on:click="createQuiz" id="createQuiz" v-show="showCreateQuiz">
-        Creat a quiz-question, this is a mulitoptional question with one or many correct answers
+        {{uiLabels.createQuizQuestion}}
       </button>
 
        <button v-on:click="createVote" id="createVote" v-show="showCreateVote">
-         Create a vote-quetsion, this is a multioptional question with no correct answers
+         {{uiLabels.createVoteQuestion}}
        </button>
     </div>
 
@@ -34,7 +34,7 @@
       <div>
         {{uiLabels.question}}:
         <br><br>
-        Please enter your question!<br>
+        {{uiLabels.Enterquestion}}<br>
         <input type="text" v-model="question" id ="inputQuestion" placeholder="Enter your question...">
         <div>
           <label for="answers"></label>
@@ -43,19 +43,19 @@
                  v-bind:key="'answer'+i" id="inputAnswer" placeholder="Placeholder">
 
           <button v-on:click="addAnswer" id="addAnswers" v-show="addAnswers">
-            Add answer alternative
+            {{uiLabels.addAnswerAlternative}}
           </button>
 
           <button v-on:click="removeAnswer" id="removeAnswers" v-show="removeAnswers">
-            Remove the last answer alternative
+            {{uiLabels.removeAnswerAlternative}}
           </button>
 
           <button v-on:click="addAnsVote" id="addAnsVote_id" v-show="addAnsVote_id">
-            Add answer alternative
+            {{uiLabels.addAnswerAlternative}}
           </button>
 
           <button v-on:click="removeAnswerVote" id="removeAnswersVote" v-show="removeAnswersVote">
-            Remove the last answer alternative                                             
+            {{uiLabels.removeAnswerAlternative}}
           </button>
         </div>
 
@@ -63,30 +63,30 @@
 
 
           <div class="correctAnswer" v-show="showAnswer1">
-             <p>Check the box/es for the correct the answer/s:</p>
+             <p>{{uiLabels.checkboxes}}</p>
             <input type="checkbox" id="answer1" name="anwser" value="answer1" v-model="correctAnswer1">
-            <label for="answer1">Answer 1</label>
+            <label for="answer1">{{uiLabels.ans1}}</label>
           </div>
 
           <div class="correctAnswer" v-show="showAnswer2">
             <input type="checkbox" id="answer2" name="anwser" value="answer2" v-model="correctAnswer2">
-            <label for="answer2">Answer 2</label>
+            <label for="answer2">{{uiLabels.ans2}}</label>
           </div>
 
           <div class="correctAnswer" v-show="showAnswer3">
             <input type="checkbox" id="answer3" name="anwser" value="answer3" v-model="correctAnswer3">
-            <label for="answer3">Answer 3</label>
+            <label for="answer3">{{uiLabels.ans3}}</label>
           </div>
 
           <div class="correctAnswer" v-show="showAnswer4">
             <input type="checkbox" id="answer4" name="anwser" value="answer4" v-model="correctAnswer4">
-            <label for="answer4">Answer 4</label>
+            <label for="answer4">{{uiLabels.ans4}}</label>
           </div>
 
         </div>
       </div>
         <button v-on:click="addQuestion" id="addQuestionButton">
-          Add question
+          {{uiLabels.addQusetion}}
         </button>
       </div>
 
@@ -102,13 +102,13 @@
 
     <div v-show="showPlayPoll" class="gridColumnTwo" id="gridPlayPoll">
       <button v-on:click="playPoll" id="playPollButton">
-        Are you finished with your poll?
+        {{uiLabels.finishedPoll}}
       </button>
     </div>
 
     <div v-show="showGoBackEditing">
       <button v-on:click="goBackEditing" id="goBackEditingButton">
-        Go back and continue editing poll
+        {{uiLabels.goBackEdit}}
       </button>
     </div>
 
@@ -116,10 +116,10 @@
     <div id="start_poll" v-show="showStartPoll">
     <input type="number" v-model="questionNumber" id="inputQuestionNumber">
     <button v-on:click="runQuestion" id="runQuestionButton">
-      Run question
+      {{uiLabels.runQ}}
     </button>
     {{data}}
-     <router-link v-bind:to="'/result/'+pollId">Check result</router-link>
+     <router-link v-bind:to="'/result/'+pollId">{{uiLabels.checkResult}}</router-link>
     </div>
   </div>
 </template>
