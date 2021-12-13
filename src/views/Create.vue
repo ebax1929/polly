@@ -47,7 +47,7 @@
           <input v-for="(_, i) in answers"
                  v-model="answers[i]"
                  v-bind:key="'answer'+i" id="inputAnswer" placeholder="Placeholder">
-
+<br>
           <button v-on:click="addAnswer" id="addAnswers" v-show="addAnswers">
             {{uiLabels.addAnswerAlternative}}
           </button>
@@ -499,8 +499,8 @@ body {
     border: 3px double #00BFFF;
     color: #FF1493;
     margin: 5% 20% 5% 20%;
-    width: 50%;
-    height: 5%;
+    width: 15em;
+    height: 1em;
     text-align: center;
   }
   #inputAnswer{
@@ -508,14 +508,14 @@ body {
     border: 3px double #00BFFF;
     color: #FF1493;
     margin: 1% 20% 1% 20%;
-    width: 50%;
-    height: 5%;
+    width: 15em;
+    height: 1em;
     text-align: center;
   }
   #addAnswers {
     transition-duration: 0.4s;
-    width: 30%;
-    height: 5%;
+    width: 12em;
+    height: 2em;
     background-color: #1E90FF;
     border-radius: 10px;
   }
@@ -527,8 +527,8 @@ body {
   }
   #removeAnswers{
     transition-duration: 0.4s;
-    width: 30%;
-    height: 5%;
+    width: 12em;
+    height: 2em;
     background-color: #1E90FF;
     border-radius: 10px;
   }
@@ -540,7 +540,7 @@ body {
 
   #addAnsVote_id {
     transition-duration: 0.4s;
-    width: 30%;
+    width: 20%;
     height: 5%;
     background-color: #1E90FF;
     border-radius: 10px;
@@ -552,7 +552,7 @@ body {
   }
 #removeAnswersVote{
   transition-duration: 0.4s;
-  width: 30%;
+  width: 20%;
   height: 5%;
   background-color: #1E90FF;
   border-radius: 10px;
