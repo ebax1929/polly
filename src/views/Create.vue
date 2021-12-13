@@ -1,7 +1,7 @@
 <template>
   <div class="gridContainer">
     <div v-show="showPollId" id="create_pollId"> <br><br>
-      <h1>{{uiLabels.enterPollId}}</h1><br>
+      <h1 class="enterPollId">{{uiLabels.enterPollId}}</h1><br>
       <input type="text" v-model="pollId" id="inputCreatPollId" placeholder="Enter Poll-Id..." >
       <br>
     <button v-on:click="createPoll" id="createPollButton">
@@ -20,7 +20,7 @@
     </div >
 
 
-    <div class="gridColumnTwo" v-show="showGridColumnTwo">
+    <div  v-show="showGridColumnTwo">
       <button v-on:click="createQuiz" id="createQuiz" v-show="showCreateQuiz">
         Creat a quiz-question, this is a mulitoptional question with one or many correct answers
       </button>
@@ -352,24 +352,28 @@ export default {
     display:grid;
   }
   .gridColumnOne {
-    border: groove #00BFFF;
+    border: groove seashell;
     grid-column: 1;
     grid-row: 1;
     width: 8em;
     height: 40em;
+    border-radius: 20px;
   }
   .gridColumnTwo{
     grid-column: 2;
     grid-row:1;
     width: 100%;
+    border-radius: 20px;
   }
   .gridColumnThree {
-    border: groove #00BFFF;
-    grid-column: 3;
+    border: groove seashell;
+    grid-column: 4;
     height: 100%;
     width: 20em;
   }
+  .enterPollId{
 
+  }
   #gridPlayPoll{
     border: groove #00BFFF;
     grid-row: 1;
@@ -388,27 +392,31 @@ export default {
   }
 
   #createQuiz{
-  border: groove #00BFFF;
-    margin-bottom: 0%;
-    grid-column: 1;
-    width: 50%;
-    height: 80%;
-    background-color: #00BFFF;
+  border: seashell groove;
+    margin-top:5em;
+    margin-right:5px;
+    width: 10em;
+    height: 10em;
+    background-color: lightslategray;
     color: #FFFFFF;
     font-size: 200%;
     text-align: center;
-
+    border-radius: 20px;
+    grid-column: 2;
   }
   #createVote{
-  border: groove #00BFFF;
-    margin-bottom: 0%; 
+  border: seashell groove;
+    margin-left:5px;
+    margin-top:5em;
     grid-column: 2;
-    width: 50%;
-    height: 80%;
-    background-color: #00BFFF;
+    width: 10em;
+    height: 10em;
+    background-color: lightslategray;
     color: #FFFFFF; 
     font-size: 200%;
     text-align: center;
+    border-radius: 20px;
+    grid-column:3;
   }
 
   #create_pollId{
