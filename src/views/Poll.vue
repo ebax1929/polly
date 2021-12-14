@@ -234,8 +234,8 @@ cursor:pointer;
 }
 @keyframes exempel {
   0%   {left: 2.5em; top:30.5em;}
-  25%  {left:2.5em; top:3em;}
-  50%  {left: 30.5em; top:3em;}
+  25%  {left:2.5em; top:2.5em;}
+  50%  {left: 30.5em; top:2.5em;}
   75%  {left: 30.5em; top: 30.5em;}
   100% {left: 2.5em; top:30.5em;}
 }
