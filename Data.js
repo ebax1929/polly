@@ -38,20 +38,28 @@ Data.prototype.addQuestion = function(pollId, q) {
     poll.questions.push(q);
   }
 }
-Data.prototype.getCorrectAnswers = function(pollId, qId=null) {
+Data.prototype.editQuestion = function(pollId, qId=0){
   const poll = this.polls[pollId];
-  if (typeof poll !== 'undefined') {
+  console.log("requested edit for ", pollId, qId)
+  if (typeof poll != 'undefined') {
+    for (let i = 0; i < poll.questions.length; i++) {
+      if (poll.questions[i].questionNumber === qId) {
+        console.log(poll.questions[i])
+        return poll.questions[i]
+      }
+    }
+  }
+  return {}
+}
 
-    if (typeof poll.questions[poll.currentQuestion] !== 'undefined') {
-      console.log(poll.questions[poll.currentQuestion.correctAnswer1])
-      console.log(poll.questions[poll.currentQuestion.correctAnswer2])
-      console.log(poll.questions[poll.currentQuestion.correctAnswer3])
-      console.log(poll.questions[poll.currentQuestion.correctAnswer4])
-      return {
-        correctAnswer1: poll.questions[poll.currentQuestion.correctAnswer1],
-        correctAnswer2: poll.questions[poll.currentQuestion.correctAnswer2],
-        correctAnswer3: poll.questions[poll.currentQuestion.correctAnswer3],
-        correctAnswer4: poll.questions[poll.currentQuestion.correctAnswer4]
+Data.prototype.getCorrectAnswers = function(pollId, qId=0) {
+  const poll = this.polls[pollId];
+  console.log("send correct answer for", pollId, qId)
+  if (typeof poll !== 'undefined') {
+    for (let i = 0; i < poll.questions.length; i++) {
+      if (poll.questions[i].questionNumber === qId) {
+        console.log(poll.questions[i])
+        return poll.questions[i]
       }
     }
     return {}

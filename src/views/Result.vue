@@ -31,10 +31,10 @@ export default {
       showCorAns3: false,
       showCorAns4: false,
       question: "",
-      correctAnswer1: "",
-      correctAnswer2: "",
-      correctAnswer3: "",
-      correctAnswer4: "",
+      correctAnswer1: false,
+      correctAnswer2: false,
+      correctAnswer3: false,
+      correctAnswer4: false,
       data: {
       },
     }

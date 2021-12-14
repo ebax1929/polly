@@ -195,7 +195,8 @@ export default {
       this.correctAnswer2 = q.correctAnswer2
       this.correctAnswer3 = q.correctAnswer3
       this.correctAnswer4 = q.correctAnswer4
-    console.log(q)})
+      console.log(q)
+    })
   },
   methods: {
     createPoll: function () {
