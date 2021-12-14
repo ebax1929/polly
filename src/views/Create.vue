@@ -189,14 +189,13 @@ export default {
       this.data = data)
     socket.on('oldQuestion', q =>{
       this.question = q.q
-     /*     this.question,
-              this.answers = a,
-          questionNumber= this.questionNumber,
-          correctAnswer1= this.correctAnswer1,
-          correctAnswer2: this.correctAnswer2,
-          correctAnswer3: this.correctAnswer3,
-          correctAnswer4: this.correctAnswer4
-          console.log(this.question)*/ })
+      this.answers = q.a
+      this.questionNumber = q.questionNumber
+      this.correctAnswer1 = q.correctAnswer1
+      this.correctAnswer2 = q.correctAnswer2
+      this.correctAnswer3 = q.correctAnswer3
+      this.correctAnswer4 = q.correctAnswer4
+    console.log(q)})
   },
   methods: {
     createPoll: function () {
@@ -311,7 +310,6 @@ export default {
     },
 
     addAnswer: function () {
-
       this.answers.push("");
       this.removeAnswers=true;
       if(this.countAnswer > 3) {
@@ -326,7 +324,6 @@ export default {
     },
 
     removeAnswer: function(){
-
       this.answers.pop();
       this.addAnswers=true;
       if(this.countAnswer < 3) {
@@ -340,7 +337,6 @@ export default {
       }
     },
      addAnsVote: function(){
-
        this.answers.push("Answer " + this.countAnswer);
        this.removeAnswersVote=true;
        if(this.countAnswer > 3) {
@@ -349,7 +345,6 @@ export default {
      },
 
      removeAnswerVote: function(){
-
        this.answers.pop();
        this.addAnsVote_id=true;
        if(this.countAnswer < 3) {
