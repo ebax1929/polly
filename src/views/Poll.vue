@@ -1,5 +1,6 @@
 <template>
 
+  <body>
   <div v-show="showDisplay" id="firstpage">
   <h1>Welcome to Quiz</h1>
     Poll-id:{{pollId}}
@@ -30,6 +31,30 @@
       </div>
     <div v-if="this.fn!=''" id="enterGame" v-on:click=enterGameButton><img id="picture" src="pngpilen.png" > <h1>LETS GO</h1> </div>
   </div>
+
+  <section v-show="showDisplayOneAndAHalfPage" id="OneAndAHalfPage">
+    <div class="welcomeCharacter">
+      <div class="displayWelcomeCharacter" v-if="myCharacter==='boat'"> <img  src="boat.png"> </div>
+      <div class="displayWelcomeCharacter" v-else-if="myCharacter==='dog'"><img src="hunden.png"> </div>
+      <div class="displayWelcomeCharacter" v-else-if="myCharacter==='hat'"><img src="hatten.png"> </div>
+      <div class="displayWelcomeCharacter" v-else-if="myCharacter==='car'"><img src="bilen.png"> </div>
+    </div>
+    <div class="welcomeName">
+      <br> Welcome to Monopoll <br>
+      <div class="classFn"> {{fn}}! </div>
+       Please wait for poll to start
+    </div>
+
+    <div class="monopolGubben">
+      <img src="gubbenhej.png">
+    </div>
+<!--    <vue-countdown :time="10000" :tarnsform="transformslotProps" v-slot="{seconds}">
+      Seconds until poll Started: {{seconds}}
+    </vue-countdown>-->
+
+  </section>
+
+
   <section v-show="showDisplaySecondPage" id="secondPage">
     <div class="characterBox">
     This is you: {{fn}} <br>
@@ -40,7 +65,6 @@
     </div>
 
 
-
       Poll-id:{{pollId}}
     <div v-show="showDisplayQuestion" id="question">
       <Question v-bind:question="question"
@@ -48,7 +72,7 @@
     </div>
 
   </section>
-
+  </body>
 
 </template>
 
@@ -74,9 +98,9 @@ export default {
       showDisplaySecondPage:false,
       fn:"",
       myCharacter:"",
+      showDisplayOneAndAHalfPage: false,
       showDisplayQuestion:true
     }
-
   },
   created: function () {
     this.pollId = this.$route.params.id
@@ -89,6 +113,14 @@ export default {
     )
   },
   methods: {
+    /*transformSlotProps(props){
+      const formattedProps = {};
+
+      Object.entries(props).forEach(([key, value]) => {
+        formattedProps[key] = value < 10 ?'0${value}' : String(value);
+      });
+      return formattedProps;
+    },*/
     submitAnswer: function (answer) {
       socket.emit("submitAnswer", {pollId: this.pollId, answer: answer})
       this.showDisplayQuestion=false;
@@ -103,7 +135,9 @@ export default {
       else
       {
         this.showDisplay = false
-        this.showDisplaySecondPage = true;
+        setTimeout(()=>this.showDisplayOneAndAHalfPage=true,0)
+        setTimeout(()=>this.showDisplayOneAndAHalfPage=false,10000)
+        setTimeout(()=>this.showDisplaySecondPage=true,10000)
       }
     },
     characterChosen: function(character){
@@ -112,6 +146,22 @@ export default {
 
         },
 
+   /* startTimer: function () {
+      var timer = duration, seconds;
+
+      setInterval: function () {
+        seconds = parseInt(timer % 60, 10);
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.textContent = minutes + ":" + seconds;
+
+        if (--timer < 0) {
+          timer = duration;
+        }
+
+
+      }
+*/
     },
     // displayCharacter: function(){
     //   if (myCharacter==="dog"){
@@ -123,6 +173,10 @@ export default {
 </script>
 
 <style>
+body{
+  background-color: seashell;
+  color: black;
+}
 #picture{
 cursor:pointer;
   width:10em;
@@ -148,15 +202,76 @@ cursor:pointer;
 .displayCharacter > img {
   height: 5em;
   width:5em;
-
 }
-
 .characterBox{
   border: 2px lightblue solid;
   position:absolute;
   top:0;
   left:0;
 }
+
+.welcomeCharacter{
+  position:absolute;
+  top: 15em;
+  right: 10em;
+}
+.displayWelcomeCharacter > img {
+  height: 15em;
+  width:15em;
+
+}
+
+.welcomeName{
+  position: absolute;
+  top: 10em;
+  right: 20em;
+  text-align: center;
+  width: 11em;
+  height: 8em;
+  background-color: plum;
+  border-radius: 1em;
+  color:seashell;
+  font-size: 1.5em;
+}
+.welcomeName:before {
+  content:"";
+  position: absolute;
+  right: 11em;
+  top: 3.5em;
+  width: 0;
+  height: 0;
+  border-top: 13px solid transparent;
+  border-right: 26px solid plum;
+  border-bottom: 13px solid transparent;
+}
+.classFn{
+  color: #FFFFFF;
+  font-size: 2em;
+}
+.monopolGubben{
+  position: absolute;
+  top: 10em;
+  left: 10em;
+}
+
+.monopolGubben > img {
+  width: 20em;
+  height: 27em;
+}
+.monopolGubben > img:hover {
+  animation: paused;
+}
+
+
+
+
+
+
+
+
+
+
+
 
 #headlines{
 
