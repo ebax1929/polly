@@ -5,7 +5,6 @@ function sockets(io, socket, data) {
     socket.emit('pollLang', data.getLang(pollId));
   }
   )
-
   socket.on('pageLoaded', function (lang) {
     socket.emit('init', data.getUILabels(lang));
   });
@@ -19,7 +18,7 @@ function sockets(io, socket, data) {
   });
 
   socket.on('editQuestion', function(d) {
-    data.editQuestion( d.pollId, { questionNumber: d.questionNumber })
+    socket.emit('oldQuestion', data.editQuestion(d.pollId, d.questionNumber))
   });
 
   socket.on('addQuestion', function(d) {
@@ -40,8 +39,6 @@ function sockets(io, socket, data) {
     socket.emit('newQuestion', data.getQuestion(pollId))
     socket.emit('dataUpdate', data.getAnswers(pollId));
   });
-
-
 
   socket.on('runQuestion', function(d) {
     io.to(d.pollId).emit('newQuestion', data.getQuestion(d.pollId, d.questionNumber));

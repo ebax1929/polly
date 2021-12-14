@@ -21,7 +21,7 @@ Data.prototype.getUILabels = function (lang = "en") {
 Data.prototype.createPoll = function(pollId, lang="en") {
   if (typeof this.polls[pollId] === "undefined") {
     let poll = {};
-    poll.lang = lang;  
+    poll.lang = lang;
     poll.questions = [];
     poll.answers = [];
     poll.currentQuestion = 0;
@@ -79,16 +79,18 @@ Data.prototype.getLang = function(pollId) {
   return "en"
 }
 
-Data.prototype.editQuestion = function(pollId, qId=null){
+Data.prototype.editQuestion = function(pollId, qId=0){
   const poll = this.polls[pollId];
   console.log("requested edit for ", pollId, qId)
   if (typeof poll != 'undefined') {
-    if (qId != null) {
-      poll.questionNumber = qId;
+    for (let i = 0; i < poll.questions.length; i++) {
+     if (poll.questions[i].questionNumber === qId) {
+       console.log(poll.questions[i])
+       return poll.questions[i]
+     }
     }
-    console.log(poll.questions.questionNumber)
-    return poll.questions.questionNumber
   }
+  return {}
 }
 
 Data.prototype.submitAnswer = function(pollId, answer) {

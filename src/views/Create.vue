@@ -3,7 +3,7 @@
   <div class="gridContainer">
     <div v-show="showPollId" id="create_pollId"> <br><br>
       <h1 class="enterPollId">{{uiLabels.enterPollId}}</h1><br>
-      <input type="text" v-model="pollId" id="inputCreatPollId" placeholder="Enter Poll-Id..." >
+      <input type="text" v-model="pollId" id="inputCreatPollId" v-bind:placeholder="uiLabels.enterPollId" >
       <br>
     <button v-on:click="createPoll" id="createPollButton">
       {{uiLabels.createPollButton}}
@@ -45,7 +45,7 @@
           <label for="answers"></label>
           <input v-for="(_, i) in answers"
                  v-model="answers[i]"
-                 v-bind:key="'answer'+i" id="inputAnswer" placeholder="Placeholder">
+                 v-bind:key="'answer'+i" id="inputAnswer" v-bind:placeholder="'Placeholder'+i">
 <br>
           <button v-on:click="addAnswer" id="addAnswers" v-show="addAnswers">
             {{uiLabels.addAnswerAlternative}}
@@ -141,7 +141,6 @@ export default {
       pollId: "",
       question: "",
       answers: ["",""],
-      countAnswer: 2,
       questionNumber: 0,
       data: {},
       uiLabels: {},
@@ -172,6 +171,11 @@ export default {
       showGridColumnTwo: false,
     }
   },
+  computed: {
+    countAnswer: function () {
+      return this.answers.length
+    }
+  },
   created: function () {
     this.lang = this.$route.params.lang;
     socket.emit("pageLoaded", this.lang);
@@ -183,6 +187,16 @@ export default {
     )
     socket.on("pollCreated", (data) =>
       this.data = data)
+    socket.on('oldQuestion', q =>{
+      this.question = q.q
+     /*     this.question,
+              this.answers = a,
+          questionNumber= this.questionNumber,
+          correctAnswer1= this.correctAnswer1,
+          correctAnswer2: this.correctAnswer2,
+          correctAnswer3: this.correctAnswer3,
+          correctAnswer4: this.correctAnswer4
+          console.log(this.question)*/ })
   },
   methods: {
     createPoll: function () {
@@ -211,11 +225,11 @@ export default {
       this.showCreateVote=false;
       if (this.countAnswer === 4 ){
         this.answers.pop();
-        this.countAnswer -=1
+
       }
       if (this.countAnswer ===3 ) {
         this.answers.pop();
-        this.countAnswer -=1
+
       }
     },
     createVote: function() {
@@ -237,11 +251,11 @@ export default {
       this.showCreateVote=false;
       if (this.countAnswer === 4 ){
         this.answers.pop();
-        this.countAnswer -=1
+
       }
       if (this.countAnswer ===3 ) {
         this.answers.pop();
-        this.countAnswer -=1
+
       }
     } ,
 
@@ -268,8 +282,6 @@ export default {
       this.showCreateVote=true;
       this.showQuestion = false;
       this.showPlayPoll = true;
-
-      
       this.listOfQuestionAndNumber=[];
       this.listOfQuestionAndNumber.push(this.questionNumber , this.question)
       this.listOfAll.pop()
@@ -299,8 +311,8 @@ export default {
     },
 
     addAnswer: function () {
-      this.countAnswer+=1
-      this.answers.push("Answer " + this.countAnswer);
+
+      this.answers.push("");
       this.removeAnswers=true;
       if(this.countAnswer > 3) {
         this.addAnswers=false;
@@ -314,7 +326,7 @@ export default {
     },
 
     removeAnswer: function(){
-      this.countAnswer-=1
+
       this.answers.pop();
       this.addAnswers=true;
       if(this.countAnswer < 3) {
@@ -328,7 +340,7 @@ export default {
       }
     },
      addAnsVote: function(){
-       this.countAnswer+=1
+
        this.answers.push("Answer " + this.countAnswer);
        this.removeAnswersVote=true;
        if(this.countAnswer > 3) {
@@ -337,7 +349,7 @@ export default {
      },
 
      removeAnswerVote: function(){
-       this.countAnswer-=1
+
        this.answers.pop();
        this.addAnsVote_id=true;
        if(this.countAnswer < 3) {
