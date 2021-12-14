@@ -25,7 +25,6 @@
       </div>
     </div >
 
-
     <div v-show="showGridColumnTwo">
       <button v-on:click="createQuiz" id="createQuiz" v-show="showCreateQuiz">
         {{uiLabels.createQuizQuestion}}
@@ -36,7 +35,7 @@
        </button>
     </div>
 
-    <div v-show="showQuestion" id="create_question">
+    <div v-show="showQuestion" id="createQuestion">
       <div>
         {{uiLabels.question}}:
         <br><br>
@@ -67,26 +66,25 @@
 
         <div id="checkBoxes">
 
-
           <div class="correctAnswer" v-show="showAnswer1">
-             <p>{{uiLabels.checkboxes}}</p>
-            <input type="checkbox" id="answer1" name="anwser" value="answer1" v-model="correctAnswer1">
+             <p id="checkBoxText">{{uiLabels.checkboxes}}</p>
             <label for="answer1">{{uiLabels.ans1}}</label>
+            <input type="checkbox" id="answer1" name="anwser" value="answer1" v-model="correctAnswer1">
           </div>
 
           <div class="correctAnswer" v-show="showAnswer2">
-            <input type="checkbox" id="answer2" name="anwser" value="answer2" v-model="correctAnswer2">
             <label for="answer2">{{uiLabels.ans2}}</label>
+            <input type="checkbox" id="answer2" name="anwser" value="answer2" v-model="correctAnswer2">
           </div>
 
           <div class="correctAnswer" v-show="showAnswer3">
-            <input type="checkbox" id="answer3" name="anwser" value="answer3" v-model="correctAnswer3">
             <label for="answer3">{{uiLabels.ans3}}</label>
+            <input type="checkbox" id="answer3" name="anwser" value="answer3" v-model="correctAnswer3">
           </div>
 
           <div class="correctAnswer" v-show="showAnswer4">
-            <input type="checkbox" id="answer4" name="anwser" value="answer4" v-model="correctAnswer4">
             <label for="answer4">{{uiLabels.ans4}}</label>
+            <input type="checkbox" id="answer4" name="anwser" value="answer4" v-model="correctAnswer4">
           </div>
 
         </div>
@@ -97,6 +95,7 @@
       </div>
 
           <div v-show="showStartAndPrevious" class="gridColumnOne">
+
         <div id="display_previousQuestion">
           <div v-for="(item,index) in listOfAll" v-bind:key="index">
             <button v-on:click="editQuestion(item[0])"  id="editQuestionButton">
@@ -104,16 +103,14 @@
             </button>
           </div>
         </div>
-            </div>
 
-
+        </div>
 
     <div v-show="showGoBackEditing">
       <button v-on:click="goBackEditing" id="goBackEditingButton">
         {{uiLabels.goBackEdit}}
       </button>
     </div>
-
 
     <div id="start_poll" v-show="showStartPoll">
     <input type="number" v-model="questionNumber" id="inputQuestionNumber">
@@ -123,6 +120,12 @@
     {{data}}
      <router-link v-bind:to="'/result/'+pollId">{{uiLabels.checkResult}}</router-link>
     </div>
+    <div v-show="showStartandPreviousNextPage" class="gridColumnOneNextPage">
+        <div v-for="(item,index) in listOfAll" v-bind:key="index">
+            {{item[0]}} {{item[1]}}
+        </div>
+    </div>
+
   </div>
   </body>
 </template>
@@ -148,6 +151,7 @@ export default {
       showPollId: true,
       showQuestion: false,
       showStartAndPrevious: false,
+      showStartandPreviousNextPage:false,
       showStartPoll: false,
       showDisplayPollId: false,
       addAnswers: false,
@@ -277,6 +281,7 @@ export default {
     playPoll: function () {
       this.showPlayPoll = false;
       this.showStartAndPrevious = false;
+      this.showStartandPreviousNextPage = true;
       this.showQuestion  = false;
       this.showCreateQuiz=false;
       this.showCreateVote=false;
@@ -340,8 +345,6 @@ export default {
        }
      },
 
-
-
     runQuestion: function () {
       socket.emit("runQuestion", {pollId: this.pollId, questionNumber: this.questionNumber})
     }
@@ -371,6 +374,15 @@ body {
     background:aliceblue;
     opacity: 70%;
   }
+  .gridColumnOneNextPage{
+    border: double mediumpurple;
+    border-radius: 20px;
+    grid-area:b;
+    width:17em;
+    margin-top: 10px;
+    background:aliceblue;
+    opacity: 70%;
+  }
   #editQuestionButton {
     margin:2px;
     height:3.5em;
@@ -383,6 +395,12 @@ body {
     color:white;
     border:mediumpurple double;
   }
+#createQuestion {
+  border:mediumpurple double;
+  grid-area:b;
+  height: 39em;
+  width:50em;
+}
   /*.gridColumnTwo{
     !*grid-column: 2;
     grid-row:1;
@@ -538,6 +556,7 @@ body {
     border-radius: 10px;
   }
 
+
   #addAnsVote_id {
     transition-duration: 0.4s;
     width: 20%;
@@ -564,14 +583,17 @@ body {
   }
   #checkBoxes{
     border-radius: 10px;
-    border: 3px double #00BFFF;
-    margin: 1% 20% 1% 20%;
-    width: 50%;
-    height: 5%;
+    margin-left:16.7em;
+    margin-right:1em;
+    width: 15em;
+    height: 8em;
     text-align: center;
   }
+  #checkBoxText{
+  padding-right:2.75em;
+  }
   .correctAnswer{
-
+    padding-left:4em;
   }
   #addQuestionButton {
    transition-duration: 0.4s;
