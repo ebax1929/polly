@@ -33,6 +33,10 @@
   </div>
 
   <section v-show="showDisplayOneAndAHalfPage" id="OneAndAHalfPage">
+    <div class="spelPlan">
+      <img  src="spelplan.png">
+    </div>
+
     <div class="welcomeCharacter">
       <div class="displayWelcomeCharacter" v-if="myCharacter==='boat'"> <img  src="boat.png"> </div>
       <div class="displayWelcomeCharacter" v-else-if="myCharacter==='dog'"><img src="hunden.png"> </div>
@@ -209,35 +213,55 @@ cursor:pointer;
   top:0;
   left:0;
 }
+.spelPlan{
+  position:absolute;
+  top: 3em;
+  right: 5em;
+}
+.spelPlan > img:hover {
+  animation: paused;
+}
+.spelPlan > img {
+  height: 33em;
+  width: 33em;
+}
 
 .welcomeCharacter{
-  position:absolute;
-  top: 15em;
-  right: 10em;
+  position:relative;
+  animation-name: exempel;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
 }
-.displayWelcomeCharacter > img {
-  height: 15em;
-  width:15em;
+@keyframes exempel {
+  0%   {left: 2.5em; top:30.5em;}
+  25%  {left:2.5em; top:3em;}
+  50%  {left: 30.5em; top:3em;}
+  75%  {left: 30.5em; top: 30.5em;}
+  100% {left: 2.5em; top:30.5em;}
+}
 
+.displayWelcomeCharacter > img {
+  height: 5em;
+  width: 5em;
 }
 
 .welcomeName{
   position: absolute;
-  top: 10em;
-  right: 20em;
+  top: 15em;
+  right: 35em;
   text-align: center;
-  width: 11em;
-  height: 8em;
+  width: 9em;
+  height: 9em;
   background-color: plum;
   border-radius: 1em;
   color:seashell;
-  font-size: 1.5em;
+  font-size: 1.2em;
 }
 .welcomeName:before {
   content:"";
   position: absolute;
-  right: 11em;
-  top: 3.5em;
+  right: 9em;
+  top: 4em;
   width: 0;
   height: 0;
   border-top: 13px solid transparent;
@@ -246,12 +270,12 @@ cursor:pointer;
 }
 .classFn{
   color: #FFFFFF;
-  font-size: 2em;
+  font-size: 1.5em;
 }
 .monopolGubben{
   position: absolute;
   top: 10em;
-  left: 10em;
+  left: 5em;
 }
 
 .monopolGubben > img {
