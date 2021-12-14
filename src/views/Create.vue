@@ -45,7 +45,7 @@
           <label for="answers"></label>
           <input v-for="(_, i) in answers"
                  v-model="answers[i]"
-                 v-bind:key="'answer'+i" id="inputAnswer" v-bind:placeholder="'Placeholder'+i">
+                 v-bind:key="'answer'+i" id="inputAnswer" v-bind:placeholder="'Answer'+i">
 <br>
           <button v-on:click="addAnswer" id="addAnswers" v-show="addAnswers">
             {{uiLabels.addAnswerAlternative}}
