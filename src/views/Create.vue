@@ -115,14 +115,15 @@
     <div id="start_poll" v-show="showStartPoll">
     <input type="number" v-model="questionNumber" id="inputQuestionNumber">
     <button v-on:click="runQuestion" id="runQuestionButton">
-      {{uiLabels.runQ}}
+
     </button>
     {{data}}
      <router-link v-bind:to="'/result/'+pollId">{{uiLabels.checkResult}}</router-link>
     </div>
     <div v-show="showStartandPreviousNextPage" class="gridColumnOneNextPage">
-        <div v-for="(item,index) in listOfAll" v-bind:key="index">
-            {{item[0]}} {{item[1]}}
+        <div id="singleQuestion" v-for="(item,index) in listOfAll" v-bind:key="index">
+          {{item[0]}} {{item[1]}}<button v-on:click="runQuestion(item[index])"  id="runQuest"> {{uiLabels.runQ}} </button>
+
         </div>
     </div>
 
@@ -296,6 +297,7 @@ export default {
        this.showCreateVote=true;
        this.showStartPoll = false;
        this.showGoBackEditing = false;
+      this.showStartandPreviousNextPage= false;
     },
 
     addAnswer: function () {
@@ -378,7 +380,7 @@ body {
     border: double mediumpurple;
     border-radius: 20px;
     grid-area:b;
-    width:17em;
+    width:20em;
     margin-top: 10px;
     background:aliceblue;
     opacity: 70%;
@@ -627,6 +629,24 @@ body {
     background-color: #1E90FF;
     border-radius: 10px;
   }
+  #runQuest{
+    width: 8em;
+    margin-left: 6em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    height: 1.5em;
+    border-radius: 0.4em;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 20ch;
+  }
+  #singleQuestion{
+    background: deeppink;
+    border: 2px solid black;
+    border-radius: 2em;
+    position: relative;
+  }
   #runQuestionButton:hover {
     background-color: #00BFFF;
     color: #FF1493;
@@ -638,8 +658,8 @@ body {
     border: 3px double #00BFFF;
     color: #FF1493;
     margin: 1% 20% 1% 20%;
-    width: 50%;
-    height: 5%;
+    width: 20em;
+    height: 10em;
     text-align: center;
   }
 
