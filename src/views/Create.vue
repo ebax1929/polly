@@ -107,23 +107,21 @@
         </div>
 
     <div v-show="showGoBackEditing">
+      <h4 id="goBackText">{{uiLabels.goBackEdit}}</h4>
       <button v-on:click="goBackEditing" id="goBackEditingButton">
-        {{uiLabels.goBackEdit}}
+        <img id="goBackPicture" src="pngpilen.png">
       </button>
     </div>
-
     <div id="start_poll" v-show="showStartPoll">
-    <input type="number" v-model="questionNumber" id="inputQuestionNumber">
-    <button v-on:click="runQuestion" id="runQuestionButton">
+<!--    <input type="number" v-model="questionNumber" id="inputQuestionNumber"> -->
+<!--   <button v-on:click="runQuestion" id="runQuestionButton"></button> -->
 
-    </button>
-    {{data}}
-     <router-link v-bind:to="'/result/'+pollId">{{uiLabels.checkResult}}</router-link>
     </div>
     <div v-show="showStartandPreviousNextPage" class="gridColumnOneNextPage">
         <div id="singleQuestion" v-for="(item,index) in listOfAll" v-bind:key="index">
-          {{item[0]}} {{item[1]}}<button v-on:click="runQuestion(item[index])"  id="runQuest"> {{uiLabels.runQ}} </button>
-
+         <p id="questionText">{{item[0]}} {{item[1]}}</p>
+          <button v-on:click="runQuestion(item[0])"  id="runQuest"> {{uiLabels.runQ}} </button>
+          <router-link id="resultLink" v-bind:to="'/result/'+pollId">{{uiLabels.checkResult}}</router-link>
         </div>
     </div>
 
@@ -346,8 +344,8 @@ export default {
          this.removeAnswersVote = false;
        }
      },
-
-    runQuestion: function () {
+    runQuestion: function (question) {
+      this.questionNumber = question-1;
       socket.emit("runQuestion", {pollId: this.pollId, questionNumber: this.questionNumber})
     }
   }
@@ -380,10 +378,12 @@ body {
     border: double mediumpurple;
     border-radius: 20px;
     grid-area:b;
-    width:20em;
+    width:40em;
     margin-top: 10px;
     background:aliceblue;
     opacity: 70%;
+    margin-left:5em;
+    height:37em;
   }
   #editQuestionButton {
     margin:2px;
@@ -610,18 +610,27 @@ body {
     border-radius: 10px;
   }
   #goBackEditingButton{
-    transition-duration: 0.4s;
-    width: 100%;
-    height: 30%;
-    background-color: #1E90FF;
-    border-radius: 10px;
+    height:0em;
+    width:0em;
+    background:lightslategrey;
+    border:none;
   }
-  #goBackEditingButton:hover {
-    background-color: #00BFFF;
-    color: #FF1493;
-    border-radius: 10px;
+  #goBackText{
+    height:5em;
+    width:10em;
+    color:white;
   }
-
+  #goBackPicture{
+    grid-area:a;
+    height:12em;
+    width:12em;
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    margin-left:-6em;
+    margin-bottom:22em;
+    margin-top:-5.5em;
+    cursor:pointer;
+  }
   #runQuestionButton {
     transition-duration: 0.4s;
     width: 100%;
@@ -631,21 +640,41 @@ body {
   }
   #runQuest{
     width: 8em;
-    margin-left: 6em;
-    margin-top: 1em;
+    margin-left: 2em;
+    margin-top: -2.65em;
     margin-bottom: 1em;
-    height: 1.5em;
+    height: 1.7em;
     border-radius: 0.4em;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    max-width: 20ch;
+    position:absolute;
+    transition-duration: 0.4s;
+    background:green;
+    border:none;
   }
   #singleQuestion{
     background: deeppink;
     border: 2px solid black;
     border-radius: 2em;
-    position: relative;
+    opacity:95%
+  }
+  #questionText{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 10em;
+    margin-left:1em;
+  }
+  #resultLink{
+    width: 7em;
+    margin-left: 9em;
+    margin-top: -2.2em;
+    margin-bottom: 1em;
+    height: 1.1em;
+    border: double mediumpurple 2px;
+    border-radius: 0.5em;
+    position:absolute;
+    transition-duration: 0.4s;
+    text-decoration: none;
+    background: green;
   }
   #runQuestionButton:hover {
     background-color: #00BFFF;

@@ -74,12 +74,22 @@ export default {
       showDisplaySecondPage:false,
       fn:"",
       myCharacter:"",
-      showDisplayQuestion:true
+      showDisplayQuestion:true,
+      lang:""
     }
 
   },
   created: function () {
     this.pollId = this.$route.params.id
+    socket.emit('getLang', this.pollId)
+    socket.on('pollLang', l =>
+    {
+      this.lang = l
+      socket.emit("pageLoaded", this.lang);
+    })
+    socket.on("init", (labels) => {
+      this.uiLabels = labels
+    })
     socket.emit('joinPoll', this.pollId)
     socket.on("newQuestion", q =>
     {

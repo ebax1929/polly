@@ -1,6 +1,11 @@
 function sockets(io, socket, data) {
   socket.emit('init', data.getUILabels());
-  
+
+  socket.on('getLang', function(pollId){
+    socket.emit('pollLang', data.getLang(pollId));
+  }
+  )
+
   socket.on('pageLoaded', function (lang) {
     socket.emit('init', data.getUILabels(lang));
   });

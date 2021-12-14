@@ -70,6 +70,15 @@ Data.prototype.getQuestion = function(pollId, qId=null) {
   return []
 }
 
+Data.prototype.getLang = function(pollId) {
+  const poll = this.polls[pollId];
+  console.log("lang requested for ", pollId);
+  if (typeof poll !== 'undefined') {
+    return poll.lang
+  }
+  return "en"
+}
+
 Data.prototype.editQuestion = function(pollId, qId=null){
   const poll = this.polls[pollId];
   console.log("requested edit for ", pollId, qId)
