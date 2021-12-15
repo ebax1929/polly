@@ -1,5 +1,6 @@
 <template>
   <body>
+  {{lang}}
   <div id="questionTitle">
     <p id="question">Question:</p>
     {{question}}
@@ -31,6 +32,7 @@ export default {
       showCorAns3: false,
       showCorAns4: false,
       question: "",
+      lang:"",
       correctAnswer1: false,
       correctAnswer2: false,
       correctAnswer3: false,
@@ -41,6 +43,15 @@ export default {
   },
   created: function () {
     this.pollId = this.$route.params.id
+    socket.emit('getLang', this.pollId)
+    socket.on('pollLang', l =>
+    {
+      this.lang = l
+      socket.emit("pageLoaded", this.lang);
+    })
+    socket.on("init", (labels) => {
+      this.uiLabels = labels
+    })
     socket.emit('joinPoll', this.pollId)
     socket.on("dataUpdate", (update) => {
       this.data = update.a;
