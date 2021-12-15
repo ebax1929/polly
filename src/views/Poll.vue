@@ -60,8 +60,10 @@
 
 
   <section v-show="showDisplaySecondPage" id="secondPage">
+    <div class="gubbenPekar"><img src="gubbenpekar.png"></div>
+
+    <div class="textBend"> <br> This is you: {{fn}} <br> </div>
     <div class="characterBox">
-      <br> This is you: {{fn}} <br>
     <div class="displayCharacter" v-if="myCharacter==='boat'"> <img  src="boat.png"> </div>
     <div class="displayCharacter" v-else-if="myCharacter==='dog'"><img src="hunden.png"> </div>
     <div class="displayCharacter" v-else-if="myCharacter==='hat'"><img src="hatten.png"> </div>
@@ -69,7 +71,10 @@
     </div>
 
 
-      Poll-id:{{pollId}}
+
+     <div class="displayPollId"> Poll-id: </div> <div class="linkPollId"> <br> {{pollId}} </div>
+    <div class="pleaseAnswer"> Please answer the following question:</div>
+
     <div v-show="showDisplayQuestion" id="question">
       <Question v-bind:question="question"
                  v-on:answer="submitAnswer" />
@@ -218,16 +223,48 @@ cursor:pointer;
   width:5em;
 }
 .characterBox{
-  border-radius: 2em;
-  bacground-color: white;
-  border: double 1em darkblue;
-  width: 8em;
-  height: 8em;
-  font-size: 1.5em;
+  border-radius: 6em;
+  border: double 1.4em plum;
+  width: 6em;
+  height: 6em;
   position:absolute;
-  top:5em;
-  left:5em;
+  top:6em;
+  right:8.5em;
+  margin-top: 3em;
 }
+.textBend {
+  position:absolute;
+  top:2.5em;
+  right:7em;
+  width: 8em;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+.linkPollId{
+  border-radius: 6em;
+  border: double 1.4em plum;
+  width: 4em;
+  height: 4em;
+  position:absolute;
+  top:19em;
+  right:8.5em;
+  margin-top: 3em;
+  font-weight: bold;
+  padding: 1em;
+
+}
+.displayPollId{
+  position:absolute;
+  top:15.5em;
+  right:7em;
+  width: 8em;
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-top: 1em;
+
+}
+
+
 .spelPlan{
   position:absolute;
   top: 3em;
@@ -300,17 +337,48 @@ cursor:pointer;
 .monopolGubben > img:hover {
   animation: paused;
 }
+.gubbenPekar{
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+  position: absolute;
+  top: 8em;
+  left: 1em;
+}
+.gubbenPekar > img {
+   width: 20em;
+   height: 27em;
+ }
+.gubbenPekar > img:hover {
+  animation: paused;
+}
 
 #question{
-  width: 30%;
-  margin: 3em 30% 0em 30%;
+  width: 12em;
   font-size: 2em;
-  border-radius: 25px;
+  border-radius: 1em;
   background-color: plum;
-  border: double 1em darkblue;
+  border: double 0.5em #DA70D6;
   color: #FFFFFF;
-  padding: 2% 5% 5% 5%;
+  padding: 1em;
+  position: absolute;
+  left: 10.5em;
+  top: 4em
+
 }
+.pleaseAnswer{
+  width: 20em;
+  font-size: 1em;
+  border-radius: 25px;
+  background-color: seashell;
+  border: double 0.5em plum;
+  color: plum;
+  padding: 0.5em;
+  position: absolute;
+  left: 26em;
+  top: 5em;
+
+}
+
 
 
 
