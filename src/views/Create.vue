@@ -12,8 +12,16 @@
 
     <div v-show="showDisplayPollId" id="display_pollId" class="gridColumnThree">
       <br><br>
+      
+      <div id="speakbubble">
+        <img src="pratbubbla.png">
+      </div>
+
+      <div id="gubbenPollId">
       {{uiLabels.yourPollId}}
       {{pollId}}
+      </div>
+
       <br><br><br><br><br><br>
       <div id="displayGubben" >
         <img  src="gubbenpekar.png" >
@@ -406,7 +414,6 @@ body {
     border:mediumpurple double;
   }
 #createQuestion {
-  border:mediumpurple double;
   grid-area:b;
   height: 39em;
   width:50em;
@@ -466,8 +473,10 @@ body {
     /*font-family: "Times New Roman", Times, serif;*/
     font-size: 100%;
     text-align: center;
-    height: 150%;
-    width: 100% ;
+    height: 37em;
+    width: 40em;
+    margin-left: 18.5em;
+    border-radius: 2em;
   }
 
   #createPollButton{
@@ -498,8 +507,9 @@ body {
   }
 
   #display_pollId{
-    grid-area:e;
-    color:lightslategray;
+    grid-area: e;
+    color:red;
+
   }
   #displayGubben > img{
     height: 20em;
@@ -699,6 +709,27 @@ body {
     height: 10em;
     text-align: center;
   }
+
+
+#speakbubble > img {
+  height: 12em;
+  width: 14em;
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+  position: absolute;
+  right: 9em;
+  top: 3em;
+}
+
+#gubbenPollId {
+  position: absolute;
+  right: 13.5em;
+  top: 7em;
+  z-index: 1;
+  max-width: 6em;
+}
+
+
 
 
 </style>
