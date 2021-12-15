@@ -59,35 +59,25 @@ export default {
     });
     socket.on("newQuestion", update => {
       this.question = update.q;
-      this.data = {};
-    })
-    socket.on('getCorrect',  update => {
       this.correctAnswer1 = update.correctAnswer1;
       this.correctAnswer2 = update.correctAnswer2;
       this.correctAnswer3 = update.correctAnswer3;
-      this.correctAnswer4 = update.correctAnswer4; })
+      this.correctAnswer4 = update.correctAnswer4;
+      this.data = {};
+      if (this.correctAnswer1 === true){
+        this.showCorAns1=true;
+      }
+      if (this.correctAnswer2 === true){
+        this.showCorAns2=true;
+      }
+      if (this.correctAnswer3 === true){
+        this.showCorAns3=true;
+      }
+      if (this.correctAnswer4 === true){
+        this.showCorAns4=true;
+      }
+    })
 
-    console.log("correctAnswer1");
-    console.log(this.correctAnswer1);
-    console.log("correctAnswer2");
-    console.log(this.correctAnswer2);
-    console.log("correctAnswer3");
-    console.log(this.correctAnswer3);
-    console.log("correctAnswer4");
-    console.log(this.correctAnswer4);
-
-    if (this.correctAnswer1 === true){
-      this.showCorAns1=true;
-    }
-    if (this.correctAnswer2 === true){
-      this.showCorAns2=true;
-    }
-    if (this.correctAnswer3 === true){
-      this.showCorAns3=true;
-    }
-    if (this.correctAnswer4 === true){
-      this.showCorAns4=true;
-    }
   }
 
 }
