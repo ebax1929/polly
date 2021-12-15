@@ -61,7 +61,7 @@
 
   <section v-show="showDisplaySecondPage" id="secondPage">
     <div class="characterBox">
-    This is you: {{fn}} <br>
+      <br> This is you: {{fn}} <br>
     <div class="displayCharacter" v-if="myCharacter==='boat'"> <img  src="boat.png"> </div>
     <div class="displayCharacter" v-else-if="myCharacter==='dog'"><img src="hunden.png"> </div>
     <div class="displayCharacter" v-else-if="myCharacter==='hat'"><img src="hatten.png"> </div>
@@ -72,7 +72,7 @@
       Poll-id:{{pollId}}
     <div v-show="showDisplayQuestion" id="question">
       <Question v-bind:question="question"
-                v-on:answer="submitAnswer"/>
+                 v-on:answer="submitAnswer" />
     </div>
 
   </section>
@@ -150,8 +150,8 @@ export default {
       {
         this.showDisplay = false
         setTimeout(()=>this.showDisplayOneAndAHalfPage=true,0)
-        setTimeout(()=>this.showDisplayOneAndAHalfPage=false,10000)
-        setTimeout(()=>this.showDisplaySecondPage=true,10000)
+        setTimeout(()=>this.showDisplayOneAndAHalfPage=false,6000)
+        setTimeout(()=>this.showDisplaySecondPage=true,6000)
       }
     },
     characterChosen: function(character){
@@ -218,10 +218,15 @@ cursor:pointer;
   width:5em;
 }
 .characterBox{
-  border: 2px lightblue solid;
+  border-radius: 2em;
+  bacground-color: white;
+  border: double 1em darkblue;
+  width: 8em;
+  height: 8em;
+  font-size: 1.5em;
   position:absolute;
-  top:0;
-  left:0;
+  top:5em;
+  left:5em;
 }
 .spelPlan{
   position:absolute;
@@ -239,7 +244,7 @@ cursor:pointer;
 .welcomeCharacter{
   position:relative;
   animation-name: exempel;
-  animation-duration: 4s;
+  animation-duration: 6s;
   animation-iteration-count: infinite;
 }
 @keyframes exempel {
@@ -295,6 +300,19 @@ cursor:pointer;
 .monopolGubben > img:hover {
   animation: paused;
 }
+
+#question{
+  width: 30%;
+  margin: 3em 30% 0em 30%;
+  font-size: 2em;
+  border-radius: 25px;
+  background-color: plum;
+  border: double 1em darkblue;
+  color: #FFFFFF;
+  padding: 2% 5% 5% 5%;
+}
+
+
 
 
 
