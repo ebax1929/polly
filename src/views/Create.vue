@@ -12,22 +12,36 @@
 
     <div v-show="showDisplayPollId" id="display_pollId" class="gridColumnThree">
       <br><br>
-      
+
       <div id="speakbubble">
         <img src="pratbubbla.png">
       </div>
-
-      <div id="gubbenPollId">
+      <div v-show="showOnLastPage">
+      <div class="gubbenPollId">
       {{uiLabels.yourPollId}}
       {{pollId}}
+      </div>
+      </div>
+      <div v-show="showOnSecondPage">
+        <div class="gubbenPollId">
+          {{uiLabels.gubbenInstructions1}}
+        </div>
       </div>
 
       <br><br><br><br><br><br>
       <div id="displayGubben" >
         <img  src="gubbenpekar.png" >
       </div>
+      <div v-show="showOnThirdPage">
+        <div class="gubbenPollId">
+          {{uiLabels.gubbenInstructions2}}
+        TEST test, ui verkar ej funka
+        </div>
+      </div>
+
       <div v-show="showPlayPoll" id="gridPlayPoll">
         <button v-on:click="playPoll" id="playPollButton">
+
           {{uiLabels.finishedPoll}}
         </button>
       </div>
@@ -70,6 +84,8 @@
           <button v-on:click="removeAnswerVote" id="removeAnswersVote" v-show="removeAnswersVote">
             {{uiLabels.removeAnswerAlternative}}
           </button>
+
+
         </div>
 
         <div id="checkBoxes">
@@ -127,7 +143,7 @@
     </div>
     <div v-show="showStartandPreviousNextPage" class="gridColumnOneNextPage">
         <div id="singleQuestion" v-for="(item,index) in listOfAll" v-bind:key="index">
-         <p id="questionText">{{item[0]}} {{item[1]}}</p>
+         <p id="questionText">{{uiLabels.questionText}} {{item[0]}} {{item[1]}}</p>
           <button v-on:click="runQuestion(item[0])"  id="runQuest"> {{uiLabels.runQ}} </button>
           <router-link id="resultLink" v-bind:to="'/result/'+pollId">{{uiLabels.checkResult}}</router-link>
         </div>
@@ -177,6 +193,9 @@ export default {
       showPlayPoll: false,
       showGoBackEditing: false,
       showGridColumnTwo: false,
+      showOnLastPage: false,
+      showOnSecondPage:false,
+      showOnThirdPage: false
     }
   },
   computed: {
@@ -215,6 +234,7 @@ export default {
       this.showCreateVote=true;
       this.showStartAndPrevious = true;
       this.showGridColumnTwo = true;
+      this.showOnSecondPage=true;
     },
     createQuiz: function() {
       this.listOfAll.push("New question")
@@ -231,6 +251,10 @@ export default {
       this.addAnswers=true;
       this.showCreateQuiz=false;
       this.showCreateVote=false;
+      this.showOnSecondPage=false;
+      this.showOnThirdPage=true;
+
+
       if (this.countAnswer === 4 ){
         this.answers.pop();
 
@@ -257,6 +281,9 @@ export default {
       this.addAnsVote_id=true;
       this.showCreateQuiz=false;
       this.showCreateVote=false;
+      this.showOnThirdPage=true;
+      this.showOnSecondPage=false;
+
       if (this.countAnswer === 4 ){
         this.answers.pop();
 
@@ -290,6 +317,8 @@ export default {
       this.showCreateVote=true;
       this.showQuestion = false;
       this.showPlayPoll = true;
+      this.showOnSecondPage=true;
+      this.showOnThirdPage=false;
       this.listOfQuestionAndNumber=[];
       this.listOfQuestionAndNumber.push(this.questionNumber , this.question)
       this.listOfAll.pop()
@@ -306,6 +335,9 @@ export default {
       this.showCreateVote=false;
       this.showStartPoll = true;
       this.showGoBackEditing = true;
+      this.showOnLastPage=true;
+      this.showOnSecondPage=false;
+      this.showOnThirdPage=false;
     },
 
     goBackEditing: function () {
@@ -316,6 +348,8 @@ export default {
        this.showStartPoll = false;
        this.showGoBackEditing = false;
       this.showStartandPreviousNextPage= false;
+      this.showOnLastPage=false;
+      this.showOnThirdPage=true;
     },
 
     addAnswer: function () {
@@ -370,7 +404,7 @@ export default {
 <style>
 
 body {
-  background:lightslategray;
+  background:#D2E4FD;
 }
   .gridContainer {
     display:grid;
@@ -387,7 +421,7 @@ body {
     grid-area:a;
     width:12em;
     margin-top: 10px;
-    background:aliceblue;
+    background:white;
     opacity: 70%;
   }
   .gridColumnOneNextPage{
@@ -467,9 +501,9 @@ body {
   }
 
   #create_pollId{
-    background-color: white;
+    background-color: #D2E4FD;
     /*border: groove #00BFFF;*/
-    color: slategray;
+    color: white;
     /*font-family: "Times New Roman", Times, serif;*/
     font-size: 100%;
     text-align: center;
@@ -483,13 +517,13 @@ body {
    transition-duration: 0.4s;
     width: 12em;
     height: 6em;
-    background-color: lightslategray;
+    background-color: #CDE9D6;
     color: white;
     border-radius: 25px;
 
 }
   #createPollButton:hover {
-    background-color: plum;
+    background-color: #CDE9D6;
     color: #FF1493;
     width: 13em;
     height: 7em;
@@ -661,16 +695,20 @@ body {
     margin-left: 2em;
     margin-top: -2.65em;
     margin-bottom: 1em;
+    color: white;
     height: 1.7em;
-    border-radius: 0.4em;
     position:absolute;
+    border: double white 2px;
+    border-radius: 0.5em;
     transition-duration: 0.4s;
-    background:green;
-    border:none;
+    background:#549c4d;
+
   }
   #singleQuestion{
-    background: deeppink;
-    border: 2px solid black;
+    margin-bottom: 0.5em;
+    background: #c49fbc;
+    border: 2px solid white;
+    color:white;
     border-radius: 2em;
     opacity:95%
   }
@@ -684,15 +722,16 @@ body {
   #resultLink{
     width: 7em;
     margin-left: 9em;
+    color: white;
     margin-top: -2.2em;
     margin-bottom: 1em;
     height: 1.1em;
-    border: double mediumpurple 2px;
+    border: double white 2px;
     border-radius: 0.5em;
     position:absolute;
     transition-duration: 0.4s;
     text-decoration: none;
-    background: green;
+    background: #549c4d;
   }
   #runQuestionButton:hover {
     background-color: #00BFFF;
@@ -721,7 +760,7 @@ body {
   top: 3em;
 }
 
-#gubbenPollId {
+.gubbenPollId {
   position: absolute;
   right: 13.5em;
   top: 7em;

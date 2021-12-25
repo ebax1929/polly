@@ -23,5 +23,8 @@
 	"finishedPoll": "Är du färdig med din poll?",
 	"goBackEdit": "Gå tillbaka och forstätt redigera poll",
 	"runQ": "Spela frågan",
-	"checkResult": "Se resultat"
+	"checkResult": "Se resultat",
+	"gubbenInstructions1": "Välj ett alternativ",
+	"gubbenInstructions2": "Skriv in din fråga",
+	"questionText": "Fråga :"
 }
