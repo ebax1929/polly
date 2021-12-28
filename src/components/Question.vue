@@ -31,11 +31,13 @@ export default {
 <style>
 
 #answerButton{
-  border-radius: 1em;
-  background-color: seashell;
-  color: plum;
-  padding: 1em;
-  margin: 1em;
+  width: 2em;
+  font-size: 1.3em;
+  border-radius: 25px;
+  background-color: plum;
+  border: double 1em darkblue;
+  color: #FFFFFF;
+  padding: 2% 5% 5% 5%;
 }
 
 </style>

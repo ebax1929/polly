@@ -9,8 +9,10 @@
 	"enterPollId":"Please enter a poll-id to create a game!",
 	"createPollButton": "CREATE POLL",
 	"yourPollId": "Your poll-id:",
-	"createQuizQuestion": "Create a Quiz question, this is a multi optional question with one or many correct answers",
-	"createVoteQuestion": "Create a Vote question, this is a multi optional question with no correct answers",
+	"createQuizQuestion": "Create a Quiz question",
+	"createQuizInstruction": "This is a multi optional question with one or many correct answers",
+	"createVoteQuestion": "Create a Vote question",
+	"createVoteQuestionInstruction": "this is a multi optional question with no correct answers",
 	"Enterquestion": "Please enter your question",
 	"addAnswerAlternative": "Add answer",
 	"removeAnswerAlternative": " Remove last answer",
@@ -26,7 +28,7 @@
 	"checkResult": "Check result",
 	"gubbenInstructions1": "Choose an option",
 	"gubbenInstructions2": "Enter your question",
-	"questionText": "Question :"
+	"questionText": "Question:"
 
 
 }

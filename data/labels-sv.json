@@ -9,9 +9,11 @@
 	"enterPollId":"Vänligen skriv in ett poll-ID för att skapa en poll!",
 	"createPollButton": "Skapa poll",
 	"yourPollId": "Ditt poll-id:",
-	"createQuizQuestion": "Skapa en Quiz-fråga, detta är en flervalsfråga med ett eller flera korrekta svarsalternativ",
-	"createVoteQuestion": "Skapa en Vote-fråga, detta är en flervalsfråga där man kan rösta på svarsalternativ",
-	"Enterquestion": "Vänligen skriv in din fråga",
+	"createQuizQuestion": "Skapa en Quiz-fråga",
+	"createQuizInstruction": "Detta är en flervalsfråga med ett eller flera korrekta svarsalternativ",
+	"createVoteQuestion": "Skapa en Vote-fråga",
+	"createVoteQuestionInstruction": "Detta är en flervalsfråga där man kan rösta på svarsalternativ",
+	"Enterquestion",: "Vänligen skriv in din fråga",
 	"addAnswerAlternative": "Skapa ett till svarsalternativ",
 	"removeAnswerAlternative": " Ta bort det sista svarsalternativet",
 	"checkboxes": "Tryck i rutan för de svarsalternativ som är korrekta",
@@ -26,5 +28,5 @@
 	"checkResult": "Se resultat",
 	"gubbenInstructions1": "Välj ett alternativ",
 	"gubbenInstructions2": "Skriv in din fråga",
-	"questionText": "Fråga :"
+	"questionText": "Fråga:"
 }

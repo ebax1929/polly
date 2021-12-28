@@ -35,7 +35,7 @@
       <div v-show="showOnThirdPage">
         <div class="gubbenPollId">
           {{uiLabels.gubbenInstructions2}}
-        TEST test, ui verkar ej funka
+
         </div>
       </div>
 
@@ -49,11 +49,13 @@
 
     <div v-show="showGridColumnTwo">
       <button v-on:click="createQuiz" id="createQuiz" v-show="showCreateQuiz">
-        {{uiLabels.createQuizQuestion}}
+        <h4>{{uiLabels.createQuizQuestion}}</h4>
+        <div id="createQuizInstructions"> <h5>{{uiLabels.createQuizInstruction}}</h5></div>
       </button>
 
        <button v-on:click="createVote" id="createVote" v-show="showCreateVote">
-         {{uiLabels.createVoteQuestion}}
+        <h4> {{uiLabels.createVoteQuestion}} </h4>
+         <div id="createVoteInstructions"> <h5> {{uiLabels.createVoteQuestionInstruction}} </h5></div>
        </button>
     </div>
 
@@ -349,7 +351,8 @@ export default {
        this.showGoBackEditing = false;
       this.showStartandPreviousNextPage= false;
       this.showOnLastPage=false;
-      this.showOnThirdPage=true;
+      this.showOnThirdPage=false;
+      this.showOnSecondPage=true;
     },
 
     addAnswer: function () {
@@ -479,12 +482,19 @@ body {
     width: 12em;
     height: 26em;
     background-color: aliceblue;
-    color: slategray;
+    font-family: Arial, Helvetica, sans-serif;
+    color: mediumpurple;
     font-size: 150%;
     text-align: center;
     border-radius: 20px;
     grid-area:b;
     opacity: 85%;
+  }
+  #createQuizInstructions{
+    font-size: 0.8em;
+    text-align: center;
+    grid-area:b;
+    color: plum;
   }
   #createVote{
     margin-top: 10px;
@@ -492,13 +502,21 @@ body {
     width: 12em;
     height: 26em;
     background-color: aliceblue;
-    color: slategray;
+    font-family: Arial, Helvetica, sans-serif;
+    color: mediumpurple;
     font-size: 150%;
     text-align: center;
     border-radius: 20px;
     grid-area:b;
     opacity: 85%;
   }
+  #createVoteInstructions{
+    font-size: 0.8em;
+    text-align: center;
+    grid-area:b;
+    color: plum;
+  }
+
 
   #create_pollId{
     background-color: #D2E4FD;
@@ -511,6 +529,7 @@ body {
     width: 40em;
     margin-left: 18.5em;
     border-radius: 2em;
+    text-decoration: none;
   }
 
   #createPollButton{
@@ -520,6 +539,7 @@ body {
     background-color: #CDE9D6;
     color: white;
     border-radius: 25px;
+    border: 3px double plum;
 
 }
   #createPollButton:hover {
@@ -529,6 +549,8 @@ body {
     height: 7em;
     color: white;
     border-radius: 25px;
+    border: white;
+    border: 3px double plum;
   }
   #inputCreatPollId  {
     border-radius: 25px;
@@ -542,7 +564,8 @@ body {
 
   #display_pollId{
     grid-area: e;
-    color:red;
+    font-family: Arial, Helvetica, sans-serif;
+    color: black;
 
   }
   #displayGubben > img{
@@ -664,7 +687,7 @@ body {
   #goBackEditingButton{
     height:0em;
     width:0em;
-    background:lightslategrey;
+    background:#D2E4FD;
     border:none;
   }
   #goBackText{
