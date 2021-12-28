@@ -60,17 +60,13 @@
     </div>
 
     <div v-show="showQuestion" id="createQuestion">
-      <div>
-        {{uiLabels.question}}:
-        <br><br>
-        {{uiLabels.Enterquestion}}<br>
-        <input type="text" v-model="question" id ="inputQuestion" placeholder="Enter your question...">
+      <div><input type="text" v-model="question" id ="inputQuestion" placeholder="Enter your question...">
         <div>
           <label for="answers"></label>
           <input v-for="(_, i) in answers"
                  v-model="answers[i]"
                  v-bind:key="'answer'+i" id="inputAnswer" v-bind:placeholder="'Answer'+i">
-<br>
+          <br>
           <button v-on:click="addAnswer" id="addAnswers" v-show="addAnswers">
             {{uiLabels.addAnswerAlternative}}
           </button>
@@ -124,7 +120,9 @@
 
         <div id="display_previousQuestion">
           <div v-for="(item,index) in listOfAll" v-bind:key="index">
+
             <button v-on:click="editQuestion(item[0])"  id="editQuestionButton">
+
               {{item[0]}} {{item[1]}}
             </button>
           </div>
