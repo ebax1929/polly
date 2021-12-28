@@ -299,6 +299,31 @@ export default {
         pollId: this.pollId,
         questionNumber:question
       })
+      this.showPlayPoll = false;
+      this.addAnswers = false;
+      this.removeAnswers = false;
+      this.correctAnswer1 = true;
+      this.correctAnswer2 = true;
+      this.correctAnswer3 = true;
+      this.correctAnswer4 = true;
+      this.showAnswer1=true;
+      this.showAnswer2=true;
+      this.showAnswer3 = false;
+      this.showAnswer4 = false;
+      this.showQuestion = true;
+      this.addAnsVote_id=true;
+      this.showCreateQuiz=false;
+      this.showCreateVote=false;
+      this.showOnThirdPage=true;
+      this.showOnSecondPage=false;
+      if (this.countAnswer === 4 ){
+        this.answers.pop();
+        this.showAnswer4 = true;
+      }
+      if (this.countAnswer ===3 ) {
+        this.answers.pop();
+        this.showAnswer3 = true;
+      }
     },
 
     addQuestion: function () {

@@ -13,7 +13,7 @@
 	"createQuizInstruction": "Detta är en flervalsfråga med ett eller flera korrekta svarsalternativ",
 	"createVoteQuestion": "Skapa en Vote-fråga",
 	"createVoteQuestionInstruction": "Detta är en flervalsfråga där man kan rösta på svarsalternativ",
-	"Enterquestion",: "Vänligen skriv in din fråga",
+	"Enterquestion": "Vänligen skriv in din fråga",
 	"addAnswerAlternative": "Skapa ett till svarsalternativ",
 	"removeAnswerAlternative": " Ta bort det sista svarsalternativet",
 	"checkboxes": "Tryck i rutan för de svarsalternativ som är korrekta",
