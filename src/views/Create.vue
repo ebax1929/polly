@@ -1,3 +1,4 @@
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <template>
   <body>
   <div class="gridContainer">
@@ -67,7 +68,8 @@
           <label for="answers"></label>
           <input v-for="(_, i) in answers"
                  v-model="answers[i]"
-                 v-bind:key="'answer'+i" id="inputAnswer" v-bind:placeholder="'Answer ' + (1+i)"> /* ta bort +1 om ngt blir knas*/
+                 v-bind:key="'answer'+i" id="inputAnswer" v-bind:placeholder="'Answer ' + (1+i)">
+<!--        /* ta bort +1 om ngt blir knas */-->
           <br>
           <button v-on:click="addAnswer" id="addAnswers" v-show="addAnswers">
             {{uiLabels.addAnswerAlternative}}
@@ -116,6 +118,9 @@
         <button v-on:click="addQuestion" id="addQuestionButton">
           {{uiLabels.addQusetion}}
         </button>
+      <button v-on:click="finishedEditQuestion" id="finishedEditQuestionButton">
+        Edit Question
+      </button>
       </div>
 
           <div v-show="showStartAndPrevious" class="gridColumnOne">
@@ -317,11 +322,12 @@ export default {
       this.showCreateVote=false;
       this.showOnThirdPage=true;
       this.showOnSecondPage=false;
-      if (this.countAnswer === 4 ){
+      if (this.answers.length === 4 ){
         this.answers.pop();
         this.showAnswer4 = true;
+        this.showAnswer3 = true;
       }
-      if (this.countAnswer ===3 ) {
+      if (this.answers.length ===3 ) {
         this.answers.pop();
         this.showAnswer3 = true;
       }
@@ -352,8 +358,25 @@ export default {
       this.listOfAll.push(this.listOfQuestionAndNumber)
        console.log(this.listOfAll)
       this.question='';
+    },
 
-
+    finishedEditQuestion: function () {
+      socket.emit("addQuestion",
+          { pollId: this.pollId,
+            q: this.question,
+            a: this.answers,
+            questionNumber: this.questionNumber,
+            correctAnswer1: this.correctAnswer1,
+            correctAnswer2: this.correctAnswer2,
+            correctAnswer3: this.correctAnswer3,
+            correctAnswer4: this.correctAnswer4
+          })
+      this.showCreateQuiz=true;
+      this.showCreateVote=true;
+      this.showQuestion = false;
+      this.showPlayPoll = true;
+      this.showOnSecondPage=true;
+      this.showOnThirdPage=false;
     },
 
     playPoll: function () {
