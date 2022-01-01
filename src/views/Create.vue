@@ -5,9 +5,11 @@
       <h1 class="enterPollId">{{uiLabels.enterPollId}}</h1><br>
       <input type="text" v-model="pollId" id="inputCreatPollId" v-bind:placeholder="uiLabels.enterPollId" >
       <br>
+      <div v-if="pollId!=''">
     <button v-on:click="createPoll" id="createPollButton">
       {{uiLabels.createPollButton}}
     </button>
+      </div>
     </div>
 
     <div v-show="showDisplayPollId" id="display_pollId" class="gridColumnThree">
@@ -60,12 +62,12 @@
     </div>
 
     <div v-show="showQuestion" id="createQuestion">
-      <div><input type="text" v-model="question" id ="inputQuestion" placeholder="Enter your question...">
-        <div>
+
+      <div><input type="text" v-model="question" id ="inputQuestion" placeholder="Enter your question..."><div>
           <label for="answers"></label>
           <input v-for="(_, i) in answers"
                  v-model="answers[i]"
-                 v-bind:key="'answer'+i" id="inputAnswer" v-bind:placeholder="'Answer'+i">
+                 v-bind:key="'answer'+i" id="inputAnswer" v-bind:placeholder="'Answer ' + (1+i)"> /* ta bort +1 om ngt blir knas*/
           <br>
           <button v-on:click="addAnswer" id="addAnswers" v-show="addAnswers">
             {{uiLabels.addAnswerAlternative}}
@@ -343,11 +345,15 @@ export default {
       this.showPlayPoll = true;
       this.showOnSecondPage=true;
       this.showOnThirdPage=false;
+
       this.listOfQuestionAndNumber=[];
       this.listOfQuestionAndNumber.push(this.questionNumber , this.question)
       this.listOfAll.pop()
       this.listOfAll.push(this.listOfQuestionAndNumber)
        console.log(this.listOfAll)
+      this.question='';
+
+
     },
 
     playPoll: function () {
@@ -558,14 +564,14 @@ body {
    transition-duration: 0.4s;
     width: 12em;
     height: 6em;
-    background-color: #CDE9D6;
+    background-color: mediumpurple;
     color: white;
     border-radius: 25px;
     border: 3px double plum;
 
 }
   #createPollButton:hover {
-    background-color: #CDE9D6;
+    background-color: mediumpurple;
     color: #FF1493;
     width: 13em;
     height: 7em;
