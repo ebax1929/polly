@@ -2,15 +2,15 @@
   <body>
   {{lang}}
   <div id="questionTitle">
-    <p id="question">Question:</p>
+    <p id="question">{{uiLabels.questiones}}</p>
     {{question}}
   </div>
   <Bars v-bind:data="data"/>
   <p>The correct Answer was:</p>
-  <div v-show="showCorAns1"> <p> Answer 1 </p></div>
-  <div v-show="showCorAns2"> <p> Answer 2 </p></div>
-  <div v-show="showCorAns3"> <p> Answer 3 </p></div>
-  <div v-show="showCorAns4"> <p> Answer 4 </p></div>
+  <div v-show="showCorAns1"> <p> {{uiLabels.ans1}} </p></div>
+  <div v-show="showCorAns2"> <p> {{uiLabels.ans2}} </p></div>
+  <div v-show="showCorAns3"> <p> {{uiLabels.ans3}} </p></div>
+  <div v-show="showCorAns4"> <p> {{uiLabels.ans4}} </p></div>
   </body>
 </template>
 

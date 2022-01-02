@@ -23,5 +23,14 @@
 	"finishedPoll": "Är du färdig med din poll?",
 	"goBackEdit": "Gå tillbaka och forstätt redigera poll",
 	"runQ": "Spela frågan",
-	"checkResult": "Se resultat"
+	"checkResult": "Se resultat",
+	"questiones": "Fråga:",
+	"welcomeToPoll": "Välkommen till Poll",
+	"chooseCharacter": "Välj din karaktär",
+	"letsGO": "NU KÖR VI",
+	"welcomeToMonopoll": "Välkommen till Monopoll",
+	"pleaseWaitForPollToStart": "Vänligen vänta på att poll ska start",
+	"thisIsYou": "Detta är du",
+	"pollID": "Poll-Id:",
+	"pleaseAnswerTheFollowingQuestion": "Vänligen svara på följande fråga"
 }

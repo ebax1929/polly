@@ -23,7 +23,15 @@
 	"finishedPoll": "Are you finished with your poll?",
 	"goBackEdit": "Go back and continue editing poll",
 	"runQ": "Run question",
-	"checkResult": "Check result"
+	"checkResult": "Check result",
+	"questiones": "Question:",
+	"welcomeToPoll": "Welcome to Poll",
+	"chooseChar": "LETS GO",
+	"welcomeToMonopoll": "Welcome to Monopoll",
+	"pleaseWaitForPollToStart": "Please wait for poll to start",
+	"thisIsYou": "This is you",
+	"pollID": "Poll-Id:",
+	"pleaseAnswerTheFollowingQuestion": "Please answer the following question"
 
 
 }
