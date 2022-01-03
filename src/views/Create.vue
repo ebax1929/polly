@@ -500,6 +500,7 @@ body {
     white-space: nowrap;
     color:white;
     border:mediumpurple double;
+    cursor:pointer;
   }
 #createQuestion {
   grid-area:b;
@@ -540,6 +541,7 @@ body {
     border-radius: 20px;
     grid-area:b;
     opacity: 85%;
+    cursor:pointer;
   }
   #createQuizInstructions{
     font-size: 0.8em;
@@ -560,6 +562,7 @@ body {
     border-radius: 20px;
     grid-area:b;
     opacity: 85%;
+    cursor:pointer;
   }
   #createVoteInstructions{
     font-size: 0.8em;
