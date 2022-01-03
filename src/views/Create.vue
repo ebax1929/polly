@@ -647,9 +647,9 @@ body {
     border-radius: 10px;
     border: 3px double #00BFFF;
     color: #FF1493;
-    margin: 5% 20% 5% 20%;
-    width: 15em;
-    height: 1em;
+    margin: 5% 20% 1% 20%;
+    width: 25em;
+    height: 2em;
     text-align: center;
   }
   #inputAnswer{
