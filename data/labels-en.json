@@ -36,7 +36,8 @@
 	"pleaseAnswerTheFollowingQuestion": "Please answer the following question",
 	"gubbenInstructions1": "Choose an option",
 	"gubbenInstructions2": "Enter your question",
-	"questionText": "Question:"
+	"questionText": "Question:",
+	"newQuestion": "New Question"
 
 
 }

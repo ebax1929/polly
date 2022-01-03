@@ -37,5 +37,6 @@
 	"pleaseAnswerTheFollowingQuestion": "Vänligen svara på följande fråga",
 	"gubbenInstructions1": "Välj ett alternativ",
 	"gubbenInstructions2": "Skriv in din fråga",
-	"questionText": "Fråga:"
+	"questionText": "Fråga:",
+	"newQuestion": "New Question"
 }

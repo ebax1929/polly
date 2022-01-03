@@ -127,9 +127,13 @@
 
         <div id="display_previousQuestion">
           <div v-for="(item,index) in listOfAll" v-bind:key="index">
-
             <button v-on:click="editQuestion(item[0])" id="editQuestionButton">
-              {{item[0]}} {{item[1]}}
+              <div v-if="item[0]!='N'">
+                {{item[0]}} {{item[1]}}
+                </div>
+              <div v-else>
+                {{uiLabels.newQuestion}}
+              </div>
             </button>
           </div>
         </div>
