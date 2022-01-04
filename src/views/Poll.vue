@@ -2,12 +2,12 @@
 
   <body>
   <div v-show="showDisplay" id="firstpage">
-  <h1>Welcome to Quiz</h1>
-    Poll-id:{{pollId}}
+  <h1> {{uiLabels.welcomeToQuiz}} </h1>
+    {{uiLabels.pollID}} {{pollId}}
 
     <section id="characters">
       <div id="headLine">
-        <h2>Choose your character</h2>
+        <h2>{{uiLabels.chooseYourCharacter}}</h2>
       </div>
 
       <div class="wrapper">
@@ -27,9 +27,11 @@
     </section>
       <div v-if="myCharacter!=''">
         <label for="name"></label>
-        <input type="text" id="name" v-model="fn" required="required" placeholder="Enter your name">
+        <input type="text" id="name" v-model="fn" required="required" v-bind:placeholder="uiLabels.enterName">
       </div>
-    <div v-if="this.fn!=''" id="enterGame" v-on:click=enterGameButton><img id="picture" src="pngpilen.png" > <h1>LETS GO</h1> </div>
+    <div v-if="this.fn!=''" id="enterGame" v-on:click=enterGameButton><img id="picture" src="pngpilen.png" >
+      <h1>{{uiLabels.letsGo}}</h1>
+    </div>
   </div>
 
   <section v-show="showDisplayOneAndAHalfPage" id="OneAndAHalfPage">
@@ -44,9 +46,9 @@
       <div class="displayWelcomeCharacter" v-else-if="myCharacter==='car'"><img src="bilen.png"> </div>
     </div>
     <div class="welcomeName">
-      <br> Welcome to Monopoll <br>
+      <br> {{uiLabels.welcomeToMonopoll}} <br>
       <div class="classFn"> {{fn}}! </div>
-       Please wait for poll to start
+      {{uiLabels.pleaseWait}}
     </div>
 
     <div class="monopolGubben">
@@ -62,7 +64,7 @@
   <section v-show="showDisplaySecondPage" id="secondPage">
     <div class="gubbenPekar"><img src="gubbenpekar.png"></div>
 
-    <div class="textBend"> <br> This is you: {{fn}} <br> </div>
+    <div class="textBend"> <br> {{uiLabels.thisIsYou}} {{fn}} <br> </div>
     <div class="characterBox">
     <div class="displayCharacter" v-if="myCharacter==='boat'"> <img  src="boat.png"> </div>
     <div class="displayCharacter" v-else-if="myCharacter==='dog'"><img src="hunden.png"> </div>
@@ -72,8 +74,8 @@
 
 
 
-     <div class="displayPollId"> Poll-id: </div> <div class="linkPollId"> <br> {{pollId}} </div>
-    <div class="pleaseAnswer"> Please answer the following question:</div>
+     <div class="displayPollId"> {{uiLabels.pollID}} </div> <div class="linkPollId"> <br> {{pollId}} </div>
+    <div class="pleaseAnswer"> {{uiLabels.pleaseAnswer}}</div>
 
     <div v-show="showDisplayQuestion" id="question">
       <Question v-bind:question="question"
@@ -110,6 +112,7 @@ export default {
       showDisplayQuestion:true,
       lang:"",
       showDisplayOneAndAHalfPage: false,
+      uiLabels: {},
     }
   },
   created: function () {

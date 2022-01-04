@@ -33,6 +33,11 @@ function sockets(io, socket, data) {
         });
     socket.emit('dataUpdate', data.getAnswers(d.pollId));
   });
+  socket.on('deleteQuestion', function(d){
+    data.deleteQuestion(  d.pollId, d.questionNumber);
+    socket.emit('dataUpdate', data.getAnswers(d.pollId));
+
+  })
 
   socket.on('joinPoll', function(pollId) {
     socket.join(pollId);

@@ -130,17 +130,26 @@
           {{uiLabels.addQusetion}}
         </button>
       <button v-on:click="finishedEditQuestion" id="finishedEditQuestionButton">
-        Edit Question
+        {{uiLabels.editQusetion}}
       </button>
+      <div v-for="(item,index) in listOfAll" v-bind:key="index">
+      <button v-on:click="deleteQuestion(item[0])" id="deleteQuestionButton">
+        {{uiLabels.deleteQusetion}}
+      </button>
+      </div>
       </div>
 
           <div v-show="showStartAndPrevious" class="gridColumnOne">
 
         <div id="display_previousQuestion">
           <div v-for="(item,index) in listOfAll" v-bind:key="index">
-
             <button v-on:click="editQuestion(item[0])" id="editQuestionButton">
-              {{item[0]}} {{item[1]}}
+              <div v-if="item[0]!='N'">
+                {{item[0]}} {{item[1]}}
+                </div>
+              <div v-else>
+                {{uiLabels.newQuestion}}
+              </div>
             </button>
           </div>
         </div>
@@ -221,6 +230,7 @@ export default {
       showOnLastPage: false,
       showOnSecondPage:false,
       showOnThirdPage: false,
+
       runQuestionNumber: 0,
       viewQuestions: false,
       currentAnswer:"",
@@ -229,6 +239,9 @@ export default {
         q: "",
         a: [],
       },
+
+      number: 0
+
     }
   },
   computed: {
@@ -405,7 +418,24 @@ export default {
       this.showOnSecondPage=true;
       this.showOnThirdPage=false;
     },
+    deleteQuestion: function (Number) {
+      socket.emit("deleteQuestion", {
+        pollId: this.pollId,
+        questionNumber:Number
+      })
+      this.showCreateQuiz=true;
+      this.showCreateVote=true;
+      this.showQuestion = false;
+      this.showPlayPoll = true;
+      this.showOnSecondPage=true;
+      this.showOnThirdPage=false;
+      this.listOfAll.splice(Number, 1);
+      console.log('Hej list of q and N')
+      console.log(this.listOfQuestionAndNumber)
+      console.log('Hej list of all')
+      console.log(this.listOfAll)
 
+    },
     playPoll: function () {
       this.showPlayPoll = false;
       this.showStartAndPrevious = false;
@@ -693,9 +723,9 @@ body {
     border-radius: 10px;
     border: 3px double #00BFFF;
     color: #FF1493;
-    margin: 5% 20% 5% 20%;
-    width: 15em;
-    height: 1em;
+    margin: 5% 20% 1% 20%;
+    width: 25em;
+    height: 2em;
     text-align: center;
   }
   #inputAnswer{
