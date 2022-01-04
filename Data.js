@@ -51,6 +51,13 @@ Data.prototype.editQuestion = function(pollId, qId=0){
   }
   return {}
 }
+Data.prototype.deleteQuestion = function(pollId, q) {
+  const poll = this.polls[pollId];
+  console.log("question removed to", pollId, q);
+  if (typeof poll !== 'undefined') {
+      poll.questions.splice(q, 1);
+  }
+}
 
 Data.prototype.getCorrectAnswers = function(pollId, qId=0) {
   const poll = this.polls[pollId];

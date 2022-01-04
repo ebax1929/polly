@@ -119,8 +119,13 @@
           {{uiLabels.addQusetion}}
         </button>
       <button v-on:click="finishedEditQuestion" id="finishedEditQuestionButton">
-        Edit Question
+        {{uiLabels.editQusetion}}
       </button>
+      <div v-for="(item,index) in listOfAll" v-bind:key="index">
+      <button v-on:click="deleteQuestion(item[0])" id="deleteQuestionButton">
+        {{uiLabels.deleteQusetion}}
+      </button>
+      </div>
       </div>
 
           <div v-show="showStartAndPrevious" class="gridColumnOne">
@@ -205,7 +210,8 @@ export default {
       showGridColumnTwo: false,
       showOnLastPage: false,
       showOnSecondPage:false,
-      showOnThirdPage: false
+      showOnThirdPage: false,
+      number: 0
     }
   },
   computed: {
@@ -382,7 +388,24 @@ export default {
       this.showOnSecondPage=true;
       this.showOnThirdPage=false;
     },
+    deleteQuestion: function (Number) {
+      socket.emit("deleteQuestion", {
+        pollId: this.pollId,
+        questionNumber:Number
+      })
+      this.showCreateQuiz=true;
+      this.showCreateVote=true;
+      this.showQuestion = false;
+      this.showPlayPoll = true;
+      this.showOnSecondPage=true;
+      this.showOnThirdPage=false;
+      this.listOfAll.splice(Number, 1);
+      console.log('Hej list of q and N')
+      console.log(this.listOfQuestionAndNumber)
+      console.log('Hej list of all')
+      console.log(this.listOfAll)
 
+    },
     playPoll: function () {
       this.showPlayPoll = false;
       this.showStartAndPrevious = false;

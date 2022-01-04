@@ -22,6 +22,8 @@
 	"ans3": "Svar 3",
 	"ans4": "Svar 4",
 	"addQusetion": "Lägg till fråga",
+	"editQusetion": "Ändra fråga",
+	"deleteQusetion": "Ta bort fråga",
 	"finishedPoll": "Är du färdig med din poll?",
 	"goBackEdit": "Gå tillbaka och forstätt redigera poll",
 	"runQ": "Spela frågan",
@@ -38,5 +40,11 @@
 	"gubbenInstructions1": "Välj ett alternativ",
 	"gubbenInstructions2": "Skriv in din fråga",
 	"questionText": "Fråga:",
-	"newQuestion": "New Question"
+	"newQuestion": "Ny Fråga",
+	"welcomeToQuiz": "Välkommen till Quiz",
+	"pollId": "Poll-id:",
+	"chooseYourCharacter": "Välj din karaktär",
+	"pleaseWait": "Vänligen vänta medan Poll startas",
+	"pleaseAnswer":"Vänligen svara på följande fråga:",
+	"enterName": "Enter your name"
 }

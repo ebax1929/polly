@@ -22,6 +22,8 @@
 	"ans3": "Answer 3",
 	"ans4": "Answer 4",
 	"addQusetion": "Add Question",
+	"editQusetion": "Edit Question",
+	"deleteQusetion": "Delete Question",
 	"finishedPoll": "Are you finished with your poll?",
 	"goBackEdit": "Go back and continue editing poll",
 	"runQ": "Run question",
@@ -37,7 +39,11 @@
 	"gubbenInstructions1": "Choose an option",
 	"gubbenInstructions2": "Enter your question",
 	"questionText": "Question:",
-	"newQuestion": "New Question"
-
-
+	"newQuestion": "New Question",
+	"welcomeToQuiz": "Welcome to Quiz",
+	"pollId": "Poll-id:",
+	"chooseYourCharacter": "Choose your character",
+	"pleaseWait": "Please wait for poll to start",
+	"pleaseAnswer":"Please answer the following question:",
+	"enterName": "Enter your name"
 }
