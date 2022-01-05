@@ -1,6 +1,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <template>
   <body>
+
+
   <div class="gridContainer">
     <div v-show="showPollId" id="create_pollId"> <br><br>
       <h1 class="enterPollId">{{uiLabels.enterPollId}}</h1><br>
@@ -22,9 +24,18 @@
       <div v-show="showOnLastPage">
       <div class="gubbenPollId">
       {{uiLabels.yourPollId}}
-      {{pollId}}
+
       </div>
+        <button v-on:click="runPoll"  id="startPoll"> {{uiLabels.startPoll}} </button>
       </div>
+      <div v-show="viewQuestions" id="viewQuestionId">
+        <button v-on:click="runPoll"  id="test"> {{uiLabels.startPoll}} </button>
+        {{this.currentQuestion}}
+        {{this.currentAnswer}}
+
+<!--        <button v-on:click="runPoll"  id=""> {{uiLabels.startPoll}} </button>-->
+
+        </div>
       <div v-show="showOnSecondPage">
         <div class="gubbenPollId">
           {{uiLabels.gubbenInstructions1}}
@@ -152,15 +163,20 @@
       </button>
     </div>
     <div id="start_poll" v-show="showStartPoll">
+
 <!--    <input type="number" v-model="questionNumber" id="inputQuestionNumber"> -->
 <!--   <button v-on:click="runQuestion" id="runQuestionButton"></button> -->
 
     </div>
+
     <div v-show="showStartandPreviousNextPage" class="gridColumnOneNextPage">
+      <div id="previewHeader" >
+        <h3>Preview</h3>
+      </div>
         <div id="singleQuestion" v-for="(item,index) in listOfAll" v-bind:key="index">
          <p id="questionText">{{uiLabels.questionText}} {{item[0]}} {{item[1]}}</p>
-          <button v-on:click="runQuestion(item[0])"  id="runQuest"> {{uiLabels.runQ}} </button>
-          <router-link id="resultLink" v-bind:to="'/result/'+pollId">{{uiLabels.checkResult}}</router-link>
+<!--          <button v-on:click="runQuestion(item[0])"  id="runQuest"> {{uiLabels.runQ}} </button>-->
+<!--          <router-link id="resultLink" v-bind:to="'/result/'+pollId">{{uiLabels.checkResult}}</router-link>-->
         </div>
     </div>
 
@@ -169,16 +185,19 @@
 </template>
 
 <script>
+
 import io from 'socket.io-client';
 const socket = io();
 
 export default {
+
   name: 'Create',
   data: function () {
     return {
       lang: "",
       pollId: "",
       question: "",
+      currentQuestion:"",
       answers: ["",""],
       questionNumber: 0,
       data: {},
@@ -211,7 +230,18 @@ export default {
       showOnLastPage: false,
       showOnSecondPage:false,
       showOnThirdPage: false,
+
+      runQuestionNumber: 0,
+      viewQuestions: false,
+      currentAnswer:"",
+
+      questionShowed: {
+        q: "",
+        a: [],
+      },
+
       number: 0
+
     }
   },
   computed: {
@@ -366,7 +396,12 @@ export default {
       this.listOfQuestionAndNumber.push(this.questionNumber , this.question)
       this.listOfAll.pop()
       this.listOfAll.push(this.listOfQuestionAndNumber)
+
       this.question='';
+
+       console.log(this.listOfAll)
+      /*this.question='';*/
+
     },
 
     finishedEditQuestion: function () {
@@ -413,6 +448,8 @@ export default {
       this.showOnLastPage=true;
       this.showOnSecondPage=false;
       this.showOnThirdPage=false;
+
+
     },
 
     goBackEditing: function () {
@@ -470,9 +507,20 @@ export default {
          this.removeAnswersVote = false;
        }
      },
-    runQuestion: function (question) {
-      this.questionNumber = question-1;
+    runPoll: function () {
+      this.questionNumber=this.runQuestionNumber;
       socket.emit("runQuestion", {pollId: this.pollId, questionNumber: this.questionNumber})
+      this.runQuestionNumber+=1;
+      this.showStartandPreviousNextPage=false;
+      this.showStartPoll = false;
+      this.showGoBackEditing = false;
+      this.showOnLastPage=false;
+      this.showDisplayPollId=false;
+      this.viewQuestions=true;
+      this.showDisplayPollId=true;
+      console.log(this.runQuestionNumber);
+      this.currentQuestion=this.listOfAll[this.questionNumber]
+      this.currentAnswers=this.answers[this.questionNumber]
     }
   }
 }
@@ -500,12 +548,18 @@ body {
     background:white;
     opacity: 70%;
   }
+  #previewHeader{
+    grid-area:b;
+    margin-top: 5px;
+    margin-left:3em;
+
+  }
   .gridColumnOneNextPage{
     border: double mediumpurple;
     border-radius: 20px;
     grid-area:b;
-    width:40em;
-    margin-top: 10px;
+    width:30em;
+    margin-top: 20px;
     background:aliceblue;
     opacity: 70%;
     margin-left:5em;
@@ -789,7 +843,7 @@ body {
     background-color: #1E90FF;
     border-radius: 10px;
   }
-  #runQuest{
+  #startPoll{
     width: 8em;
     margin-left: 2em;
     margin-top: -2.65em;

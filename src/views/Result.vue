@@ -2,7 +2,7 @@
   <body>
   {{lang}}
   <div id="questionTitle">
-    <p id="question"> {{uiLabels.questiones}} </p>
+    <p id="question">{{uiLabels.questiones}}</p>
     {{question}}
   </div>
   <Bars v-bind:data="data"/>

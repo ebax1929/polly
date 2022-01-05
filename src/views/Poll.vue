@@ -232,13 +232,13 @@ cursor:pointer;
   height: 6em;
   position:absolute;
   top:6em;
-  right:8.5em;
+  right:2em;
   margin-top: 3em;
 }
 .textBend {
   position:absolute;
   top:2.5em;
-  right:7em;
+  right:1.35em;
   width: 8em;
   font-size: 1.2em;
   font-weight: bold;
@@ -250,7 +250,7 @@ cursor:pointer;
   height: 4em;
   position:absolute;
   top:19em;
-  right:8.5em;
+  right:2em;
   margin-top: 3em;
   font-weight: bold;
   padding: 1em;
@@ -259,7 +259,7 @@ cursor:pointer;
 .displayPollId{
   position:absolute;
   top:15.5em;
-  right:7em;
+  right:1.35em;
   width: 8em;
   font-size: 1.2em;
   font-weight: bold;
@@ -356,7 +356,7 @@ cursor:pointer;
 }
 
 #question{
-  width: 12em;
+  width: 20em;
   font-size: 2em;
   border-radius: 1em;
   background-color: plum;
@@ -377,8 +377,8 @@ cursor:pointer;
   color: plum;
   padding: 0.5em;
   position: absolute;
-  left: 26em;
-  top: 5em;
+  left: 32.5em;
+  top: 3em;
 
 }
 
