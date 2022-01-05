@@ -1,18 +1,16 @@
 <template>
   <body>
   {{lang}}
-  <section id="questionTitle">
+  <div id="questionTitle">
     <p id="question">{{uiLabels.questiones}}</p>
     {{question}}
+  </div>
   <Bars v-bind:data="data"/>
   <p>The correct Answer was:</p>
-    <p>{{data}}</p>
-
   <div v-show="showCorAns1"> <p> {{uiLabels.ans1}} </p></div>
   <div v-show="showCorAns2"> <p> {{uiLabels.ans2}} </p></div>
   <div v-show="showCorAns3"> <p> {{uiLabels.ans3}} </p></div>
   <div v-show="showCorAns4"> <p> {{uiLabels.ans4}} </p></div>
-  </section>
   </body>
 </template>
 
@@ -94,9 +92,8 @@ body{
 }
 
 #questionTitle{
-  width: 15em;
-  height: 15em;
-  margin: 1em 10em 0em 10em;
+  width: 30%;
+  margin: 3em 30% 0em 30%;
   font-size: 2em;
   border-radius: 25px;
   border: 3px double #FDF5E6;
@@ -104,13 +101,5 @@ body{
   padding: 2% 5% 5% 5%;
 
 
-}
-
-section div {
-  font-size: 0.8em;
-}
-
-section p {
-  font-size: 0.8em;
 }
 </style>
