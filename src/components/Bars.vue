@@ -24,15 +24,14 @@ export default {
 <style scoped>
 .bar {
   display: inline-block;
-  width: 10em;
   vertical-align: bottom;
   margin: 6em 1em 0em 1em;
   text-align: left;
-  width: 10em;
+  width: 1.5em;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  border-radius: 10px;
+  border-radius: 0.125em;
   text-align: left;
   color: #FFFFFF;
 }
