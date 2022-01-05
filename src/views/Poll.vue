@@ -81,6 +81,12 @@
       <Question v-bind:question="question"
                  v-on:answer="submitAnswer" />
     </div>
+    <div v-show="showThisCorrect" id="right">
+    Rätt
+    </div>
+    <div v-show="showThisWrong" id="wrong">
+     FEL
+    </div>
 
   </section>
   </body>
@@ -110,9 +116,17 @@ export default {
       fn:"",
       myCharacter:"",
       showDisplayQuestion:true,
+      correctOrFalse:false,
       lang:"",
       showDisplayOneAndAHalfPage: false,
       uiLabels: {},
+      correctAnswer1: false,
+      correctAnswer2: false,
+      correctAnswer3: false,
+      correctAnswer4: false,
+      showThisCorrect: false,
+      showThisWrong: false,
+      answer123: ''
     }
   },
   created: function () {
@@ -127,12 +141,24 @@ export default {
       this.uiLabels = labels
     })
     socket.emit('joinPoll', this.pollId)
-    socket.on("newQuestion", q =>
-    {
-      this.question = q
+
+    socket.on("newQuestion", q => {
+      this.question = q;
       this.showDisplayQuestion=true;
-    }
-    )
+      this.correctAnswer1 = q.correctAnswer1;
+      this.correctAnswer2 = q.correctAnswer2;
+      this.correctAnswer3 = q.correctAnswer3;
+      this.correctAnswer4 = q.correctAnswer4;
+      console.log('correct?')
+      console.log(this.correctAnswer1);
+      console.log(this.correctAnswer2);
+      console.log(this.correctAnswer3);
+      console.log(this.correctAnswer4);
+
+    })
+
+
+
   },
   methods: {
     /*transformSlotProps(props){
@@ -146,6 +172,62 @@ export default {
     submitAnswer: function (answer) {
       socket.emit("submitAnswer", {pollId: this.pollId, answer: answer})
       this.showDisplayQuestion=false;
+      socket.on("answer", answer);
+      this.answer123=answer
+      console.log(this.answer123)
+        if(this.answer123 ===  this.a[0]){
+          if(this.correctAnswer1 === true)
+            this.showThisCorrect=true;
+        }
+      if(this.answer ===  this.a[1]){
+        if(this.correctAnswer2 === true)
+            this.showThisCorrect=true;
+        }
+      if(this.answer ===  this.a[2]){
+        if(this.correctAnswer3 === true)
+            this.showThisCorrect=true;
+        }
+      if(this.answer ===  this.a[3]){
+        if(this.correctAnswer4 === true)
+            this.showThisCorrect=true;
+        }
+        else{
+          this.showThisWrong=true;
+        }
+      console.log(this.answer123)
+
+      /*socket.on("newQuestion", update => {
+            this.correctAnswer1 = update.correctAnswer1;
+            this.correctAnswer2 = update.correctAnswer2;
+            this.correctAnswer3 = update.correctAnswer3;
+            this.correctAnswer4 = update.correctAnswer4;
+            console.log(this.correctAnswer1);
+            console.log(this.correctAnswer2);
+            console.log(this.correctAnswer3);
+            console.log(this.correctAnswer4);
+
+            if (this.correctAnswer1 === true){
+              if(this.answer===1)
+                this.showThisCorrect=true;
+            }
+            if (this.correctAnswer2 === true){
+              if(this.answer===2)
+                this.showThisCorrect=true;
+            }
+            if (this.correctAnswer3 === true){
+              if(this.answer===3)
+                this.showThisCorrect=true;
+            }
+            if (this.correctAnswer4 === true){
+              if(this.answer===4)
+                this.showThisCorrect=true;
+            }
+            else{
+              this.showThisWrong=true;
+            }
+          }
+      )*/
+
     },
     enterGameButton: function(){
       if (this.fn===""){
@@ -380,6 +462,11 @@ cursor:pointer;
   left: 32.5em;
   top: 3em;
 
+}
+
+#rightorwrong {
+  color: #DA70D6;
+  display: contents;
 }
 
 
