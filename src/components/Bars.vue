@@ -27,7 +27,7 @@ export default {
   vertical-align: bottom;
   margin: 6em 1em 0em 1em;
   text-align: left;
-  width: 1.5em;
+  width: 5em;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;

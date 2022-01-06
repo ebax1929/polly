@@ -24,14 +24,21 @@
       <div v-show="showOnLastPage">
       <div class="gubbenPollId">
       {{uiLabels.yourPollId}}
+        {{pollId}}
 
       </div>
         <button v-on:click="runPoll"  id="startPoll"> {{uiLabels.startPoll}} </button>
       </div>
       <div v-show="viewQuestions" id="viewQuestionId">
+
+        <div v-if="this.questionNumber<this.listOfAll.length">
         <button v-on:click="runPoll"  id="test"> {{uiLabels.startPoll}} </button>
         {{this.currentQuestion}}
-        {{this.currentAnswer}}
+        {{this.currentAnswers[this.questionNumber]}}
+        </div>
+
+
+
 
 <!--        <button v-on:click="runPoll"  id=""> {{uiLabels.startPoll}} </button>-->
 
@@ -238,7 +245,7 @@ export default {
       viewQuestions: false,
       currentAnswer:"",
       currentlyEditingQuestionIndex: 0,
-
+      currentAnswers:[],
       questionShowed: {
         q: "",
         a: [],
@@ -411,6 +418,8 @@ export default {
       this.listOfQuestionAndNumber=[];
       this.listOfQuestionAndNumber.push(this.questionNumber , this.question)
       this.listOfAll.pop()
+
+      this.currentAnswers.push([this.answers[0],this.answers[1]])
       this.listOfAll.push(this.listOfQuestionAndNumber)
 
       this.question='';
@@ -495,6 +504,7 @@ export default {
       if (this.countAnswer == 4){
         this.showAnswer4 = true;
       }
+
     },
 
     removeAnswer: function(){
@@ -527,8 +537,11 @@ export default {
      },
     runPoll: function () {
       this.questionNumber=this.runQuestionNumber;
+
+
       socket.emit("runQuestion", {pollId: this.pollId, questionNumber: this.questionNumber})
       this.runQuestionNumber+=1;
+
       this.showStartandPreviousNextPage=false;
       this.showStartPoll = false;
       this.showGoBackEditing = false;
@@ -538,8 +551,10 @@ export default {
       this.showDisplayPollId=true;
       console.log(this.runQuestionNumber);
       this.currentQuestion=this.listOfAll[this.questionNumber]
+
       this.currentAnswers=this.answers[this.questionNumber]
       /*Använd inte Question number på rad ovan det kommer bli index fel*/
+
     }
   }
 }
