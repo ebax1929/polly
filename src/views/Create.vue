@@ -405,8 +405,12 @@ export default {
 
       this.currentAnswers.push([this.answers[0],this.answers[1]])
       this.listOfAll.push(this.listOfQuestionAndNumber)
+
+      this.question='';
+
        console.log(this.listOfAll)
       /*this.question='';*/
+
     },
 
     finishedEditQuestion: function () {
@@ -439,10 +443,6 @@ export default {
       this.showOnSecondPage=true;
       this.showOnThirdPage=false;
       this.listOfAll.splice(Number, 1);
-      console.log('Hej list of q and N')
-      console.log(this.listOfQuestionAndNumber)
-      console.log('Hej list of all')
-      console.log(this.listOfAll)
 
     },
     playPoll: function () {

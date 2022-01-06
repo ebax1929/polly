@@ -54,6 +54,8 @@ function sockets(io, socket, data) {
   socket.on('submitAnswer', function(d) {
     data.submitAnswer(d.pollId, d.answer);
     io.to(d.pollId).emit('dataUpdate', data.getAnswers(d.pollId));
+    io.to(d.pollId).emit('getTheAnswer', data.getCorrectAnswers(d.pollId, d.questionNumber));
+
   });
 
   socket.on('resetAll', () => {

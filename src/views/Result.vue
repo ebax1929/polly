@@ -1,16 +1,18 @@
 <template>
   <body>
   {{lang}}
+
   <div id="questionTitle">
     <p id="question">{{uiLabels.questiones}}</p>
-    {{question}}
+    {{this.question}}
+    <Bars v-bind:data="data"/>
+    <p>The correct Answer was:</p>
+    <div v-show="showCorAns1"> <p> {{uiLabels.ans1}} </p></div>
+    <div v-show="showCorAns2"> <p> {{uiLabels.ans2}} </p></div>
+    <div v-show="showCorAns3"> <p> {{uiLabels.ans3}} </p></div>
+    <div v-show="showCorAns4"> <p> {{uiLabels.ans4}} </p></div>
   </div>
-  <Bars v-bind:data="data"/>
-  <p>The correct Answer was:</p>
-  <div v-show="showCorAns1"> <p> {{uiLabels.ans1}} </p></div>
-  <div v-show="showCorAns2"> <p> {{uiLabels.ans2}} </p></div>
-  <div v-show="showCorAns3"> <p> {{uiLabels.ans3}} </p></div>
-  <div v-show="showCorAns4"> <p> {{uiLabels.ans4}} </p></div>
+
   </body>
 </template>
 
@@ -88,18 +90,20 @@ body{
   background-color: slategray;
 }
 #question{
-  font-size: 0.5em;
+  font-size: 1em;
 }
 
 #questionTitle{
   width: 30%;
   margin: 3em 30% 0em 30%;
-  font-size: 2em;
+  font-size: 1em;
   border-radius: 25px;
   border: 3px double #FDF5E6;
   color: #FFFFFF;
   padding: 2% 5% 5% 5%;
+}
 
-
+div p {
+  font-size: 1.5em;
 }
 </style>
