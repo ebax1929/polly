@@ -31,12 +31,12 @@
         <button v-on:click="runPoll"  id="startPoll"> {{uiLabels.startPoll}} </button>
       </div>
       <div v-show="viewQuestions" id="viewQuestionId">
-
-        
+        <div v-show="showButton">
         <button v-on:click="runPoll"  id="nextQuestionButton">
 
           <img id="nextQuestionImage" src="pngpilen.png">
         </button>
+        </div>
           <div id="questionInformation"> {{uiLabels.currentlyDisplayed}}<p class="saving"><span>.</span><span>.</span><span>.</span></p></div>
           <div id="questionDisplayed">
             <h3>{{this.currentQuestion}}</h3>
@@ -257,6 +257,7 @@ export default {
       runQuestionNumber: 0,
       viewQuestions: false,
       currentAnswer:"",
+      showButton: true,
       currentlyEditingQuestionIndex: 0,
       currentAnswers:[],
       questionShowed: {
@@ -556,15 +557,16 @@ export default {
       this.runQuestionNumber+=1;
 
       this.showStartandPreviousNextPage=false;
+
       this.showStartPoll = false;
       this.showGoBackEditing = false;
       this.showOnLastPage=false;
       this.showDisplayPollId=true;
       this.viewQuestions=true;
       if(this.listOfAll.length===this.questionNumber){
-        this.viewQuestions=false;
-
+        this.showButton=false;
       }
+
 
       console.log(this.runQuestionNumber);
       this.currentQuestion=this.listOfAll[this.questionNumber]
