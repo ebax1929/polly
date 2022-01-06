@@ -6,6 +6,8 @@ function sockets(io, socket, data) {
   }
   )
   socket.on('pageLoaded', function (lang) {
+    console.log('lang');
+    console.log(lang);
     socket.emit('init', data.getUILabels(lang));
   });
 
@@ -33,6 +35,7 @@ function sockets(io, socket, data) {
         });
     socket.emit('dataUpdate', data.getAnswers(d.pollId));
   });
+
   socket.on('deleteQuestion', function(d){
     data.deleteQuestion(  d.pollId, d.questionNumber);
     socket.emit('dataUpdate', data.getAnswers(d.pollId));

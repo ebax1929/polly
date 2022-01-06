@@ -38,16 +38,13 @@ Data.prototype.addQuestion = function(pollId, q) {
     poll.questions.push(q);
   }
 }
+
 Data.prototype.editQuestion = function(pollId, qId=0){
   const poll = this.polls[pollId];
   console.log("requested edit for ", pollId, qId)
   if (typeof poll != 'undefined') {
-    for (let i = 0; i < poll.questions.length; i++) {
-      if (poll.questions[i].questionNumber === qId) {
-        console.log(poll.questions[i])
-        return poll.questions[i]
-      }
-    }
+        console.log(poll.questions)
+        return poll.questions[qId]
   }
   return {}
 }
@@ -85,6 +82,15 @@ Data.prototype.getQuestion = function(pollId, qId=null) {
   return []
 }
 
+/*Data.prototype.getAllQuestions = function(pollId) {
+  const poll = this.polls[pollId];
+  console.log("All questions requested for ", pollId);
+  if (typeof poll !== 'undefined') {
+    return poll.questions;
+  }
+  return []
+}*/
+
 Data.prototype.getLang = function(pollId) {
   const poll = this.polls[pollId];
   console.log("lang requested for ", pollId);
@@ -92,20 +98,6 @@ Data.prototype.getLang = function(pollId) {
     return poll.lang
   }
   return "en"
-}
-
-Data.prototype.editQuestion = function(pollId, qId=0){
-  const poll = this.polls[pollId];
-  console.log("requested edit for ", pollId, qId)
-  if (typeof poll != 'undefined') {
-    for (let i = 0; i < poll.questions.length; i++) {
-     if (poll.questions[i].questionNumber === qId) {
-       console.log(poll.questions[i])
-       return poll.questions[i]
-     }
-    }
-  }
-  return {}
 }
 
 Data.prototype.submitAnswer = function(pollId, answer) {

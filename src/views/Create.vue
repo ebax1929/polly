@@ -126,24 +126,23 @@
 
         </div>
       </div>
-        <button v-on:click="addQuestion" id="addQuestionButton">
+        <button v-on:click="addQuestion" id="addQuestionButton" v-show="showAddQuestionButton">
           {{uiLabels.addQusetion}}
         </button>
-      <button v-on:click="finishedEditQuestion" id="finishedEditQuestionButton">
+      <button v-on:click="finishedEditQuestion" id="finishedEditQuestionButton" v-show="showFinishedEditQuestionButton">
         {{uiLabels.editQusetion}}
       </button>
-      <div v-for="(item,index) in listOfAll" v-bind:key="index">
-      <button v-on:click="deleteQuestion(item[0])" id="deleteQuestionButton">
+      <button v-on:click="deleteQuestion" id="deleteQuestionButton">
         {{uiLabels.deleteQusetion}}
       </button>
       </div>
-      </div>
+
 
           <div v-show="showStartAndPrevious" class="gridColumnOne">
 
         <div id="display_previousQuestion">
           <div v-for="(item,index) in listOfAll" v-bind:key="index">
-            <button v-on:click="editQuestion(item[0])" id="editQuestionButton">
+            <button v-on:click="editQuestion(index)" id="editQuestionButton">
               <div v-if="item[0]!='N'">
                 {{item[0]}} {{item[1]}}
                 </div>
@@ -181,6 +180,9 @@
     </div>
 
   </div>
+
+  {{data}}
+
   </body>
 </template>
 
@@ -230,10 +232,12 @@ export default {
       showOnLastPage: false,
       showOnSecondPage:false,
       showOnThirdPage: false,
-
+      showAddQuestionButton: false,
+      showFinishedEditQuestionButton: false,
       runQuestionNumber: 0,
       viewQuestions: false,
       currentAnswer:"",
+      currentlyEditingQuestionIndex: 0,
 
       questionShowed: {
         q: "",
@@ -259,7 +263,12 @@ export default {
       this.data = data
     )
     socket.on("pollCreated", (data) =>
-      this.data = data)
+        { this.lang= data.lang
+          this.questions=data.questions
+          this.answers=data.answers
+          this.currentQuestion=data.currentQuestion
+        }
+    )
     socket.on('oldQuestion', q =>{
       this.question = q.q
       this.answers = q.a
@@ -270,6 +279,7 @@ export default {
       this.correctAnswer4 = q.correctAnswer4
       console.log(q)
     })
+    socket.on('allQuestions', )
   },
   methods: {
     createPoll: function () {
@@ -281,6 +291,7 @@ export default {
       this.showStartAndPrevious = true;
       this.showGridColumnTwo = true;
       this.showOnSecondPage=true;
+      this.showAddQuestionButton=true;
     },
     createQuiz: function() {
       this.listOfAll.push("New question")
@@ -299,6 +310,7 @@ export default {
       this.showCreateVote=false;
       this.showOnSecondPage=false;
       this.showOnThirdPage=true;
+      this.showAddQuestionButton=true;
 
 
       if (this.countAnswer === 4 ){
@@ -345,6 +357,8 @@ export default {
         pollId: this.pollId,
         questionNumber:question
       })
+      this.currentlyEditingQuestionIndex = question;
+      console.log('currentlyEditingQuestionIndex från edit',this.currentlyEditingQuestionIndex)
       this.showPlayPoll = false;
       this.addAnswers = false;
       this.removeAnswers = false;
@@ -362,6 +376,8 @@ export default {
       this.showCreateVote=false;
       this.showOnThirdPage=true;
       this.showOnSecondPage=false;
+      this.showAddQuestionButton=false;
+      this.showFinishedEditQuestionButton =true;
       if (this.answers.length === 4 ){
         this.answers.pop();
         this.showAnswer4 = true;
@@ -421,11 +437,12 @@ export default {
       this.showPlayPoll = true;
       this.showOnSecondPage=true;
       this.showOnThirdPage=false;
+      this.showFinishedEditQuestionButton =false;
     },
-    deleteQuestion: function (Number) {
+    deleteQuestion: function () {
       socket.emit("deleteQuestion", {
         pollId: this.pollId,
-        questionNumber:Number
+        questionNumber: this.currentlyEditingQuestionIndex
       })
       this.showCreateQuiz=true;
       this.showCreateVote=true;
@@ -433,7 +450,8 @@ export default {
       this.showPlayPoll = true;
       this.showOnSecondPage=true;
       this.showOnThirdPage=false;
-      this.listOfAll.splice(Number, 1);
+      console.log('currentlyEditingQuestionIndex', this.currentlyEditingQuestionIndex)
+      this.listOfAll.splice(this.currentlyEditingQuestionIndex, 1)
 
     },
     playPoll: function () {
@@ -521,6 +539,7 @@ export default {
       console.log(this.runQuestionNumber);
       this.currentQuestion=this.listOfAll[this.questionNumber]
       this.currentAnswers=this.answers[this.questionNumber]
+      /*Använd inte Question number på rad ovan det kommer bli index fel*/
     }
   }
 }
@@ -776,13 +795,13 @@ body {
     color: #FF1493;
     border-radius: 10px;
   }
-#removeAnswersVote{
+  #removeAnswersVote{
   transition-duration: 0.4s;
   width: 20%;
   height: 5%;
   background-color: #1E90FF;
   border-radius: 10px;
-}
+  }
   #removeAnswersVote:hover {
     background-color: #00BFFF;
     color: #FF1493;
@@ -807,6 +826,7 @@ body {
    width: 30%;
    height: 5%;
    background-color: #1E90FF;
+    font-weight: bold;
    border-radius: 10px;
   }
   #addQuestionButton:hover {
@@ -814,6 +834,37 @@ body {
     color: #FF1493;
     border-radius: 10px;
   }
+
+  #finishedEditQuestionButton {
+    transition-duration: 0.4s;
+    width: 30%;
+    height: 5%;
+    background-color: #1E90FF;
+    font-weight: bold;
+    border-radius: 10px;
+  }
+
+  #finishedEditQuestionButton:hover {
+  background-color: #00BFFF;
+  color: #FF1493;
+  border-radius: 10px;
+  }
+
+  #deleteQuestionButton{
+    transition-duration: 0.4s;
+    width: 30%;
+    height: 5%;
+    background-color: #1E90FF;
+    font-weight: bold;
+    border-radius: 10px;
+  }
+  #deleteQuestionButton:hover {
+  background-color: #00BFFF;
+  color: #FF1493;
+  border-radius: 10px;
+ }
+
+
   #goBackEditingButton{
     height:0em;
     width:0em;
