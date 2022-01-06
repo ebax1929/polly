@@ -46,5 +46,7 @@
 	"chooseYourCharacter": "Välj din karaktär",
 	"pleaseWait": "Vänligen vänta medan Poll startas",
 	"pleaseAnswer":"Vänligen svara på följande fråga:",
-	"enterName": "Enter your name"
+	"enterName": "Enter your name",
+	"currentlyDisplayed": "Frågan som nu visas: "
+
 }

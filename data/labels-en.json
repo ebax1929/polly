@@ -45,5 +45,6 @@
 	"chooseYourCharacter": "Choose your character",
 	"pleaseWait": "Please wait for poll to start",
 	"pleaseAnswer":"Please answer the following question:",
-	"enterName": "Enter your name"
+	"enterName": "Enter your name",
+	"currentlyDisplayed": "Question currently displayed: "
 }

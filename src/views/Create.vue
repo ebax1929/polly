@@ -27,15 +27,28 @@
         {{pollId}}
 
       </div>
+
         <button v-on:click="runPoll"  id="startPoll"> {{uiLabels.startPoll}} </button>
       </div>
       <div v-show="viewQuestions" id="viewQuestionId">
 
-        <div v-if="this.questionNumber<this.listOfAll.length">
-        <button v-on:click="runPoll"  id="test"> {{uiLabels.startPoll}} </button>
-        {{this.currentQuestion}}
-        {{this.currentAnswers[this.questionNumber]}}
-        </div>
+        
+        <button v-on:click="runPoll"  id="nextQuestionButton">
+
+          <img id="nextQuestionImage" src="pngpilen.png">
+        </button>
+          <div id="questionInformation"> {{uiLabels.currentlyDisplayed}}<p class="saving"><span>.</span><span>.</span><span>.</span></p></div>
+          <div id="questionDisplayed">
+            <h3>{{this.currentQuestion}}</h3>
+            {{this.currentAnswers[this.questionNumber]}}
+
+          </div>
+          <div id="goToNextQuestion">
+          <h4>Next question</h4>
+          </div>
+
+
+
 
 
 
@@ -546,9 +559,13 @@ export default {
       this.showStartPoll = false;
       this.showGoBackEditing = false;
       this.showOnLastPage=false;
-      this.showDisplayPollId=false;
-      this.viewQuestions=true;
       this.showDisplayPollId=true;
+      this.viewQuestions=true;
+      if(this.listOfAll.length===this.questionNumber){
+        this.viewQuestions=false;
+
+      }
+
       console.log(this.runQuestionNumber);
       this.currentQuestion=this.listOfAll[this.questionNumber]
 
@@ -985,6 +1002,119 @@ body {
   top: 7em;
   z-index: 1;
   max-width: 6em;
+}
+#questionInformation{
+  width: 15em;
+  height: 1em;
+  font-size: 1em;
+  border-radius: 25px;
+  background-color: #D2E4FD;
+  border: double 0.5em plum;
+  color: plum;
+  padding: 0.5em;
+  position: absolute;
+  left: 32.5em;
+  top: 3em;
+
+}
+
+#questionDisplayed{
+  width: 20em;
+  height: 15em;
+  grid-area:b;
+  font-size: 2em;
+  border-radius: 1em;
+  background-color: plum;
+  border: double 0.5em #DA70D6;
+  color: #FFFFFF;
+  /*padding: 1em;*/
+  position: absolute;
+  left: 10.5em;
+  top: 4em
+}
+
+#nextQuestionImage{
+  grid-area:c;
+  width:12em;
+  height:12em;
+  margin-top:34em;
+  margin-left:2em;
+  cursor:pointer;
+  position:absolute;
+}
+#nextQuestionButton{
+  height:0em;
+  width:0em;
+  background:#D2E4FD;
+  border:none;
+}
+@keyframes blink {
+
+  /**
+   * At the start of the animation the dot
+   * has an opacity of .2
+   */
+  0% {
+    opacity: .2;
+    font-size:4em;
+  }
+  /**
+   * At 20% the dot is fully visible and
+   * then fades out slowly
+   */
+  20% {
+    opacity: 1;
+    font-size:4em;
+  }
+  /**
+   * Until it reaches an opacity of .2 and
+   * the animation can start again
+   */
+  100% {
+    opacity: .2;
+    font-size:4em;
+  }
+}
+
+.saving span {
+  /**
+   * Use the blink animation, which is defined above
+   */
+  animation-name: blink;
+  /**
+   * The animation should take 1.4 seconds
+   */
+  animation-duration: 1.4s;
+  /**
+   * It will repeat itself forever
+   */
+  animation-iteration-count: infinite;
+  /**
+   * This makes sure that the starting style (opacity: .2)
+   * of the animation is applied before the animation starts.
+   * Otherwise we would see a short flash or would have
+   * to set the default styling of the dots to the same
+   * as the animation. Same applies for the ending styles.
+   */
+  animation-fill-mode: both;
+}
+
+.saving span:nth-child(2) {
+  /**
+   * Starts the animation of the third dot
+   * with a delay of .2s, otherwise all dots
+   * would animate at the same time
+   */
+  animation-delay: .2s;
+}
+
+.saving span:nth-child(3) {
+  /**
+   * Starts the animation of the third dot
+   * with a delay of .4s, otherwise all dots
+   * would animate at the same time
+   */
+  animation-delay: .4s;
 }
 
 
