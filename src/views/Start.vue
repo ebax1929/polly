@@ -7,7 +7,16 @@
     <router-link id="Links" v-bind:to="'/create/'+lang">{{uiLabels.createPoll}}</router-link>
     </div>
     <div class="Split Right" >
-      <button id="LanguageButton" v-on:click="switchLanguage">{{uiLabels.changeLanguage}}</button>
+
+      <button id="LanguageButton" v-on:click="switchLanguage">
+        <div v-if="this.lang=='sv'">
+          <img class="flags" src="engelskflagga.jpeg">
+        </div>
+        <div v-else>
+          <img class="flags" src="sverigeflagga.png">
+
+        </div>
+      </button>
     <div id="Links">
     <label id="fillInId">
       {{uiLabels.poll_id}}
@@ -46,6 +55,7 @@ export default {
   },
   methods: {
     switchLanguage: function() {
+      console.log(this.lang)
       if (this.lang === "en")
         this.lang = "sv"
       else
@@ -111,8 +121,13 @@ export default {
 
 #LanguageButton{
   margin-left: 34em;
-  background-color: white;
-  border-radius:20px;
+  height:0em;
+  width:0em;
+  background:none;
+  border:none;
+  cursor:pointer;
+
+
 }
 
 input{
@@ -122,6 +137,12 @@ input{
 }
 #fillInId{
   margin-top: 20em;
+}
+.flags{
+
+  width: 2em;
+  height: 2em;
+  border-radius: 50%;
 }
 
 

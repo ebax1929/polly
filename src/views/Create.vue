@@ -1,5 +1,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <template>
+  <div class="bg"></div>
+    <div class="bg bg2"></div>
+    <div class="bg bg3"></div>
+
   <body>
 
 
@@ -57,6 +61,8 @@
 
         </div>
       <div v-show="showOnSecondPage">
+
+
         <div class="gubbenPollId">
           {{uiLabels.gubbenInstructions1}}
         </div>
@@ -79,7 +85,8 @@
           {{uiLabels.finishedPoll}}
         </button>
       </div>
-    </div >
+
+    </div>
 
     <div v-show="showGridColumnTwo">
       <button v-on:click="createQuiz" id="createQuiz" v-show="showCreateQuiz">
@@ -581,7 +588,7 @@ export default {
 <style>
 
 body {
-  background:#D2E4FD;
+
 }
   .gridContainer {
     display:grid;
@@ -592,6 +599,44 @@ body {
         "a b b c";
 
   }
+html {
+  height:100%;
+}
+
+body {
+  margin:0;
+}
+
+.bg {
+  animation:slide 15s ease-in-out infinite alternate;
+  animation-duration:17s;
+  background-image: linear-gradient(-60deg, plum 50%, seashell 50%);
+  bottom:0;
+  left:-50%;
+  opacity:.5;
+  position:fixed;
+  right:-50%;
+  top:0;
+  z-index:-1;
+}
+
+.bg2 {
+  animation-direction:alternate-reverse;
+  animation-duration:18s;
+}
+
+.bg3 {
+  animation-duration:19s;
+}
+
+@keyframes slide {
+  0% {
+    transform:translateX(-25%);
+  }
+  100% {
+    transform:translateX(25%);
+  }
+}
   .gridColumnOne {
     border: double mediumpurple;
     border-radius: 20px;
@@ -608,11 +653,12 @@ body {
 
   }
   .gridColumnOneNextPage{
+
     border: double mediumpurple;
     border-radius: 20px;
     grid-area:b;
     width:30em;
-    margin-top: 20px;
+
     background:aliceblue;
     opacity: 70%;
     margin-left:5em;
@@ -623,7 +669,8 @@ body {
     height:3.5em;
     width:13.3em;
     border-radius: 8px;
-    background:slategray;
+    background:mediumpurple;
+    optipacity: 1%;
     overflow:hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -702,17 +749,21 @@ body {
 
 
   #create_pollId{
-    background-color: #D2E4FD;
+    background-color: plum;
+    optipacity: 1%;
+    margin-top: 2em;
     /*border: groove #00BFFF;*/
     color: white;
     /*font-family: "Times New Roman", Times, serif;*/
     font-size: 100%;
+    grid-area:b;
     text-align: center;
     height: 37em;
-    width: 40em;
-    margin-left: 18.5em;
+    width: 30em;
+    margin-left: 16em;
     border-radius: 2em;
     text-decoration: none;
+    border: 3px double seashell;
   }
 
   #createPollButton{
@@ -761,7 +812,7 @@ body {
     transition-duration: 0.4s;
     width: 8em;
     height: 5em;
-    background-color: mediumpurple;
+    background-color: #549c4d;
     border-radius: 10px;
     color:white;
   }
@@ -908,7 +959,8 @@ body {
   #goBackText{
     height:5em;
     width:10em;
-    color:white;
+    margin-left: 2em;
+    color:plum;
   }
   #goBackPicture{
     grid-area:a;
@@ -944,7 +996,7 @@ body {
   }
   #singleQuestion{
     margin-bottom: 0.5em;
-    background: #c49fbc;
+    background: plum;
     border: 2px solid white;
     color:white;
     border-radius: 2em;
