@@ -640,10 +640,12 @@ body {
   .gridColumnOne {
     border: double mediumpurple;
     border-radius: 20px;
+    height: 38em;
     grid-area:a;
     width:12em;
-    margin-top: 10px;
+    margin-top: 35px;
     background:white;
+    margin-left:2em;
     opacity: 70%;
   }
   #previewHeader{
@@ -719,7 +721,8 @@ body {
     border: double mediumpurple;
     margin-right:10px;
     width: 12em;
-    height: 26em;
+    height: 25.4em;
+    margin-top:1.5em;
     background-color: aliceblue;
     font-family: Arial, Helvetica, sans-serif;
     color: mediumpurple;
@@ -740,7 +743,8 @@ body {
     margin-top: 10px;
     border: double mediumpurple;
     width: 12em;
-    height: 26em;
+    height: 25.4em;
+    margin-top: 1.5em;
     background-color: aliceblue;
     font-family: Arial, Helvetica, sans-serif;
     color: mediumpurple;
@@ -837,7 +841,7 @@ body {
   }
   #inputQuestion{
     border-radius: 10px;
-    border: 3px double #00BFFF;
+    border: 3px double mediumpurple;
     color: #FF1493;
     margin: 5% 20% 1% 20%;
     width: 40em;
@@ -859,7 +863,7 @@ body {
     justify-content: space-evenly;
     flex-wrap:wrap;
     border-radius: 10px;
-    border: 3px double #00BFFF;
+    border: 3px double mediumpurple;
     color: #FF1493;
     width: 36.7%;
     height: 3em;

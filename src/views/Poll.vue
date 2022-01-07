@@ -27,7 +27,7 @@
     </section>
       <div v-if="myCharacter!=''">
         <label for="name"></label>
-        <input type="text" id="name" v-model="fn" required="required" v-bind:placeholder="uiLabels.enterName">
+        <input type="text" id="name" v-model="fn" required="required" autocomplete="off" v-bind:placeholder="uiLabels.enterName">
       </div>
     <div v-if="this.fn!=''" id="enterGame" v-on:click=enterGameButton><img id="picture" src="pngpilen.png" >
       <h1>{{uiLabels.letsGo}}</h1>
