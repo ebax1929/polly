@@ -72,8 +72,6 @@
     <div class="displayCharacter" v-else-if="myCharacter==='car'"><img src="bilen.png"> </div>
     </div>
 
-
-
      <div class="displayPollId"> {{uiLabels.pollID}} </div> <div class="linkPollId"> <br> {{pollId}} </div>
     <div class="pleaseAnswer"> {{uiLabels.pleaseAnswer}}</div>
 

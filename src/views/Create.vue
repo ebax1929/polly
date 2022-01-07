@@ -562,13 +562,9 @@ export default {
      },
     runPoll: function () {
       this.questionNumber=this.runQuestionNumber;
-
-
       socket.emit("runQuestion", {pollId: this.pollId, questionNumber: this.questionNumber})
       this.runQuestionNumber+=1;
-
       this.showStartandPreviousNextPage=false;
-
       this.showStartPoll = false;
       this.showGoBackEditing = false;
       this.showOnLastPage=false;
