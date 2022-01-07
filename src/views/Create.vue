@@ -103,7 +103,7 @@
     <div v-show="showQuestion" id="createQuestion">
 
       <div><input type="text" v-model="question" id ="inputQuestion" autocomplete="off" placeholder="Enter your question..."><div>
-          <label for="answers"></label>
+<!--          <label for="answers"></label>-->
         <div id="answerField">
           <input v-for="(_, i) in answers"
                  v-model="answers[i]"
@@ -159,9 +159,10 @@
         <button v-on:click="addQuestion" id="addQuestionButton" v-show="showAddQuestionButton">
           {{uiLabels.addQusetion}}
         </button>
-      <button v-on:click="finishedEditQuestion" id="finishedEditQuestionButton" v-show="showFinishedEditQuestionButton">
-        {{uiLabels.editQusetion}}
-      </button>
+<!--  DETTA ÄR KNAPP FÖR SAVE CHANGES; FUNKAR INTE JUST NU LÅTER KNAPPEN INTE SYNAS
+      <button v-on:click="finishedEditQuestion" id="saveChangesButton" v-show="showFinishedEditQuestionButton">
+        {{uiLabels.saveChanges}}
+      </button>-->
       <button v-on:click="deleteQuestion" id="deleteQuestionButton">
         {{uiLabels.deleteQusetion}}
       </button>
@@ -208,10 +209,7 @@
 <!--          <router-link id="resultLink" v-bind:to="'/result/'+pollId">{{uiLabels.checkResult}}</router-link>-->
         </div>
     </div>
-
   </div>
-
-  {{data}}
 
   </body>
 </template>
@@ -310,7 +308,7 @@ export default {
       this.correctAnswer4 = q.correctAnswer4
       console.log(q)
     })
-    socket.on('allQuestions', )
+    // socket.on('allQuestions', )
   },
   methods: {
     createPoll: function () {
@@ -342,6 +340,7 @@ export default {
       this.showOnSecondPage=false;
       this.showOnThirdPage=true;
       this.showAddQuestionButton=true;
+      this.answers = ["",""]
 
 
       if (this.countAnswer === 4 ){
@@ -372,6 +371,7 @@ export default {
       this.showCreateVote=false;
       this.showOnThirdPage=true;
       this.showOnSecondPage=false;
+      this.answers = ["",""]
 
       if (this.countAnswer === 4 ){
         this.answers.pop();
@@ -484,7 +484,8 @@ export default {
       this.showOnSecondPage=true;
       this.showOnThirdPage=false;
       console.log('currentlyEditingQuestionIndex', this.currentlyEditingQuestionIndex)
-      this.listOfAll.splice(this.currentlyEditingQuestionIndex, 1)
+      this.listOfAll.splice(this.currentlyEditingQuestionIndex, 1,)
+
 
     },
     playPoll: function () {
@@ -686,6 +687,12 @@ body {
     border:mediumpurple double;
     cursor:pointer;
   }
+#editQuestionButton:hover {
+  background-color: mediumpurple;
+  color: white;
+  opacity: 75%;
+  border-radius: 10px;
+}
 #createQuestion {
   grid-area:b;
   height: 39em;
@@ -853,10 +860,8 @@ body {
     gap:1em 1em;
   }
   #inputAnswer{
-
     justify-content: space-evenly;
     flex-wrap:wrap;
-
     border-radius: 10px;
     border: 3px double #00BFFF;
     color: #FF1493;
@@ -870,17 +875,14 @@ body {
     width: 3em;
     height: 3em;
     background: none;
-
-    border: 2px white;
     border-radius: 10px;
-    margin-left:-2em;
+    margin-left:6.5em;
     position: absolute;
     border: 1px solid white;
   }
 
   .addAnswers:hover {
     background-color: rgba(255, 245, 238, 0.42);
-    border: 2px white;
     border-radius: 10px;
     border: 1px solid white;
   }
@@ -890,7 +892,7 @@ body {
     height: 3em;
     background: none;
     border-radius: 10px;
-    margin-left:6.5em;
+    margin-left:-2em;
     position:absolute;
     border: 1px solid white;
   }
@@ -952,9 +954,11 @@ body {
    height: 3em;
     color:white;
    background-color: green;
-    margin-right:2em;
+    margin-left:16em;
+    margin-top:-3.5px;
     font-weight: bold;
    border-radius: 10px;
+    position:absolute;
   }
   #addQuestionButton:hover {
     background-color: rgba(0, 128, 0, 0.46);
@@ -962,19 +966,24 @@ body {
     border-radius: 10px;
   }
 
-  #finishedEditQuestionButton {
+  #saveChangesButton {
     transition-duration: 0.4s;
-    width: 30%;
-    height: 5%;
-    background-color: #1E90FF;
+    cursor:pointer;
+    width: 8em;
+    height: 3em;
+    color:white;
+    background-color: green;
+    margin-left:16em;
+    margin-top:-3.5px;
     font-weight: bold;
     border-radius: 10px;
+    position:absolute;
   }
 
-  #finishedEditQuestionButton:hover {
-  background-color: #00BFFF;
-  color: #FF1493;
-  border-radius: 10px;
+  #saveChangesButton:hover {
+    background-color: rgba(0, 128, 0, 0.46);
+    color: white;
+    border-radius: 10px;
   }
 
   #deleteQuestionButton{
@@ -985,7 +994,7 @@ body {
     color:white;
     background-color: red;
     margin-top:-2em;
-    margin-left: 4em;
+    margin-right: 10em;
     font-weight: bold;
     border-radius: 10px;
   }
@@ -1147,8 +1156,8 @@ body {
   position:absolute;
 }
 #nextQuestionButton{
-  height:0em;
-  width:0em;
+  height:2em;
+  width:2em;
   background:#D2E4FD;
   border:none;
 }
