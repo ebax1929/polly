@@ -10,7 +10,7 @@
   <div class="gridContainer">
     <div v-show="showPollId" id="create_pollId"> <br><br>
       <h1 class="enterPollId">{{uiLabels.enterPollId}}</h1><br>
-      <input type="text" v-model="pollId" id="inputCreatPollId" v-bind:placeholder="uiLabels.enterPollId" >
+      <input type="text" v-model="pollId" id="inputCreatPollId" autocomplete="off" v-bind:placeholder="uiLabels.enterPollId" >
       <br>
       <div v-if="pollId!=''">
     <button v-on:click="createPoll" id="createPollButton">
@@ -102,30 +102,33 @@
 
     <div v-show="showQuestion" id="createQuestion">
 
-      <div><input type="text" v-model="question" id ="inputQuestion" placeholder="Enter your question..."><div>
+      <div><input type="text" v-model="question" id ="inputQuestion" autocomplete="off" placeholder="Enter your question..."><div>
           <label for="answers"></label>
+        <div id="answerField">
           <input v-for="(_, i) in answers"
                  v-model="answers[i]"
                  v-bind:key="'answer'+i" id="inputAnswer" v-bind:placeholder="'Answer ' + (1+i)">
 <!--        /* ta bort +1 om ngt blir knas */-->
-          <br>
-          <button v-on:click="addAnswer" id="addAnswers" v-show="addAnswers">
-            {{uiLabels.addAnswerAlternative}}
+        </div>
+        <div style="margin-top: 1.5em">
+          <button v-on:click="addAnswer" class="addAnswers" v-show="addAnswers">
+
+            <img class="plusSign" src="plussign.png">
           </button>
 
-          <button v-on:click="removeAnswer" id="removeAnswers" v-show="removeAnswers">
-            {{uiLabels.removeAnswerAlternative}}
+          <button v-on:click="removeAnswer" class="removeAnswers" v-show="removeAnswers">
+            <img class="minusSign" src="minussign.png">
           </button>
 
-          <button v-on:click="addAnsVote" id="addAnsVote_id" v-show="addAnsVote_id">
-            {{uiLabels.addAnswerAlternative}}
+          <button v-on:click="addAnsVote" class="addAnswers" v-show="addAnsVote_id">
+            <img class="plusSign" src="plussign.png">
           </button>
 
-          <button v-on:click="removeAnswerVote" id="removeAnswersVote" v-show="removeAnswersVote">
-            {{uiLabels.removeAnswerAlternative}}
+          <button v-on:click="removeAnswerVote" class="removeAnswers" v-show="removeAnswersVote">
+            <img class="minusSign" src="minussign.png">
           </button>
 
-
+        </div>
         </div>
 
         <div id="checkBoxes">
@@ -197,7 +200,7 @@
 
     <div v-show="showStartandPreviousNextPage" class="gridColumnOneNextPage">
       <div id="previewHeader" >
-        <h3>Preview</h3>
+        <h3>{{uiLabels.previewText}}</h3>
       </div>
         <div id="singleQuestion" v-for="(item,index) in listOfAll" v-bind:key="index">
          <p id="questionText">{{uiLabels.questionText}} {{item[0]}} {{item[1]}}</p>
@@ -649,13 +652,18 @@ body {
   #previewHeader{
     grid-area:b;
     margin-top: 5px;
-    margin-left:3em;
+    text-align: center;
+    color: slategray;
+    /*margin-left:3em;*/
+
 
   }
   .gridColumnOneNextPage{
 
     border: double mediumpurple;
     border-radius: 20px;
+    margin-left: 2em;
+    margin-top: 2em;
     grid-area:b;
     width:30em;
 
@@ -788,6 +796,7 @@ body {
   }
   #inputCreatPollId  {
     border-radius: 25px;
+
     border: 3px double plum;
     color: #FF1493;
     margin: 10% 20% 10% 20%;
@@ -828,43 +837,69 @@ body {
     border: 3px double #00BFFF;
     color: #FF1493;
     margin: 5% 20% 1% 20%;
-    width: 25em;
-    height: 2em;
+    width: 40em;
+    height: 3em;
     text-align: center;
+    margin-bottom: 4em;
+  }
+  #answerField{
+    grid-area:b;
+    width: 40em;
+    height: 10em;
+    display:flex;
+    flex-wrap: wrap;
+    margin-left:20%;
+    margin-right:20%;
+    gap:1em 1em;
   }
   #inputAnswer{
+
+    justify-content: space-evenly;
+    flex-wrap:wrap;
+
     border-radius: 10px;
     border: 3px double #00BFFF;
     color: #FF1493;
-    margin: 1% 20% 1% 20%;
-    width: 15em;
-    height: 1em;
+    width: 36.7%;
+    height: 3em;
+    margin-bottom: -20em;
     text-align: center;
   }
-  #addAnswers {
+  .addAnswers {
     transition-duration: 0.4s;
-    width: 12em;
-    height: 2em;
-    background-color: #1E90FF;
+    width: 3em;
+    height: 3em;
+    background: none;
+
+    border: 2px white;
     border-radius: 10px;
+    margin-left:-2em;
+    position: absolute;
+    border: 1px solid white;
   }
 
-  #addAnswers:hover {
-    background-color: #00BFFF;
-    color: #FF1493;
+  .addAnswers:hover {
+    background-color: rgba(255, 245, 238, 0.42);
+    border: 2px white;
     border-radius: 10px;
+    border: 1px solid white;
   }
-  #removeAnswers{
+  .removeAnswers{
     transition-duration: 0.4s;
-    width: 12em;
-    height: 2em;
-    background-color: #1E90FF;
+    width: 3em;
+    height: 3em;
+    background: none;
     border-radius: 10px;
+    margin-left:6.5em;
+    position:absolute;
+    border: 1px solid white;
   }
-  #removeAnswers:hover {
-    background-color: #00BFFF;
-    color: #FF1493;
+  .removeAnswers:hover {
+    background-color: rgba(255, 245, 238, 0.42);
+    border: 2px white;
+
     border-radius: 10px;
+    border: 1px solid white;
   }
 
 
@@ -874,6 +909,7 @@ body {
     height: 5%;
     background-color: #1E90FF;
     border-radius: 10px;
+
   }
   #addAnsVote_id:hover {
     background-color: #00BFFF;
@@ -894,10 +930,13 @@ body {
   }
   #checkBoxes{
     border-radius: 10px;
-    margin-left:16.7em;
+    background: rgba(221, 160, 221, 0.85);
+    margin-left:20em;
     margin-right:1em;
+    margin-bottom: 3em;
+    margin-top: 6em;
     width: 15em;
-    height: 8em;
+    height: 7.5em;
     text-align: center;
   }
   #checkBoxText{
@@ -908,15 +947,18 @@ body {
   }
   #addQuestionButton {
    transition-duration: 0.4s;
-   width: 30%;
-   height: 5%;
-   background-color: #1E90FF;
+    cursor:pointer;
+   width: 8em;
+   height: 3em;
+    color:white;
+   background-color: green;
+    margin-right:2em;
     font-weight: bold;
    border-radius: 10px;
   }
   #addQuestionButton:hover {
-    background-color: #00BFFF;
-    color: #FF1493;
+    background-color: rgba(0, 128, 0, 0.46);
+    color: white;
     border-radius: 10px;
   }
 
@@ -936,16 +978,21 @@ body {
   }
 
   #deleteQuestionButton{
+    cursor:pointer;
     transition-duration: 0.4s;
-    width: 30%;
-    height: 5%;
-    background-color: #1E90FF;
+    width: 8em;
+    height: 3em;
+    color:white;
+    background-color: red;
+    margin-top:-2em;
+    margin-left: 4em;
     font-weight: bold;
     border-radius: 10px;
   }
   #deleteQuestionButton:hover {
-  background-color: #00BFFF;
-  color: #FF1493;
+
+    background-color: rgba(255, 0, 0, 0.43);
+  color: white;
   border-radius: 10px;
  }
 
@@ -982,16 +1029,19 @@ body {
   }
   #startPoll{
     width: 8em;
-    margin-left: 2em;
-    margin-top: -2.65em;
+    height: 3em;
+    margin-left: -12em;
+    margin-top: -1em;
     margin-bottom: 1em;
     color: white;
-    height: 1.7em;
+
     position:absolute;
     border: double white 2px;
     border-radius: 0.5em;
     transition-duration: 0.4s;
     background:#549c4d;
+    cursor:pointer;
+    grid-area:c;
 
   }
   #singleQuestion{
@@ -1169,6 +1219,18 @@ body {
    * would animate at the same time
    */
   animation-delay: .4s;
+}
+.plusSign{
+  width:2em;
+  height:2em;
+  cursor:pointer;
+
+}
+.minusSign{
+  width:90%;
+  height:2em;
+  cursor:pointer;
+
 }
 
 

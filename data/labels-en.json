@@ -26,7 +26,7 @@
 	"deleteQusetion": "Delete Question",
 	"finishedPoll": "Are you finished with your poll?",
 	"goBackEdit": "Go back and continue editing poll",
-	"startPoll": "Start poll",
+	"startPoll": "Start poll!",
 	"checkResult": "Check result",
 	"questiones": "Question:",
 	"welcomeToPoll": "Welcome to Poll",
@@ -46,5 +46,6 @@
 	"pleaseWait": "Please wait for poll to start",
 	"pleaseAnswer":"Please answer the following question:",
 	"enterName": "Enter your name",
-	"currentlyDisplayed": "Question currently displayed: "
+	"currentlyDisplayed": "Question currently displayed: ",
+	"previewText": "Preview"
 }

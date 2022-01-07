@@ -26,7 +26,7 @@
 	"deleteQusetion": "Ta bort fråga",
 	"finishedPoll": "Är du färdig med din poll?",
 	"goBackEdit": "Gå tillbaka och forstätt redigera poll",
-	"startPoll": "Starta Poll",
+	"startPoll": "Starta Poll!",
 	"checkResult": "Se resultat",
 	"questiones": "Fråga:",
 	"welcomeToPoll": "Välkommen till Poll",
@@ -47,6 +47,7 @@
 	"pleaseWait": "Vänligen vänta medan Poll startas",
 	"pleaseAnswer":"Vänligen svara på följande fråga:",
 	"enterName": "Enter your name",
-	"currentlyDisplayed": "Frågan som nu visas: "
+	"currentlyDisplayed": "Frågan som nu visas: ",
+	"previewText": "Förhandsvisning"
 
 }
