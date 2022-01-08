@@ -101,12 +101,13 @@
 
     <div v-show="showQuestion" id="createQuestion">
 
-      <div><input type="text" v-model="question" id ="inputQuestion" autocomplete="off" placeholder="Enter your question..."><div>
+      <div><input type="text" v-model="question" id ="inputQuestion" autocomplete="off"
+                  v-bind:placeholder="uiLabels.enterYourQuestion"><div>
 <!--          <label for="answers"></label>-->
         <div id="answerField">
           <input v-for="(_, i) in answers"
                  v-model="answers[i]"
-                 v-bind:key="'answer'+i" id="inputAnswer" v-bind:placeholder="'Answer ' + (1+i)">
+                 v-bind:key="'answer'+i" id="inputAnswer" v-bind:placeholder="uiLabels.answerAlternative + (1+i)">
 <!--        /* ta bort +1 om ngt blir knas */-->
         </div>
         <div style="margin-top: 1.5em">
@@ -158,6 +159,18 @@
         <button v-on:click="addQuestion" id="addQuestionButton" v-show="showAddQuestionButton">
           {{uiLabels.addQusetion}}
         </button>
+
+<!--      Denna knappen finns till för att edit inte fungerar just nu-->
+        <button v-on:click="saveQuestionAndContinueCreating"
+                id="saveQuestionAndContinueCreating"
+                v-show="showSaveQuestionAndContinueCreating">
+
+          {{uiLabels.saveQuestionAndContinueCreating}}
+
+        </button>
+
+
+
 <!--  DETTA ÄR KNAPP FÖR SAVE CHANGES; FUNKAR INTE JUST NU LÅTER KNAPPEN INTE SYNAS
       <button v-on:click="finishedEditQuestion" id="saveChangesButton" v-show="showFinishedEditQuestionButton">
         {{uiLabels.saveChanges}}
@@ -261,6 +274,7 @@ export default {
       showOnThirdPage: false,
       showAddQuestionButton: false,
       showFinishedEditQuestionButton: false,
+      showSaveQuestionAndContinueCreating: false,
       runQuestionNumber: 0,
       viewQuestions: false,
       currentAnswer:"",
@@ -408,6 +422,7 @@ export default {
       this.showOnSecondPage=false;
       this.showAddQuestionButton=false;
       this.showFinishedEditQuestionButton =true;
+      this.showSaveQuestionAndContinueCreating = true;
       if (this.answers.length === 4 ){
         this.answers.pop();
         this.showAnswer4 = true;
@@ -450,6 +465,16 @@ export default {
        console.log(this.listOfAll)
       /*this.question='';*/
 
+    },
+
+    saveQuestionAndContinueCreating: function(){
+      this.showCreateQuiz=true;
+      this.showCreateVote=true;
+      this.showQuestion = false;
+      this.showPlayPoll = true;
+      this.showOnSecondPage=true;
+      this.showOnThirdPage=false;
+      this.showSaveQuestionAndContinueCreating=false;
     },
 
     finishedEditQuestion: function () {
@@ -960,6 +985,25 @@ body {
     position:absolute;
   }
   #addQuestionButton:hover {
+    background-color: rgba(0, 128, 0, 0.46);
+    color: white;
+    border-radius: 10px;
+  }
+  #saveQuestionAndContinueCreating{
+    transition-duration: 0.4s;
+    cursor:pointer;
+    width: 8em;
+    height: 3em;
+    color:white;
+    background-color: green;
+    margin-left:16em;
+    margin-top:-3.5px;
+    font-weight: bold;
+    border-radius: 10px;
+    position:absolute;
+  }
+
+  #saveQuestionAndContinueCreating:hover {
     background-color: rgba(0, 128, 0, 0.46);
     color: white;
     border-radius: 10px;

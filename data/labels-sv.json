@@ -48,6 +48,9 @@
 	"pleaseAnswer":"Vänligen svara på följande fråga:",
 	"enterName": "Enter your name",
 	"currentlyDisplayed": "Frågan som nu visas: ",
-	"previewText": "Förhandsvisning"
+	"previewText": "Förhandsvisning",
+	"enterYourQuestion": "Skriv in din fråga...",
+	"answerAlternative": "Svar",
+	"saveQuestionAndContinueCreating": "Spara och fortsätt"
 
 }

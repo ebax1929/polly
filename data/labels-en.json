@@ -23,7 +23,7 @@
 	"ans4": "Answer 4",
 	"addQusetion": "Add Question",
 	"saveChanges": "Save changes",
-	"deleteQusetion": "Delete Question",
+	"deleteQusetion": "Delete question",
 	"finishedPoll": "Are you finished with your poll?",
 	"goBackEdit": "Go back and continue editing poll",
 	"startPoll": "Start poll!",
@@ -47,5 +47,8 @@
 	"pleaseAnswer":"Please answer the following question:",
 	"enterName": "Enter your name",
 	"currentlyDisplayed": "Question currently displayed: ",
-	"previewText": "Preview"
+	"previewText": "Preview",
+	"enterYourQuestion": "Enter your question...",
+	"answerAlternative": "Answer",
+	"saveQuestionAndContinueCreating": "Save and continue"
 }
