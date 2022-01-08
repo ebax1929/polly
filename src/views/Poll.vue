@@ -148,10 +148,13 @@ export default {
     socket.on("newQuestion", q => {
       this.question = q;
       this.showDisplayQuestion=true;
+      this.a= q.a;
+      this.questionNumber = q.questionNumber;
       this.correctAnswer1 = q.correctAnswer1;
       this.correctAnswer2 = q.correctAnswer2;
       this.correctAnswer3 = q.correctAnswer3;
       this.correctAnswer4 = q.correctAnswer4;
+      console.log("a", this.a)
       console.log('correct?')
       console.log(this.correctAnswer1);
       console.log(this.correctAnswer2);
@@ -159,6 +162,10 @@ export default {
       console.log(this.correctAnswer4);
 
     })
+    socket.on("answer", a=>{
+      this.answer123=a.answer
+      console.log(this.answer123)
+    });
 
 
 
@@ -175,28 +182,37 @@ export default {
     submitAnswer: function (answer) {
       socket.emit("submitAnswer", {pollId: this.pollId, answer: answer})
       this.showDisplayQuestion=false;
-      socket.on("answer", answer);
-      this.answer123=answer
-      console.log(this.answer123)
-        if(this.answer123 ===  this.a[0]){
-          if(this.correctAnswer1 === true)
-            this.showThisCorrect=true;
+
+      if(this.answer123 ===  this.a[0]){
+        if(this.correctAnswer1 === true) {
+          this.showThisCorrect=true;
         }
+      }
       if(this.answer ===  this.a[1]){
-        if(this.correctAnswer2 === true)
+        if(this.correctAnswer2 === true){
+          this.showThisCorrect=true;
+        }
+      }
+
+      if(this.a.length === 3){
+        if(this.answer ===  this.a[2]){
+          if(this.correctAnswer3 === true){
             this.showThisCorrect=true;
+          }
         }
-      if(this.answer ===  this.a[2]){
-        if(this.correctAnswer3 === true)
+      }
+
+      if(this.a.length === 3){
+        if(this.answer ===  this.a[3]){
+          if(this.correctAnswer4 === true){
             this.showThisCorrect=true;
+          }
         }
-      if(this.answer ===  this.a[3]){
-        if(this.correctAnswer4 === true)
-            this.showThisCorrect=true;
-        }
-        else{
-          this.showThisWrong=true;
-        }
+      }
+
+      else{
+        this.showThisWrong=true;
+      }
       console.log(this.answer123)
 
       /*socket.on("newQuestion", update => {
