@@ -1,7 +1,11 @@
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <template>
-
+  <div class="bg"></div>
+  <div class="bg bg2"></div>
+  <div class="bg bg3"></div>
   <body>
-  <div v-show="showDisplay" id="firstpage">
+  <div id="firstPage">
+  <div v-show="showDisplay">
   <h1> {{uiLabels.welcomeToQuiz}} </h1>
     {{uiLabels.pollID}} {{pollId}}
 
@@ -32,6 +36,7 @@
     <div v-if="this.fn!=''" id="enterGame" v-on:click=enterGameButton><img id="picture" src="pngpilen.png" >
       <h1>{{uiLabels.letsGo}}</h1>
     </div>
+  </div>
   </div>
 
   <section v-show="showDisplayOneAndAHalfPage" id="OneAndAHalfPage">
@@ -290,7 +295,6 @@ cursor:pointer;
   grid-gap: 5em;
   grid-template-columns: 10em 10em 10em 10em;
   position: relative;
-
   padding-left: 11em;
 }
 .wrapper > div > img{
@@ -298,9 +302,7 @@ cursor:pointer;
   height:10em;
   width: 13em;
 }
-#firstpage{
-  display:block;
-}
+
 .displayCharacter > img {
   height: 5em;
   width:5em;
@@ -466,24 +468,29 @@ cursor:pointer;
   color: #DA70D6;
   display: contents;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 #headlines{
 
+}
 
+@media screen and (max-width:50em) {
+  .wrapper {
+    font-size: 5vw;
+    display: flex;
+    flex-direction:column;
+    grid-gap:1em;
+
+    padding-left:0px;
+  }
+  .wrapper > div > img{
+    height:7em;
+    width: 10em;
+  }
+  .gubbenPekar{
+    display:none;
+  }
+  #secondPage {
+    width: 100vw;
+  }
 }
 img:hover { /*https://www.w3schools.com/howto/howto_css_shake_image.asp*/
   /* Start the shake animation and make the animation last for 0.5 seconds */
@@ -505,6 +512,37 @@ img:hover { /*https://www.w3schools.com/howto/howto_css_shake_image.asp*/
   80% { transform: translate(-1px, -1px) rotate(1deg); }
   90% { transform: translate(1px, 2px) rotate(0deg); }
   100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+
+.bg {
+  animation:slide 15s ease-in-out infinite alternate;
+  animation-duration:17s;
+  background-image: linear-gradient(-60deg, plum 50%, seashell 50%);
+  bottom:0;
+  left:-50%;
+  opacity:.5;
+  position:fixed;
+  right:-50%;
+  top:0;
+  z-index:-1;
+}
+
+.bg2 {
+  animation-direction:alternate-reverse;
+  animation-duration:18s;
+}
+
+.bg3 {
+  animation-duration:19s;
+}
+
+@keyframes slide {
+  0% {
+    transform:translateX(-25%);
+  }
+  100% {
+    transform:translateX(25%);
+  }
 }
 
 
