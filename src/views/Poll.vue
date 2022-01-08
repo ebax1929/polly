@@ -68,7 +68,6 @@
 
   <section v-show="showDisplaySecondPage" id="secondPage">
     <div class="gubbenPekar"><img src="gubbenpekar.png"></div>
-
     <div class="textBend"> <br> {{uiLabels.thisIsYou}} {{fn}} <br> </div>
     <div class="characterBox">
     <div class="displayCharacter" v-if="myCharacter==='boat'"> <img  src="boat.png"> </div>
@@ -297,7 +296,6 @@ export default {
 
 <style>
 body{
-  background-color: seashell;
   color: black;
 }
 #picture{
@@ -506,6 +504,10 @@ cursor:pointer;
   }
   #secondPage {
     width: 100vw;
+    font-size: 5vw;
+    display: flex;
+    flex-flow:column wrap;
+    justify-content: center;
   }
 }
 img:hover { /*https://www.w3schools.com/howto/howto_css_shake_image.asp*/
