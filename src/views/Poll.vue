@@ -1,9 +1,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <template>
+  <body>
   <div class="bg"></div>
   <div class="bg bg2"></div>
   <div class="bg bg3"></div>
-  <body>
   <div id="firstPage">
   <div v-show="showDisplay">
   <h1> {{uiLabels.welcomeToQuiz}} </h1>
@@ -39,7 +39,8 @@
   </div>
   </div>
 
-  <section v-show="showDisplayOneAndAHalfPage" id="OneAndAHalfPage">
+  <section v-show="showDisplayOneAndAHalfPage">
+    <div id="OneAndAHalfPage">
     <div class="spelPlan">
       <img  src="spelplan.png">
     </div>
@@ -59,6 +60,7 @@
     <div class="monopolGubben">
       <img src="gubbenhej.png">
     </div>
+    </div>
 <!--    <vue-countdown :time="10000" :tarnsform="transformslotProps" v-slot="{seconds}">
       Seconds until poll Started: {{seconds}}
     </vue-countdown>-->
@@ -66,30 +68,34 @@
   </section>
 
 
-  <section v-show="showDisplaySecondPage" id="secondPage">
-    <div class="gubbenPekar"><img src="gubbenpekar.png"></div>
-    <div class="textBend"> <br> {{uiLabels.thisIsYou}} {{fn}} <br> </div>
-    <div class="characterBox">
-    <div class="displayCharacter" v-if="myCharacter==='boat'"> <img  src="boat.png"> </div>
-    <div class="displayCharacter" v-else-if="myCharacter==='dog'"><img src="hunden.png"> </div>
-    <div class="displayCharacter" v-else-if="myCharacter==='hat'"><img src="hatten.png"> </div>
-    <div class="displayCharacter" v-else-if="myCharacter==='car'"><img src="bilen.png"> </div>
-    </div>
-
-     <div class="displayPollId"> {{uiLabels.pollID}} </div> <div class="linkPollId"> <br> {{pollId}} </div>
-    <div class="pleaseAnswer"> {{uiLabels.pleaseAnswer}}</div>
-
-    <div v-show="showDisplayQuestion" id="question">
-      <Question v-bind:question="question"
+  <section v-show="showDisplaySecondPage">
+    <div id="secondPage">
+      <div class="gubbenPekar"><img src="gubbenpekar.png"></div>
+      <div class="mobileInnerWrapper">
+        <div class="textBend"> <br> {{uiLabels.thisIsYou}} {{fn}} <br>
+          <div class="characterBox">
+            <div class="displayCharacter" v-if="myCharacter==='boat'"> <img  src="boat.png"> </div>
+            <div class="displayCharacter" v-else-if="myCharacter==='dog'"><img src="hunden.png"> </div>
+            <div class="displayCharacter" v-else-if="myCharacter==='hat'"><img src="hatten.png"> </div>
+            <div class="displayCharacter" v-else-if="myCharacter==='car'"><img src="bilen.png"> </div>
+          </div>
+        </div>
+          <div class="displayPollId"> {{uiLabels.pollID}}
+            <div class="linkPollId"> {{pollId}} </div>
+          </div>
+      </div>
+      <div class="pleaseAnswer"> {{uiLabels.pleaseAnswer}}</div>
+      <div v-show="showDisplayQuestion" id="question">
+        <Question v-bind:question="question"
                  v-on:answer="submitAnswer" />
+      </div>
+      <div v-show="showThisCorrect" id="right">
+      Rätt
+      </div>
+      <div v-show="showThisWrong" id="wrong">
+      FEL
+      </div>
     </div>
-    <div v-show="showThisCorrect" id="right">
-    Rätt
-    </div>
-    <div v-show="showThisWrong" id="wrong">
-     FEL
-    </div>
-
   </section>
   </body>
 
@@ -279,9 +285,7 @@ export default {
 </script>
 
 <style>
-body{
-  color: black;
-}
+
 #picture{
 cursor:pointer;
   width:10em;
@@ -346,7 +350,6 @@ cursor:pointer;
   margin-top: 1em;
 
 }
-
 
 .spelPlan{
   position:absolute;
@@ -470,30 +473,6 @@ cursor:pointer;
 
 }
 
-@media screen and (max-width:50em) {
-  .wrapper {
-    font-size: 5vw;
-    display: flex;
-    flex-direction:column;
-    grid-gap:1em;
-
-    padding-left:0px;
-  }
-  .wrapper > div > img{
-    height:7em;
-    width: 10em;
-  }
-  .gubbenPekar{
-    display:none;
-  }
-  #secondPage {
-    width: 100vw;
-    font-size: 5vw;
-    display: flex;
-    flex-flow:column wrap;
-    justify-content: center;
-  }
-}
 img:hover { /*https://www.w3schools.com/howto/howto_css_shake_image.asp*/
   /* Start the shake animation and make the animation last for 0.5 seconds */
   animation: shake 0.7s;
@@ -545,6 +524,91 @@ img:hover { /*https://www.w3schools.com/howto/howto_css_shake_image.asp*/
   100% {
     transform:translateX(25%);
   }
+}
+@media screen and (max-width:50em) {
+  .wrapper {
+    font-size: 5vw;
+    display: flex;
+    flex-direction:column;
+    grid-gap:1em;
+    padding-left:0px;
+  }
+  .wrapper > div > img{
+    height:7em;
+    width: 10em;
+  }
+  .gubbenPekar{
+    display:none;
+  }
+
+  #secondPage {
+    display: flex;
+    flex-flow: column wrap;
+    position:relative;
+    justify-content: center;
+  }
+  .mobileInnerWrapper {
+    display:flex;
+    flex-flow:row wrap;
+    justify-content: space-between;
+  }
+  #secondPage > div {
+    justify-content:center;
+    position:relative;
+    padding:0px;
+    top:0px;
+    right:0px;
+    left:0px;
+    bottom:0px;
+    margin:0px;
+  }
+
+  .characterBox{
+    margin:0px;
+    top:0px;
+    right:0px;
+    position:relative;
+  }
+  .displayPollId{
+    margin:0px;
+    top:0px;
+    right:0px;
+    position:relative;
+  }
+  .linkPollId{
+    margin:0px;
+    padding:0em;
+    top:0px;
+    right:0px;
+    position:relative;
+    width:6em;
+    height:6em;
+  }
+  .textBend{
+    position:relative;
+    top:0px;
+    right:0px;
+    width:50%;
+  }
+  #question{
+    left:0px;
+    top:0px;
+    width:90%;
+    positon:relative;
+  }
+  #question > button {
+    width:95%;
+  }
+  .pleaseAnswer{
+    left:0px;
+    top:0px;
+    width:100%;
+    position:relative;
+    padding: 0px;
+    width:90%
+  }
+
+
 }
 
 
