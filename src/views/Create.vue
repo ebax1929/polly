@@ -153,9 +153,9 @@
             <label for="answer4">{{uiLabels.ans4}}</label>
             <input type="checkbox" id="answer4" name="anwser" value="answer4" v-model="correctAnswer4">
           </div>
-
         </div>
       </div>
+
         <button v-on:click="addQuestion" id="addQuestionButton" v-show="showAddQuestionButton">
           {{uiLabels.addQusetion}}
         </button>
@@ -971,6 +971,9 @@ body {
   .correctAnswer{
     padding-left:4em;
   }
+
+
+
   #addQuestionButton {
    transition-duration: 0.4s;
     cursor:pointer;
