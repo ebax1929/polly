@@ -72,7 +72,7 @@
     <div id="secondPage">
       <div class="gubbenPekar"><img src="gubbenpekar.png"></div>
       <div class="mobileInnerWrapper">
-        <div class="textBend"> <br> {{uiLabels.thisIsYou}} {{fn}} <br>
+        <div class="textBend">  {{uiLabels.thisIsYou}} {{fn}}
           <div class="characterBox">
             <div class="displayCharacter" v-if="myCharacter==='boat'"> <img  src="boat.png"> </div>
             <div class="displayCharacter" v-else-if="myCharacter==='dog'"><img src="hunden.png"> </div>
