@@ -75,19 +75,34 @@
     <div class="displayCharacter" v-else-if="myCharacter==='hat'"><img src="hatten.png"> </div>
     <div class="displayCharacter" v-else-if="myCharacter==='car'"><img src="bilen.png"> </div>
     </div>
+    <div class="displayPollId"> {{uiLabels.pollID}} </div>
+    <div class="linkPollId"> <br> {{pollId}} </div>
 
-     <div class="displayPollId"> {{uiLabels.pollID}} </div> <div class="linkPollId"> <br> {{pollId}} </div>
-    <div class="pleaseAnswer"> {{uiLabels.pleaseAnswer}}</div>
+    <div id="boxAroundCountAnswers">
+    <div class="displayCorrectCounter"> {{uiLabels.countCorrect}} {{countCorrectAnswer}}
+      {{uiLabels.outOf}} {{countQuizQuestions}} </div>
+    <div class="displayVoteCounter"> {{uiLabels.voteSubmitted}} {{countVoteQuestions}}</div>
+    </div>
+
+
+
+    <div class="pleaseAnswer"  v-show="showPleaseAnswer"> {{uiLabels.pleaseAnswer}}</div>
+    <div class="questionVote"  v-show="showIsQuestionVote"> {{uiLabels.voteQuestion}}</div>
+
+
 
     <div v-show="showDisplayQuestion" id="question">
       <Question v-bind:question="question"
                  v-on:answer="submitAnswer" />
     </div>
     <div v-show="showThisCorrect" id="right">
-    Rätt
+      {{uiLabels.correctAnswer}}
     </div>
     <div v-show="showThisWrong" id="wrong">
-     FEL
+      {{uiLabels.wrongAnswer}}
+    </div>
+    <div v-show="showIsAnswerVote" id="answerVote">
+      {{uiLabels.voteAnswer}}
     </div>
 
   </section>
@@ -128,7 +143,14 @@ export default {
       correctAnswer4: false,
       showThisCorrect: false,
       showThisWrong: false,
-      answer123: ''
+      showIsAnswerVote: false,
+      correctAnswerList: [],
+      answerList: [0,1,2,3],
+      showPleaseAnswer: false,
+      showIsQuestionVote: false,
+      countVoteQuestions: 0,
+      countQuizQuestions:0,
+      countCorrectAnswer:0,
     }
   },
   created: function () {
@@ -147,24 +169,68 @@ export default {
     socket.on("newQuestion", q => {
       this.question = q;
       this.showDisplayQuestion=true;
-      this.a= q.a;
+      // this.a = q.a;
+      // console.log("a", this.a)
       this.questionNumber = q.questionNumber;
       this.correctAnswer1 = q.correctAnswer1;
       this.correctAnswer2 = q.correctAnswer2;
       this.correctAnswer3 = q.correctAnswer3;
       this.correctAnswer4 = q.correctAnswer4;
-      console.log("a", this.a)
+
+      if(this.correctAnswer1 ===true &&
+          this.correctAnswer2 ===true &&
+          this.correctAnswer3 ===true &&
+          this.correctAnswer4 ===true){
+        this.showIsQuestionVote=true;
+        this.showPleaseAnswer= false;
+      }
+      else{
+        this.showPleaseAnswer= true;
+        this.showIsQuestionVote=false;
+      }
+
+      this.showThisCorrect = false;
+      this.showThisWrong= false;
+      this.showIsAnswerVote = false;
+
       console.log('correct?')
       console.log(this.correctAnswer1);
       console.log(this.correctAnswer2);
       console.log(this.correctAnswer3);
       console.log(this.correctAnswer4);
 
+      if(this.correctAnswer1 === true) {
+        this.correctAnswerList[0]= 0
+      }
+      else {
+        this.correctAnswerList[0]=10
+      }
+      if(this.correctAnswer2 === true) {
+        this.correctAnswerList[1]=1
+      }
+      else {
+        this.correctAnswerList[1]=10
+      }
+      if(this.correctAnswer3 === true) {
+        this.correctAnswerList[2]=2
+      }
+      else {
+        this.correctAnswerList[2]=10
+      }
+      if(this.correctAnswer4 === true) {
+        this.correctAnswerList[3]= 3
+      }
+      else {
+        this.correctAnswerList[3]=10
+      }
+      console.log(this.correctAnswerList)
+      console.log(this.question[0])
+
     })
-    socket.on("answer", a=>{
+    /*socket.on("answer", a=>{
       this.answer123=a.answer
       console.log(this.answer123)
-    });
+    });*/
 
 
 
@@ -180,39 +246,67 @@ export default {
     },*/
     submitAnswer: function (answer) {
       socket.emit("submitAnswer", {pollId: this.pollId, answer: answer})
+
       this.showDisplayQuestion=false;
+      this.showPleaseAnswer=false;
+      this.showIsQuestionVote=false;
 
-      if(this.answer123 ===  this.a[0]){
-        if(this.correctAnswer1 === true) {
-          this.showThisCorrect=true;
-        }
+      if(this.correctAnswer1 ===true &&
+          this.correctAnswer2 ===true &&
+          this.correctAnswer3 ===true &&
+          this.correctAnswer4 ===true) {
+        this.showIsAnswerVote = true;
+        this.countVoteQuestions +=1;
       }
-      if(this.answer ===  this.a[1]){
-        if(this.correctAnswer2 === true){
-          this.showThisCorrect=true;
-        }
-      }
-
-      if(this.a.length === 3){
-        if(this.answer ===  this.a[2]){
-          if(this.correctAnswer3 === true){
-            this.showThisCorrect=true;
+      else {
+        this.countQuizQuestions +=1;
+        for (let i = 0; i < this.question.a.length; i++){
+          if (answer===this.question.a[i]) {
+            if (this.answerList[i] === this.correctAnswerList[i]) {
+              this.showThisCorrect=true;
+              this.countCorrectAnswer +=1;
+              return
+            }
+            else {
+              this.showThisWrong=true;
+              return
+            }
           }
         }
       }
 
-      if(this.a.length === 3){
-        if(this.answer ===  this.a[3]){
-          if(this.correctAnswer4 === true){
-            this.showThisCorrect=true;
+
+
+
+      /*if (this.answer123 === this.a[0]) {
+        if (this.correctAnswer1 === true) {
+          this.showThisCorrect = true;
+        }
+      }
+      if (this.answer === this.a[1]) {
+        if (this.correctAnswer2 === true) {
+          this.showThisCorrect = true;
+        }
+      }
+
+      if (this.a.length === 3) {
+        if (this.answer === this.a[2]) {
+          if (this.correctAnswer3 === true) {
+            this.showThisCorrect = true;
           }
         }
       }
 
-      else{
-        this.showThisWrong=true;
+      if (this.a.length === 3) {
+        if (this.answer === this.a[3]) {
+          if (this.correctAnswer4 === true) {
+            this.showThisCorrect = true;
+          }
+        }
+      } else {
+        this.showThisWrong = true;
       }
-      console.log(this.answer123)
+      console.log(this.answer123)*/
 
       /*socket.on("newQuestion", update => {
             this.correctAnswer1 = update.correctAnswer1;
@@ -245,7 +339,6 @@ export default {
             }
           }
       )*/
-
     },
     enterGameButton: function(){
       if (this.fn===""){
@@ -327,13 +420,14 @@ cursor:pointer;
   width: 6em;
   height: 6em;
   position:absolute;
-  top:6em;
+  top:1.5em;
   right:2em;
   margin-top: 3em;
+  background-color: seashell;
 }
 .textBend {
   position:absolute;
-  top:2.5em;
+  top:0.5em;
   right:1.35em;
   width: 8em;
   font-size: 1.2em;
@@ -345,24 +439,48 @@ cursor:pointer;
   width: 4em;
   height: 4em;
   position:absolute;
-  top:19em;
+  top:14.5em;
   right:2em;
   margin-top: 3em;
   font-weight: bold;
   padding: 1em;
+  background-color: seashell;
 
 }
 .displayPollId{
   position:absolute;
-  top:15.5em;
+  top:12em;
   right:1.35em;
   width: 8em;
   font-size: 1.2em;
   font-weight: bold;
   margin-top: 1em;
-
 }
 
+.displayCorrectCounter{
+  border: double 1em plum;
+  position:absolute;
+  color: green;
+  top:28em;
+  right:1em;
+  width: 8em;
+  border-radius: 2em;
+  padding: 1em;
+  font-weight: bold;
+  background-color: seashell;
+}
+.displayVoteCounter{
+  border: double 1em plum;
+  position:absolute;
+  color: cornflowerblue;
+  top: 35em;
+  right:1em;
+  width: 8em;
+  border-radius: 2em;
+  padding: 1em;
+  font-weight: bold;
+  background-color: seashell;
+}
 
 .spelPlan{
   position:absolute;
@@ -477,13 +595,55 @@ cursor:pointer;
   top: 3em;
 
 }
+.questionVote{
+  width: 20em;
+  font-size: 1em;
+  border-radius: 25px;
+  background-color: seashell;
+  border: double 0.5em cornflowerblue;
+  color: cornflowerblue;
+  padding: 0.5em;
+  position: absolute;
+  left: 32.5em;
+  top: 3em;
 
-#rightorwrong {
-  color: #DA70D6;
-  display: contents;
 }
-#headlines{
 
+#right {
+  top: 8em;
+  left: 15em;
+  color:green;
+  position: absolute;
+  font-size: 2em;
+  font-style: italic;
+  font-weight: bold;
+  border: double 0.5em green;
+  padding: 0.5em;
+  border-radius: 25px;
+}
+#wrong {
+  top: 8em;
+  left: 15em;
+  color:darkred;
+  position: absolute;
+  font-size: 2em;
+  font-style: italic;
+  font-weight: bold;
+  border: double 0.5em darkred;
+  padding: 0.5em;
+  border-radius: 25px;
+}
+#answerVote {
+  top: 8em;
+  left: 13em;
+  color:cornflowerblue;
+  position: absolute;
+  font-size: 2em;
+  font-style: italic;
+  font-weight: bold;
+  border: double 0.5em cornflowerblue;
+  padding: 0.5em;
+  border-radius: 25px;
 }
 
 @media screen and (max-width:50em) {

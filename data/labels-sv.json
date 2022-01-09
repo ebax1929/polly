@@ -51,6 +51,14 @@
 	"previewText": "Förhandsvisning",
 	"enterYourQuestion": "Skriv in din fråga...",
 	"answerAlternative": "Svar",
-	"saveQuestionAndContinueCreating": "Spara och fortsätt"
+	"saveQuestionAndContinueCreating": "Spara och fortsätt",
+	"correctAnswer": "Du svarade rätt!",
+	"wrongAnswer": "Du svarade fel",
+	"voteAnswer": "Din röst är registrerad",
+	"voteQuestion": "Rösta på följande fråga",
+	"countCorrect": "Resultat på Quiz:",
+	"outOf": "Av",
+	"voteSubmitted": "Besvarade röst-frågor:"
+
 
 }
