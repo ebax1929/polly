@@ -50,5 +50,12 @@
 	"previewText": "Preview",
 	"enterYourQuestion": "Enter your question...",
 	"answerAlternative": "Answer",
-	"saveQuestionAndContinueCreating": "Save and continue"
+	"saveQuestionAndContinueCreating": "Save and continue",
+	"correctAnswer": "Your answer was correct!",
+	"wrongAnswer": "Your answer was wrong",
+	"voteAnswer": "Your vote has been registered",
+	"voteQuestion": "Vote on the following question",
+	"countCorrect": "Result on Quiz:",
+	"outOf": "of",
+	"voteSubmitted": "Answered Vote-questions:"
 }
