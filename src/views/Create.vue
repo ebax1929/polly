@@ -164,9 +164,7 @@
         <button v-on:click="saveQuestionAndContinueCreating"
                 id="saveQuestionAndContinueCreating"
                 v-show="showSaveQuestionAndContinueCreating">
-
           {{uiLabels.saveQuestionAndContinueCreating}}
-
         </button>
 
 

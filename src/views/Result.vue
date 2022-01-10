@@ -2,10 +2,10 @@
   <body>
   {{lang}}
 
-  <div id="questionTitle">
+  <div v-for="(item,index) in listOfQuestions" v-bind:key="index" id="questionTitle">
     <p id="question">{{uiLabels.questiones}}</p>
-    {{this.question}}
-    <Bars v-bind:data="data"/>
+    <Bars v-bind:data="data[item]"/>
+    {{item}}
     <p>The correct Answer was:</p>
     <div v-show="showCorAns1"> <p> {{uiLabels.ans1}} </p></div>
     <div v-show="showCorAns2"> <p> {{uiLabels.ans2}} </p></div>
@@ -34,6 +34,7 @@ export default {
       showCorAns3: false,
       showCorAns4: false,
       question: "",
+      listOfQuestions:[],
       lang:"",
       correctAnswer1: false,
       correctAnswer2: false,
@@ -66,6 +67,8 @@ export default {
       this.correctAnswer3 = update.correctAnswer3;
       this.correctAnswer4 = update.correctAnswer4;
       this.data = {};
+      this.listOfQuestions.push(this.question)
+      console.log(this.listOfQuestions)
       if (this.correctAnswer1 === true){
         this.showCorAns1=true;
       }
