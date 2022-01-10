@@ -85,7 +85,7 @@
             <div class="linkPollId"> {{pollId}} </div>
           </div>
       </div>
-      <div class="pleaseAnswer"> {{uiLabels.pleaseAnswer}}</div>
+<!--      <div class="pleaseAnswer"> {{uiLabels.pleaseAnswer}}</div>-->
 <!--
 =======
   <section v-show="showDisplaySecondPage" id="secondPage">
