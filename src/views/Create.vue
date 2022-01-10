@@ -862,6 +862,7 @@ body {
     width: 10em;
     height: 6em;
     border-radius: 10px;
+    cursor:pointer;
   }
   #inputQuestion{
     border-radius: 10px;
@@ -971,8 +972,6 @@ body {
   .correctAnswer{
     padding-left:4em;
   }
-
-
 
   #addQuestionButton {
    transition-duration: 0.4s;

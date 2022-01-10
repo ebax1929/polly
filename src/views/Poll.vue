@@ -434,14 +434,11 @@ cursor:pointer;
 }
 .characterBox{
   border-radius: 6em;
-  border: double 1.4em plum;
+  border: double 1.4em #DA70D6;
   width: 6em;
   height: 6em;
   position:absolute;
-  top:1.5em;
-  right:2em;
-  margin-top: 3em;
-  background-color: seashell;
+
 }
 .textBend {
   position:absolute;
@@ -453,17 +450,15 @@ cursor:pointer;
 }
 .linkPollId{
   border-radius: 6em;
-  border: double 1.4em plum;
+  border: double 1.4em #DA70D6;
   width: 4em;
   height: 4em;
   position:absolute;
-  top:14.5em;
-  right:2em;
-  margin-top: 3em;
   font-weight: bold;
   padding: 1em;
-  background-color: seashell;
-
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .displayPollId{
   position:absolute;
@@ -472,11 +467,10 @@ cursor:pointer;
   width: 8em;
   font-size: 1.2em;
   font-weight: bold;
-  margin-top: 1em;
 }
 
 .displayCorrectCounter{
-  border: double 1em plum;
+  border: double 1em #DA70D6;
   position:absolute;
   color: green;
   top:28em;
@@ -488,7 +482,7 @@ cursor:pointer;
   background-color: seashell;
 }
 .displayVoteCounter{
-  border: double 1em plum;
+  border: double 1em #DA70D6;
   position:absolute;
   color: cornflowerblue;
   top: 35em;
