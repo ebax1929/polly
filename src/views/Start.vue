@@ -68,7 +68,7 @@ export default {
 </script>
 <style>
 #nav a{color: black;}
-#nav a:hover{color: Plum;}
+#nav a:hover{color: Mediumpurple;}
 #nav a{
   text-decoration:none;
 }
@@ -86,7 +86,7 @@ export default {
 }
 .Left {
   left: 0;
-  background: lightslategray;
+  background: plum;
 
 
 }

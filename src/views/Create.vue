@@ -164,9 +164,7 @@
         <button v-on:click="saveQuestionAndContinueCreating"
                 id="saveQuestionAndContinueCreating"
                 v-show="showSaveQuestionAndContinueCreating">
-
           {{uiLabels.saveQuestionAndContinueCreating}}
-
         </button>
 
 
@@ -862,6 +860,7 @@ body {
     width: 10em;
     height: 6em;
     border-radius: 10px;
+    cursor:pointer;
   }
   #inputQuestion{
     border-radius: 10px;
@@ -977,8 +976,6 @@ body {
   .checkboxesText{
     text-decoration: underline;
   }
-
-
 
   #addQuestionButton {
    transition-duration: 0.4s;
