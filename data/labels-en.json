@@ -57,5 +57,6 @@
 	"voteQuestion": "Vote on the following question",
 	"countCorrect": "Result on Quiz:",
 	"outOf": "of",
-	"voteSubmitted": "Answered Vote-questions:"
+	"voteSubmitted": "Answered Vote-questions:",
+	"nextQuestion": "Next question"
 }

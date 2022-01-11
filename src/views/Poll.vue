@@ -187,6 +187,8 @@ export default {
     socket.emit('joinPoll', this.pollId)
 
     socket.on("newQuestion", q => {
+      this.showDisplayOneAndAHalfPage=false;
+      this.showDisplaySecondPage=true;
       this.question = q;
       this.showDisplayQuestion=true;
       // this.a = q.a;
@@ -369,10 +371,8 @@ export default {
       }
       else
       {
-        this.showDisplay = false
-        setTimeout(()=>this.showDisplayOneAndAHalfPage=true,0)
-        setTimeout(()=>this.showDisplayOneAndAHalfPage=false,6000)
-        setTimeout(()=>this.showDisplaySecondPage=true,6000)
+        this.showDisplay = false;
+        this.showDisplayOneAndAHalfPage=true;
       }
     },
     characterChosen: function(character){
@@ -515,21 +515,21 @@ cursor:pointer;
 
 .welcomeCharacter{
   position:relative;
-  animation-name: exempel;
-  animation-duration: 6s;
+  animation-name: moveCharacterAroundBoard;
+  animation-duration: 5s;
   animation-iteration-count: infinite;
 }
-@keyframes exempel {
-  0%   {left: 2.5em; top:30.5em;}
-  25%  {left:2.5em; top:2.5em;}
-  50%  {left: 30.5em; top:2.5em;}
-  75%  {left: 30.5em; top: 30.5em;}
-  100% {left: 2.5em; top:30.5em;}
+@keyframes moveCharacterAroundBoard {
+  0%   {left: 3.5em; top:30.5em;}
+  25%  {left:3.5em; top:2em;}
+  50%  {left: 32.5em; top:2em;}
+  75%  {left: 32.5em; top: 30.5em;}
+  100% {left: 3.5em; top:30.5em;}
 }
 
 .displayWelcomeCharacter > img {
-  height: 5em;
-  width: 5em;
+  height: 6em;
+  width: 6em;
 }
 
 .welcomeName{

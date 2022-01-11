@@ -58,7 +58,8 @@
 	"voteQuestion": "Rösta på följande fråga",
 	"countCorrect": "Resultat på Quiz:",
 	"outOf": "Av",
-	"voteSubmitted": "Besvarade röst-frågor:"
+	"voteSubmitted": "Besvarade röst-frågor:",
+	"nextQuestion": "Nästa Fråga"
 
 
 }
