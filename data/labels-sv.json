@@ -61,11 +61,10 @@
 	"outOf": "Av",
 	"voteSubmitted": "Besvarade röst-frågor:",
 	"answerAlternative": "Svarsalternativ",
-
-
 	"enterIdToParticipate": "FYLL I POLL-ID FÖR ATT DELTA",
+	"nextQuestion": "Nästa Fråga",
+	"seeEveryonesResult": "Se alla resultat",
 
-	"nextQuestion": "Nästa Fråga"
 
 
 

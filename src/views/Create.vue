@@ -284,6 +284,7 @@ export default {
       showFinishedEditQuestionButton: false,
       showSaveQuestionAndContinueCreating: false,
       runQuestionNumber: 0,
+      finishedWithRunPoll: false,
       viewQuestions: false,
       currentAnswer:"",
 
@@ -610,7 +611,7 @@ export default {
          this.removeAnswersVote = false;
        }
      },
-    runPoll: function () {
+    /*runPoll: function () {
       this.questionNumber=this.runQuestionNumber;
       socket.emit("runQuestion", {pollId: this.pollId, questionNumber: this.questionNumber})
       this.runQuestionNumber+=1;
@@ -624,16 +625,53 @@ export default {
 
       if(this.listOfAll.length===this.questionNumber){
         this.showButton=false;
+        this.finishedWithRunPoll=true;
+        socket.emit('fromCreateSendPollFinished', {
+          pollId: this.pollId,
+          finishedWithRunPoll: this.finishedWithRunPoll})
+        console.log('value in create', this.finishedWithRunPoll)
       }
 
 
       console.log(this.runQuestionNumber);
       this.currentQuestion=this.listOfAll[this.questionNumber]
 
-     /* this.currentAnswers=this.answers[this.questionNumber]*/
+     /!* this.currentAnswers=this.answers[this.questionNumber]*!/
+      /!*Använd inte Question number på rad ovan det kommer bli index fel*!/
+
+    }*/
+
+    runPoll: function () {
+      this.questionNumber=this.runQuestionNumber;
+
+      if(this.listOfAll.length===this.questionNumber){
+        this.showButton=false;
+        this.finishedWithRunPoll=true;
+        socket.emit('fromCreateSendPollFinished', {
+          pollId: this.pollId,
+          finishedWithRunPoll: this.finishedWithRunPoll})
+        console.log('value in create', this.finishedWithRunPoll)
+      }
+      else{
+        socket.emit("runQuestion", {pollId: this.pollId, questionNumber: this.questionNumber})
+        this.runQuestionNumber+=1;
+        this.showStartandPreviousNextPage=false;
+        this.showStartPoll = false;
+        this.showGoBackEditing = false;
+        this.showOnLastPage=false;
+        this.showDisplayPollId=true;
+        this.viewQuestions=true;
+
+
+      }
+      console.log(this.runQuestionNumber);
+      /*this.currentQuestion=this.listOfAll[this.questionNumber]*/
+
+      /* this.currentAnswers=this.answers[this.questionNumber]*/
       /*Använd inte Question number på rad ovan det kommer bli index fel*/
 
     }
+
   }
 }
 </script>
