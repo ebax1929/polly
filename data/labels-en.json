@@ -59,11 +59,10 @@
 	"countCorrect": "Result on Quiz:",
 	"outOf": "of",
 	"voteSubmitted": "Answered Vote-questions:",
-	"answerAlternative": "Answer alternative",
-
+	"answerAlternative": "Answer alternative ",
 	"enterIdToParticipate": "ENTER POLL-ID TO PARTICIPATE",
-
 	"nextQuestion": "Next question",
-	"seeEveryonesResult": "See all results"
+	"seeEveryonesResult": "See all results",
+	"lastQuestion": "LAST QUESTION!"
 
 }

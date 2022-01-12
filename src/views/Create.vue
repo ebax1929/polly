@@ -38,11 +38,12 @@
         <button v-on:click="runPoll"  id="nextQuestionButton">
           <img id="nextQuestionImage" src="gronPil.gif">
 
+
         </button>
         </div>
           <div id="questionInformation"> {{uiLabels.currentlyDisplayed}}<p class="saving"><span>.</span><span>.</span><span>.</span></p></div>
           <div id="questionDisplayed">
-          <h3>Question {{this.currentQuestion[0]}}:  {{this.currentQuestion[1]}}</h3>
+          <h3><div v-show="showLastQuestion" id="lastQuestion">{{uiLabels.lastQuestion}}</div> Question {{this.currentQuestion[0]}}:  {{this.currentQuestion[1]}}</h3>
             <div v-for="(item,index) in this.currentAnswers[this.questionNumber]" v-bind:key="index" >
               <div id="answerAlternativesHeader"> {{uiLabels.answerAlternative}} {{index+1}}:</div>
               <div id="answerAlternatives">
@@ -228,7 +229,20 @@
 <!--          <router-link id="resultLink" v-bind:to="'/result/'+pollId">{{uiLabels.checkResult}}</router-link>-->
         </div>
     </div>
+
+
+
   </div>
+
+
+  <div v-show="showResultButton">
+
+    <router-link class="resultButton" tag="button" v-bind:to="'/result/'+pollId">
+      {{uiLabels.seeEveryonesResult}}
+    </router-link>
+  </div>
+
+
 
   </body>
 </template>
@@ -283,9 +297,11 @@ export default {
       showAddQuestionButton: false,
       showFinishedEditQuestionButton: false,
       showSaveQuestionAndContinueCreating: false,
+      showResultButton: false,
       runQuestionNumber: 0,
       viewQuestions: false,
       currentAnswer:"",
+      showLastQuestion:false,
 
       showButton: true,
       currentlyEditingQuestionIndex: 0,
@@ -433,7 +449,8 @@ export default {
       this.showAddQuestionButton=false;
       this.showFinishedEditQuestionButton =true;
       this.showSaveQuestionAndContinueCreating = true;
-      if (this.answers.length === 4 ){
+      this.
+      if (this.answers.length === 4);{
         this.answers.pop();
         this.showAnswer4 = true;
         this.showAnswer3 = true;
@@ -611,25 +628,38 @@ export default {
        }
      },
     runPoll: function () {
-      this.questionNumber=this.runQuestionNumber;
-      if(this.listOfAll.length===this.questionNumber){
-        socket.emit('fromCreateSendPollFinished',{pollId: this.pollId})
-        this.showButton=false;
+      this.showSpeakBubble=false;
+      this.showStartPoll = false;
+      this.showGoBackEditing = false;
+      this.showStartandPreviousNextPage=false;
+      this.showOnLastPage=false;
+      this.showDisplayPollId=true;
+      this.viewQuestions=true;
 
+      this.questionNumber=this.runQuestionNumber;
+      console.log('question number', this.runQuestionNumber)
+      console.log('list of all length', this.listOfAll.length)
+
+      if(this.listOfAll.length===this.questionNumber+1){
+        this.showButton=false;
+        this.showResultButton=true;
+        this.showLastQuestion=true;
+
+        if(this.listOfAll.length===1){
+          socket.emit("runQuestion", {pollId: this.pollId, questionNumber: this.questionNumber})
+          this.runQuestionNumber+=1;
+        }
+        else{
+          socket.emit('fromCreateSendPollFinished',{pollId: this.pollId})
+        }
       }
+
       else{
         socket.emit("runQuestion", {pollId: this.pollId, questionNumber: this.questionNumber})
         this.runQuestionNumber+=1;
-        this.showStartandPreviousNextPage=false;
-        this.showStartPoll = false;
-        this.showGoBackEditing = false;
-        this.showOnLastPage=false;
-        this.showDisplayPollId=true;
-        this.viewQuestions=true;
-        this.showSpeakBubble=false;
       }
 
-      //this.currentQuestion=this.listOfAll[this.questionNumber]
+      this.currentQuestion=this.listOfAll[this.questionNumber]
 
      /* this.currentAnswers=this.answers[this.questionNumber]*/
       /*Använd inte Question number på rad ovan det kommer bli index fel*/
@@ -1244,6 +1274,24 @@ body {
   background:none;
   border:none;
 }
+.resultButton{
+  grid-area: c;
+  margin-top: 5em;
+  margin-left: 25em;
+  text-decoration: none;
+  font-weight: bold;
+  width:8em;
+  color:white;
+  background-color: rgba(30, 144, 255, 0.64);
+  border-radius: 20px;
+  height:2em;
+  padding-top: 1em;
+  cursor:pointer;
+  position:absolute;
+  border: double 0.5em white;
+}
+
+
 @keyframes blink {
 
   /**
@@ -1338,6 +1386,11 @@ body {
 #answerAlternativesHeader{
   background: rgba(147, 112, 219, 0.13);
   font-size: 32px;
+}
+
+#lastQuestion{
+  font-weight: bold;
+  color: rgba(30, 144, 255, 0.99);
 }
 
 
