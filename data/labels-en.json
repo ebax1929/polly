@@ -59,9 +59,7 @@
 	"countCorrect": "Result on Quiz:",
 	"outOf": "of",
 	"voteSubmitted": "Answered Vote-questions:",
-
 	"enterIdToParticipate": "ENTER POLL-ID TO PARTICIPATE",
-
-	"nextQuestion": "Next question"
-
+	"nextQuestion": "Next question",
+	"resultCorrectAnswer": "The correct answer/s was: "
 }

@@ -4,8 +4,6 @@
     <div class="bg bg2"></div>
     <div class="bg bg3"></div>
   <body>
-
-
   <div class="gridContainer">
     <div v-show="showPollId" id="create_pollId"> <br><br>
       <h1 class="enterPollId">{{uiLabels.enterPollId}}</h1><br>
@@ -602,7 +600,8 @@ export default {
        }
      },
     runPoll: function () {
-      this.questionNumber=this.runQuestionNumber;
+      this.questionNumber=this.runQuestionNumber
+      socket.emit('dataUpdate')
       socket.emit("runQuestion", {pollId: this.pollId, questionNumber: this.questionNumber})
       this.runQuestionNumber+=1;
       this.showStartandPreviousNextPage=false;

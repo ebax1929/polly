@@ -30,6 +30,9 @@ Data.prototype.createPoll = function(pollId, lang="en") {
   }
   return this.polls[pollId];
 }
+Data.prototype.getPoll = function(pollId) {
+  return this.polls[pollId];
+}
 
 Data.prototype.addQuestion = function(pollId, q) {
   const poll = this.polls[pollId];
