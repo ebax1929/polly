@@ -6,12 +6,16 @@
   <div class="bg bg3"></div>
   <div id="firstPage">
   <div v-show="showDisplay">
+
+
+    <div id="welcomeText">
   <h1> {{uiLabels.welcomeToQuiz}} </h1>
-    {{uiLabels.pollID}} {{pollId}}
+    </div>
+
 
     <section id="characters">
       <div id="headLine">
-        <h2>{{uiLabels.chooseYourCharacter}}</h2>
+        <h2>{{uiLabels.chooseYourCharacter}}: </h2>
       </div>
 
       <div class="wrapper">
@@ -52,7 +56,9 @@
       <div class="displayWelcomeCharacter" v-else-if="myCharacter==='car'"><img src="bilen.png"> </div>
     </div>
     <div class="welcomeName">
+
       <br> {{uiLabels.welcomeToMonopoll}} <br>
+
       <div class="classFn"> {{fn}}! </div>
       {{uiLabels.pleaseWait}}
     </div>
@@ -126,6 +132,27 @@
     </div>
     </div>
   </section>
+
+  <section id="lastPage" v-show="showDisplayLastPage">
+    <div>
+
+      <div class="displayFinalResult">
+        <div class="displayCorrectCounterFinal"> {{uiLabels.countCorrect}} {{countCorrectAnswer}}
+          {{uiLabels.outOf}} {{countQuizQuestions}}
+        </div>
+        <div class="displayVoteCounterFinal"> {{uiLabels.voteSubmitted}} {{countVoteQuestions}}
+        </div>
+      </div>
+
+      <div>
+        <router-link class="goToResult" tag="button" v-bind:to="'/result/'+pollId">
+          {{uiLabels.seeEveryonesResult}}
+        </router-link>
+      </div>
+
+
+    </div>
+  </section>
   </body>
 
 </template>
@@ -171,6 +198,9 @@ export default {
       countVoteQuestions: 0,
       countQuizQuestions:0,
       countCorrectAnswer:0,
+      showDisplayLastPage: false,
+      skit: false,
+
     }
   },
   created: function () {
@@ -185,6 +215,11 @@ export default {
       this.uiLabels = labels
     })
     socket.emit('joinPoll', this.pollId)
+
+    socket.on("toPollSendPollFinished", () =>{
+      this.showDisplayLastPage = true;
+      this.showDisplaySecondPage=false;
+    })
 
     socket.on("newQuestion", q => {
       this.showDisplayOneAndAHalfPage=false;
@@ -249,13 +284,6 @@ export default {
       console.log(this.question[0])
 
     })
-    /*socket.on("answer", a=>{
-      this.answer123=a.answer
-      console.log(this.answer123)
-    });*/
-
-
-
   },
   methods: {
     /*transformSlotProps(props){
@@ -397,6 +425,7 @@ export default {
 
       }
 */
+
     },
     // displayCharacter: function(){
     //   if (myCharacter==="dog"){
@@ -792,9 +821,74 @@ img:hover { /*https://www.w3schools.com/howto/howto_css_shake_image.asp*/
     padding: 0px;
     width:90%
   }
-
+}
+.displayFinalResult{
 
 }
+.displayVoteCounterFinal{
+   border: double 1em plum;
+   position:absolute;
+   color: cornflowerblue;
+   top: 17em;
+   right: 15em;
+   width: 13em;
+   height: 5em;
+  padding-top: 2em;
+   border-radius: 2em;
+   font-weight: bold;
+   background-color: seashell;
+}
 
+.displayCorrectCounterFinal{
+  border: double 1em plum;
+  position:absolute;
+  color: green;
+  top:17em;
+  left:15em;
+  width: 13em;
+  height: 5em;
+  padding-top: 2em;
+  border-radius: 2em;
+  font-weight: bold;
+  background-color: seashell;
+}
+
+.goToResult{
+  position: absolute;
+    top:17em;
+    right: 31.5em;
+    border: double 1em #DA70D6;
+    transition-duration: 0.4s;
+    width: 13em;
+    height: 4em;
+    border-radius: 2em;
+    padding: 1em;
+    font-weight: bold;
+    background-color: seashell;
+    color:plum;
+    padding-top: 2em;
+  }
+
+.goToResult:hover {
+  position: absolute;
+    color:seashell;
+    border-radius: 2em;
+    padding: 1em;
+    font-weight: bold;
+    background-color: plum;
+    cursor:pointer;
+    padding-top: 2em;
+  }
+#headLine{
+  color: rgba(147, 112, 219, 0.69);
+}
+#welcomeText{
+  color: rgba(147, 112, 219, 0.69);
+
+}
+#name{
+  border: double 10px plum;
+  border-radius: 15px;
+}
 
 </style>

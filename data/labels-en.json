@@ -41,7 +41,7 @@
 	"gubbenInstructionsIfMissing": "please fill in all fields",
 	"questionText": "Question:",
 	"newQuestion": "New Question",
-	"welcomeToQuiz": "Welcome to Quiz",
+	"welcomeToQuiz": "Welcome to Monopoll!",
 	"pollId": "Poll-id:",
 	"chooseYourCharacter": "Choose your character",
 	"pleaseWait": "Please wait for poll to start",
@@ -61,5 +61,10 @@
 	"voteSubmitted": "Answered Vote-questions:",
 	"enterIdToParticipate": "ENTER POLL-ID TO PARTICIPATE",
 	"nextQuestion": "Next question",
-	"resultCorrectAnswer": "The correct answer/s was: "
+	"resultCorrectAnswer": "The correct answer/s was: ",
+	"answerAlternative": "Answer alternative",
+	"enterIdToParticipate": "ENTER POLL-ID TO PARTICIPATE",
+	"nextQuestion": "Next question",
+	"seeEveryonesResult": "See all results"
+
 }

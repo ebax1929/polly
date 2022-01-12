@@ -44,8 +44,13 @@ function sockets(io, socket, data) {
 
   socket.on('joinPoll', function(pollId) {
     socket.join(pollId);
+<<<<<<< HEAD
  //   socket.emit('newQuestion', data.getQuestion(pollId))
 //    socket.emit('dataUpdate', data.getAnswers(pollId));
+=======
+    //socket.emit('newQuestion', data.getQuestion(pollId))
+    socket.emit('dataUpdate', data.getAnswers(pollId));
+>>>>>>> 8cfc3dc73b16b429b481d371d86f6445b9c68ad9
   });
 
   socket.on('runQuestion', function(d) {
@@ -69,7 +74,11 @@ function sockets(io, socket, data) {
     data = new Data();
     data.initializeData();
   })
- 
+
+  socket.on('fromCreateSendPollFinished', function(d) {
+    io.to(d.pollId).emit('toPollSendPollFinished');
+  });
+
 }
 
 module.exports = sockets;
