@@ -153,6 +153,11 @@
 
     </div>
   </section>
+
+  <button v-on:click="endButton" v-show="showButtonEnd" id="endButton">
+    {{uiLabels.viewMyResult}}
+  </button>
+
   </body>
 
 </template>
@@ -199,7 +204,7 @@ export default {
       countQuizQuestions:0,
       countCorrectAnswer:0,
       showDisplayLastPage: false,
-      skit: false,
+      showButtonEnd: false,
 
     }
   },
@@ -217,8 +222,7 @@ export default {
     socket.emit('joinPoll', this.pollId)
 
     socket.on("toPollSendPollFinished", () =>{
-      this.showDisplayLastPage = true;
-      this.showDisplaySecondPage=false;
+      this.showButtonEnd = true;
     })
 
     socket.on("newQuestion", q => {
@@ -324,71 +328,6 @@ export default {
           }
         }
       }
-
-
-
-
-      /*if (this.answer123 === this.a[0]) {
-        if (this.correctAnswer1 === true) {
-          this.showThisCorrect = true;
-        }
-      }
-      if (this.answer === this.a[1]) {
-        if (this.correctAnswer2 === true) {
-          this.showThisCorrect = true;
-        }
-      }
-
-      if (this.a.length === 3) {
-        if (this.answer === this.a[2]) {
-          if (this.correctAnswer3 === true) {
-            this.showThisCorrect = true;
-          }
-        }
-      }
-
-      if (this.a.length === 3) {
-        if (this.answer === this.a[3]) {
-          if (this.correctAnswer4 === true) {
-            this.showThisCorrect = true;
-          }
-        }
-      } else {
-        this.showThisWrong = true;
-      }
-      console.log(this.answer123)*/
-
-      /*socket.on("newQuestion", update => {
-            this.correctAnswer1 = update.correctAnswer1;
-            this.correctAnswer2 = update.correctAnswer2;
-            this.correctAnswer3 = update.correctAnswer3;
-            this.correctAnswer4 = update.correctAnswer4;
-            console.log(this.correctAnswer1);
-            console.log(this.correctAnswer2);
-            console.log(this.correctAnswer3);
-            console.log(this.correctAnswer4);
-
-            if (this.correctAnswer1 === true){
-              if(this.answer===1)
-                this.showThisCorrect=true;
-            }
-            if (this.correctAnswer2 === true){
-              if(this.answer===2)
-                this.showThisCorrect=true;
-            }
-            if (this.correctAnswer3 === true){
-              if(this.answer===3)
-                this.showThisCorrect=true;
-            }
-            if (this.correctAnswer4 === true){
-              if(this.answer===4)
-                this.showThisCorrect=true;
-            }
-            else{
-              this.showThisWrong=true;
-            }
-          }
-      )*/
     },
     enterGameButton: function(){
       if (this.fn===""){
@@ -408,31 +347,14 @@ export default {
       console.log(character);
 
         },
+    endButton: function(){
+      this.showDisplayLastPage = true;
+      this.showDisplaySecondPage=false;
+      this.showButtonEnd = false;
+    }
 
-   /* startTimer: function () {
-      var timer = duration, seconds;
-
-      setInterval: function () {
-        seconds = parseInt(timer % 60, 10);
-        seconds = seconds < 10 ? "0" + seconds : seconds;
-
-        display.textContent = minutes + ":" + seconds;
-
-        if (--timer < 0) {
-          timer = duration;
-        }
-
-
-      }
-*/
 
     },
-    // displayCharacter: function(){
-    //   if (myCharacter==="dog"){
-    //
-    //   }
-    // }
-
 }
 </script>
 
@@ -879,6 +801,35 @@ img:hover { /*https://www.w3schools.com/howto/howto_css_shake_image.asp*/
     cursor:pointer;
     padding-top: 2em;
   }
+#endButton{
+   position: absolute;
+   bottom:4em;
+  font-size:1em;
+   left: 37em;
+   transition-duration: 0.4s;
+   width: 15em;
+   height: 7em;
+   border-radius: 2em;
+   font-weight: bold;
+  color:white;
+  border: double 1em white;
+  background-color: rgba(211, 5, 5, 0.79);
+ }
+
+#endButton:hover {
+  border: double 1em rgba(211, 5, 5, 0.79);
+  background-color: white;
+  color:rgba(211, 5, 5, 0.79);
+  position: absolute;
+
+  border-radius: 2em;
+  font-weight: bold;
+
+  cursor:pointer;
+
+}
+
+
 #headLine{
   color: rgba(147, 112, 219, 0.69);
 }

@@ -71,6 +71,7 @@
 	"answerAlternative": "Svarsalternativ",
 	"enterIdToParticipate": "FYLL I POLL-ID FÖR ATT DELTA",
 	"nextQuestion": "Nästa Fråga",
-	"seeEveryonesResult": "Se alla resultat"
+	"seeEveryonesResult": "Se alla resultat",
+	"viewMyResult": "Avsluta och se mitt resultat"
 
 }

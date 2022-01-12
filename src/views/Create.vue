@@ -235,8 +235,9 @@
 
   <div v-show="showResultButton">
 
-    <router-link class="resultButton" tag="button" v-bind:to="'/result/'+pollId">
+    <router-link class="resultButton" tag="button" v-bind:to="'/result/'+pollId" >
       {{uiLabels.seeEveryonesResult}}
+
     </router-link>
   </div>
 
@@ -639,17 +640,11 @@ export default {
       console.log('list of all length', this.listOfAll.length)
 
       if(this.listOfAll.length===this.questionNumber +1){
+        socket.emit("runQuestion", {pollId: this.pollId, questionNumber: this.questionNumber})
         this.showButton=false;
         this.showResultButton=true;
         this.showLastQuestion=true;
-
-        if(this.listOfAll.length===1){
-          socket.emit("runQuestion", {pollId: this.pollId, questionNumber: this.questionNumber})
-          this.runQuestionNumber+=1;
-        }
-        else{
-          socket.emit('fromCreateSendPollFinished',{pollId: this.pollId})
-        }
+        socket.emit('fromCreateSendPollFinished', {pollId: this.pollId})
       }
 
       else{
@@ -1177,35 +1172,7 @@ body {
     max-width: 10em;
     margin-left:1em;
   }
-  #resultLink{
-    width: 7em;
-    margin-left: 9em;
-    color: white;
-    margin-top: -2.2em;
-    margin-bottom: 1em;
-    height: 1.1em;
-    border: double white 2px;
-    border-radius: 0.5em;
-    position:absolute;
-    transition-duration: 0.4s;
-    text-decoration: none;
-    background: #549c4d;
-  }
-  #runQuestionButton:hover {
-    background-color: #00BFFF;
-    color: #FF1493;
-    border-radius: 10px;
-  }
 
-  #inputQuestionNumber{
-    border-radius: 10px;
-    border: 3px double #00BFFF;
-    color: #FF1493;
-    margin: 1% 20% 1% 20%;
-    width: 20em;
-    height: 10em;
-    text-align: center;
-  }
 
 
 #speakbubble > img {
