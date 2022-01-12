@@ -821,55 +821,58 @@ img:hover { /*https://www.w3schools.com/howto/howto_css_shake_image.asp*/
 
 }
 .displayVoteCounterFinal{
-   border: double 1em #DA70D6;
+   border: double 1em plum;
    position:absolute;
    color: cornflowerblue;
-   top: 10em;
+   top: 17em;
    right: 15em;
    width: 13em;
    height: 5em;
+  padding-top: 2em;
    border-radius: 2em;
-   padding: 1em;
    font-weight: bold;
    background-color: seashell;
 }
 
 .displayCorrectCounterFinal{
-  border: double 1em #DA70D6;
+  border: double 1em plum;
   position:absolute;
   color: green;
-  top:10em;
+  top:17em;
   left:15em;
   width: 13em;
   height: 5em;
+  padding-top: 2em;
   border-radius: 2em;
-  padding: 1em;
   font-weight: bold;
   background-color: seashell;
 }
 
 .goToResult{
-    bottom:10em;
+  position: absolute;
+    top:17em;
+    right: 31.5em;
     border: double 1em #DA70D6;
     transition-duration: 0.4s;
-    width: 15em;
-    height: 15em;
+    width: 13em;
+    height: 4em;
     border-radius: 2em;
     padding: 1em;
     font-weight: bold;
     background-color: seashell;
     color:plum;
+    padding-top: 2em;
   }
 
 .goToResult:hover {
-    color:plum;
-    width: 16em;
-    height: 16em;
+  position: absolute;
+    color:seashell;
     border-radius: 2em;
     padding: 1em;
     font-weight: bold;
-    background-color: seashell;
+    background-color: plum;
     cursor:pointer;
+    padding-top: 2em;
   }
 
 </style>
