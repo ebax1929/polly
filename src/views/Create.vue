@@ -633,23 +633,12 @@ export default {
       this.showOnLastPage=false;
       this.showDisplayPollId=true;
       this.viewQuestions=true;
-
-
       this.questionNumber=this.runQuestionNumber
-      socket.emit('dataUpdate')
-      socket.emit("runQuestion", {pollId: this.pollId, questionNumber: this.questionNumber})
-      this.runQuestionNumber+=1;
-      this.showStartandPreviousNextPage=false;
-      this.showStartPoll = false;
-      this.showGoBackEditing = false;
-      this.showOnLastPage=false;
-      this.showDisplayPollId=true;
-      this.viewQuestions=true;
-      this.questionNumber=this.runQuestionNumber;
+
       console.log('question number', this.runQuestionNumber)
       console.log('list of all length', this.listOfAll.length)
 
-      if(this.listOfAll.length===this.questionNumber+1){
+      if(this.listOfAll.length===this.questionNumber +1){
         this.showButton=false;
         this.showResultButton=true;
         this.showLastQuestion=true;
