@@ -885,7 +885,7 @@ img:hover { /*https://www.w3schools.com/howto/howto_css_shake_image.asp*/
 }
 #welcomeText{
   color: rgba(147, 112, 219, 0.69);
- 
+
 }
 #name{
   border: double 10px plum;
