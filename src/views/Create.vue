@@ -41,7 +41,7 @@
         </div>
           <div id="questionInformation"> {{uiLabels.currentlyDisplayed}}<p class="saving"><span>.</span><span>.</span><span>.</span></p></div>
           <div id="questionDisplayed">
-          <h3><div v-show="showLastQuestion" id="lastQuestion">{{uiLabels.lastQuestion}}</div> Question {{this.currentQuestion[0]}}:  {{this.currentQuestion[1]}}</h3>
+          <h3><div v-show="showLastQuestion" id="lastQuestion">{{uiLabels.lastQuestion}}</div> {{uiLabels.fraga}} {{this.currentQuestion[0]}}:  {{this.currentQuestion[1]}}</h3>
             <div v-for="(item,index) in this.currentAnswers[this.questionNumber]" v-bind:key="index" >
               <div id="answerAlternativesHeader"> {{uiLabels.answerAlternative}} {{index+1}}:</div>
               <div id="answerAlternatives">
@@ -407,6 +407,7 @@ export default {
       this.addAnsVote_id=true;
       this.showCreateQuiz=false;
       this.showCreateVote=false;
+      this.showAddQuestionButton=true;
       this.showOnThirdPage=true;
       this.showOnSecondPage=false;
       this.answers = ["",""]
@@ -1163,7 +1164,7 @@ body {
     border: 2px solid white;
     color:white;
     border-radius: 2em;
-    opacity:95%
+    opacity:0.95;
   }
   #questionText{
     overflow: hidden;
