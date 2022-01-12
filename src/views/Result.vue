@@ -35,6 +35,7 @@ export default {
       showCorAns3: false,
       showCorAns4: false,
       question: "",
+      uiLabels: {},
       listOfQuestions:[],
       lang:"",
       correctAnswer1: false,
@@ -48,11 +49,11 @@ export default {
   },
   created: function () {
     this.pollId = this.$route.params.id
-    socket.emit('getLang', this.pollId)
     socket.emit('getResults', this.pollId)
     socket.on('allResults', p => {
       this.allResults = p;
     })
+    socket.emit('getLang', this.pollId)
     socket.on('pollLang', l =>
     {
       this.lang = l

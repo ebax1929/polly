@@ -111,7 +111,7 @@
     <div class="displayCorrectCounter"> {{uiLabels.countCorrect}} {{countCorrectAnswer}}
       {{uiLabels.outOf}} {{countQuizQuestions}} </div>
     <div class="displayVoteCounter"> {{uiLabels.voteSubmitted}} {{countVoteQuestions}}</div>
-   
+
 
     <div class="pleaseAnswer"  v-show="showPleaseAnswer"> {{uiLabels.pleaseAnswer}}</div>
     <div class="questionVote"  v-show="showIsQuestionVote"> {{uiLabels.voteQuestion}}</div>
