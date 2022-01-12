@@ -67,7 +67,6 @@ function sockets(io, socket, data) {
 
   socket.on('fromCreateSendPollFinished', function(d) {
     io.to(d.pollId).emit('toPollSendPollFinished');
-    console.log('i am in sockets now', d.finishedWithRunPoll);
   });
 
 }
