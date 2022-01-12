@@ -7,11 +7,9 @@
   <div id="firstPage">
   <div v-show="showDisplay">
 
-
     <div id="welcomeText">
   <h1> {{uiLabels.welcomeToQuiz}} </h1>
     </div>
-
 
     <section id="characters">
       <div id="headLine">
@@ -19,7 +17,6 @@
       </div>
 
       <div class="wrapper">
-<!--        <p id="boat" v-on:click=characterChosen(pngpilen.png)>-->
         <div class="fig" v-on:click='characterChosen("boat")'><img  src="boat.png" ></div>
         <div class="fig" v-on:click='characterChosen("dog")'><img  src="hunden.png" ></div>
         <div class="fig" v-on:click='characterChosen("hat")'><img  src="hatten.png" ></div>
@@ -33,6 +30,7 @@
         <div class="displayCharacter" v-else-if="myCharacter==='car'"><img src="bilen.png"> </div>
       </div>
     </section>
+
       <div v-if="myCharacter!=''">
         <label for="name"></label>
         <input type="text" id="name" v-model="fn" required="required" autocomplete="off" v-bind:placeholder="uiLabels.enterName">
@@ -55,10 +53,9 @@
       <div class="displayWelcomeCharacter" v-else-if="myCharacter==='hat'"><img src="hatten.png"> </div>
       <div class="displayWelcomeCharacter" v-else-if="myCharacter==='car'"><img src="bilen.png"> </div>
     </div>
+
     <div class="welcomeName">
-
       <br> {{uiLabels.welcomeToMonopoll}} <br>
-
       <div class="classFn"> {{fn}}! </div>
       {{uiLabels.pleaseWait}}
     </div>
@@ -67,13 +64,7 @@
       <img src="gubbenhej.png">
     </div>
     </div>
-<!--    <vue-countdown :time="10000" :tarnsform="transformslotProps" v-slot="{seconds}">
-      Seconds until poll Started: {{seconds}}
-    </vue-countdown>-->
-
   </section>
-
-
 
   <section v-show="showDisplaySecondPage">
     <div id="secondPage">
@@ -91,22 +82,6 @@
             <div class="linkPollId"> {{pollId}} </div>
           </div>
       </div>
-<!--      <div class="pleaseAnswer"> {{uiLabels.pleaseAnswer}}</div>-->
-<!--
-=======
-  <section v-show="showDisplaySecondPage" id="secondPage">
-    <div class="gubbenPekar"><img src="gubbenpekar.png"></div>
-    <div class="textBend"> <br> {{uiLabels.thisIsYou}} {{fn}} <br> </div>
-    <div class="characterBox">
-    <div class="displayCharacter" v-if="myCharacter==='boat'"> <img  src="boat.png"> </div>
-    <div class="displayCharacter" v-else-if="myCharacter==='dog'"><img src="hunden.png"> </div>
-    <div class="displayCharacter" v-else-if="myCharacter==='hat'"><img src="hatten.png"> </div>
-    <div class="displayCharacter" v-else-if="myCharacter==='car'"><img src="bilen.png"> </div>
-    </div>
-    <div class="displayPollId"> {{uiLabels.pollID}} </div>
-    <div class="linkPollId"> <br> {{pollId}} </div>
--->
-
 
     <div class="displayCorrectCounter"> {{uiLabels.countCorrect}} {{countCorrectAnswer}}
       {{uiLabels.outOf}} {{countQuizQuestions}} </div>
@@ -115,7 +90,6 @@
 
     <div class="pleaseAnswer"  v-show="showPleaseAnswer"> {{uiLabels.pleaseAnswer}}</div>
     <div class="questionVote"  v-show="showIsQuestionVote"> {{uiLabels.voteQuestion}}</div>
-
       <div v-show="showDisplayQuestion" id="question">
         <Question v-bind:question="question"
                  v-on:answer="submitAnswer" />
@@ -135,7 +109,6 @@
 
   <section id="lastPage" v-show="showDisplayLastPage">
     <div>
-
       <div class="displayFinalResult">
         <div class="displayCorrectCounterFinal"> {{uiLabels.countCorrect}} {{countCorrectAnswer}}
           {{uiLabels.outOf}} {{countQuizQuestions}}
@@ -149,8 +122,6 @@
           {{uiLabels.seeEveryonesResult}}
         </router-link>
       </div>
-
-
     </div>
   </section>
 
@@ -159,7 +130,6 @@
   </button>
 
   </body>
-
 </template>
 
 <script>
@@ -230,8 +200,6 @@ export default {
       this.showDisplaySecondPage=true;
       this.question = q;
       this.showDisplayQuestion=true;
-      // this.a = q.a;
-      // console.log("a", this.a)
       this.questionNumber = q.questionNumber;
       this.correctAnswer1 = q.correctAnswer1;
       this.correctAnswer2 = q.correctAnswer2;
@@ -290,14 +258,6 @@ export default {
     })
   },
   methods: {
-    /*transformSlotProps(props){
-      const formattedProps = {};
-
-      Object.entries(props).forEach(([key, value]) => {
-        formattedProps[key] = value < 10 ?'0${value}' : String(value);
-      });
-      return formattedProps;
-    },*/
     submitAnswer: function (answer) {
       socket.emit("submitAnswer", {pollId: this.pollId, answer: answer})
 
@@ -352,9 +312,7 @@ export default {
       this.showDisplaySecondPage=false;
       this.showButtonEnd = false;
     }
-
-
-    },
+  },
 }
 </script>
 
@@ -364,8 +322,8 @@ export default {
 cursor:pointer;
   width:10em;
   height:10em;
-
 }
+
 .wrapper{
   display: grid;
   grid-gap: 5em;
@@ -373,6 +331,7 @@ cursor:pointer;
   position: relative;
   padding-left: 11em;
 }
+
 .wrapper > div > img{
   cursor:pointer;
   height:10em;
@@ -389,8 +348,8 @@ cursor:pointer;
   width: 6em;
   height: 6em;
   position:absolute;
-
 }
+
 .textBend {
   position:absolute;
   top:0.5em;
@@ -399,6 +358,7 @@ cursor:pointer;
   font-size: 1.2em;
   font-weight: bold;
 }
+
 .linkPollId{
   border-radius: 6em;
   border: double 1.4em #DA70D6;
@@ -411,6 +371,7 @@ cursor:pointer;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
+
 .displayPollId{
   position:absolute;
   top:12em;
@@ -432,6 +393,7 @@ cursor:pointer;
   font-weight: bold;
   background-color: seashell;
 }
+
 .displayVoteCounter{
   border: double 1em #DA70D6;
   position:absolute;
@@ -450,9 +412,11 @@ cursor:pointer;
   top: 3em;
   right: 5em;
 }
+
 .spelPlan > img:hover {
   animation: paused;
 }
+
 .spelPlan > img {
   height: 33em;
   width: 33em;
@@ -464,6 +428,7 @@ cursor:pointer;
   animation-duration: 5s;
   animation-iteration-count: infinite;
 }
+
 @keyframes moveCharacterAroundBoard {
   0%   {left: 3.5em; top:30.5em;}
   25%  {left:3.5em; top:2em;}
@@ -489,6 +454,7 @@ cursor:pointer;
   color:seashell;
   font-size: 1.2em;
 }
+
 .welcomeName:before {
   content:"";
   position: absolute;
@@ -500,10 +466,12 @@ cursor:pointer;
   border-right: 26px solid plum;
   border-bottom: 13px solid transparent;
 }
+
 .classFn{
   color: #FFFFFF;
   font-size: 1.5em;
 }
+
 .monopolGubben{
   position: absolute;
   top: 10em;
@@ -514,9 +482,11 @@ cursor:pointer;
   width: 20em;
   height: 27em;
 }
+
 .monopolGubben > img:hover {
   animation: paused;
 }
+
 .gubbenPekar{
   -webkit-transform: scaleX(-1);
   transform: scaleX(-1);
@@ -524,10 +494,12 @@ cursor:pointer;
   top: 8em;
   left: 1em;
 }
+
 .gubbenPekar > img {
    width: 20em;
    height: 27em;
  }
+
 .gubbenPekar > img:hover {
   animation: paused;
 }
@@ -543,8 +515,8 @@ cursor:pointer;
   position: absolute;
   left: 10.5em;
   top: 4em
-
 }
+
 .pleaseAnswer{
   width: 20em;
   font-size: 1em;
@@ -556,8 +528,8 @@ cursor:pointer;
   position: absolute;
   left: 32.5em;
   top: 3em;
-
 }
+
 .questionVote{
   width: 20em;
   font-size: 1em;
@@ -569,7 +541,6 @@ cursor:pointer;
   position: absolute;
   left: 32.5em;
   top: 3em;
-
 }
 
 #right {
@@ -584,6 +555,7 @@ cursor:pointer;
   padding: 0.5em;
   border-radius: 25px;
 }
+
 #wrong {
   top: 8em;
   left: 15em;
@@ -596,6 +568,7 @@ cursor:pointer;
   padding: 0.5em;
   border-radius: 25px;
 }
+
 #answerVote {
   top: 8em;
   left: 13em;
@@ -609,11 +582,8 @@ cursor:pointer;
   border-radius: 25px;
 }
 
-img:hover { /*https://www.w3schools.com/howto/howto_css_shake_image.asp*/
-  /* Start the shake animation and make the animation last for 0.5 seconds */
+img:hover {
   animation: shake 0.7s;
-
-  /* When the animation is finished, start again */
   animation-iteration-count: infinite;
 }
 
@@ -661,6 +631,7 @@ img:hover { /*https://www.w3schools.com/howto/howto_css_shake_image.asp*/
     transform:translateX(25%);
   }
 }
+
 @media screen and (max-width:50em) {
   .wrapper {
     font-size: 5vw;
@@ -669,10 +640,12 @@ img:hover { /*https://www.w3schools.com/howto/howto_css_shake_image.asp*/
     grid-gap:1em;
     padding-left:0px;
   }
+
   .wrapper > div > img{
     height:7em;
     width: 10em;
   }
+
   .gubbenPekar{
     display:none;
   }
@@ -683,11 +656,13 @@ img:hover { /*https://www.w3schools.com/howto/howto_css_shake_image.asp*/
     position:relative;
     justify-content: center;
   }
+
   .mobileInnerWrapper {
     display:flex;
     flex-flow:row wrap;
     justify-content: space-between;
   }
+
   #secondPage > div {
     justify-content:center;
     position:relative;
@@ -705,12 +680,14 @@ img:hover { /*https://www.w3schools.com/howto/howto_css_shake_image.asp*/
     right:0px;
     position:relative;
   }
+
   .displayPollId{
     margin:0px;
     top:0px;
     right:0px;
     position:relative;
   }
+
   .linkPollId{
     margin:0px;
     padding:0em;
@@ -720,21 +697,25 @@ img:hover { /*https://www.w3schools.com/howto/howto_css_shake_image.asp*/
     width:6em;
     height:6em;
   }
+
   .textBend{
     position:relative;
     top:0px;
     right:0px;
     width:50%;
   }
+
   #question{
     left:0px;
     top:0px;
     width:90%;
     positon:relative;
   }
+
   #question > button {
     width:95%;
   }
+
   .pleaseAnswer{
     left:0px;
     top:0px;
@@ -744,9 +725,7 @@ img:hover { /*https://www.w3schools.com/howto/howto_css_shake_image.asp*/
     width:90%
   }
 }
-.displayFinalResult{
 
-}
 .displayVoteCounterFinal{
    border: double 1em plum;
    position:absolute;
@@ -789,7 +768,7 @@ img:hover { /*https://www.w3schools.com/howto/howto_css_shake_image.asp*/
     background-color: seashell;
     color:plum;
     padding-top: 2em;
-  }
+}
 
 .goToResult:hover {
   position: absolute;
@@ -800,17 +779,18 @@ img:hover { /*https://www.w3schools.com/howto/howto_css_shake_image.asp*/
     background-color: plum;
     cursor:pointer;
     padding-top: 2em;
-  }
+}
+
 #endButton{
-   position: absolute;
-   bottom:4em;
+  position: absolute;
+  bottom:4em;
   font-size:1em;
-   left: 37em;
-   transition-duration: 0.4s;
-   width: 15em;
-   height: 7em;
-   border-radius: 2em;
-   font-weight: bold;
+  left: 37em;
+  transition-duration: 0.4s;
+  width: 15em;
+  height: 7em;
+  border-radius: 2em;
+  font-weight: bold;
   color:white;
   border: double 1em white;
   background-color: rgba(211, 5, 5, 0.79);
@@ -821,22 +801,19 @@ img:hover { /*https://www.w3schools.com/howto/howto_css_shake_image.asp*/
   background-color: white;
   color:rgba(211, 5, 5, 0.79);
   position: absolute;
-
   border-radius: 2em;
   font-weight: bold;
-
   cursor:pointer;
-
 }
-
 
 #headLine{
   color: rgba(147, 112, 219, 0.69);
 }
+
 #welcomeText{
   color: rgba(147, 112, 219, 0.69);
-
 }
+
 #name{
   border: double 10px plum;
   border-radius: 15px;

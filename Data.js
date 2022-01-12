@@ -85,15 +85,6 @@ Data.prototype.getQuestion = function(pollId, qId=null) {
   return []
 }
 
-/*Data.prototype.getAllQuestions = function(pollId) {
-  const poll = this.polls[pollId];
-  console.log("All questions requested for ", pollId);
-  if (typeof poll !== 'undefined') {
-    return poll.questions;
-  }
-  return []
-}*/
-
 Data.prototype.getLang = function(pollId) {
   const poll = this.polls[pollId];
   console.log("lang requested for ", pollId);
@@ -131,12 +122,6 @@ Data.prototype.getAnswers = function(pollId) {
   }
   return {}
 }
-
-
-
-
-
-
 
 
 module.exports = Data;

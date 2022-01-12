@@ -88,15 +88,11 @@ export default {
         this.showCorAns4=true;
       }
     })
-
   }
-
 }
 </script>
 
 <style>
-
-
 
 #questionTitle{
   width: 30%;

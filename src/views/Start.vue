@@ -1,22 +1,26 @@
 <template>
   <div id="nav">
+
     <div class="middle">
       <img  src="gubbenhej.png" >
     </div>
+
     <div class="Split Left">
     <router-link id="Links" v-bind:to="'/create/'+lang">{{uiLabels.createPoll}}</router-link>
     </div>
+
     <div class="Split Right" >
 
       <button id="LanguageButton" v-on:click="switchLanguage">
         <div v-if="this.lang=='sv'">
           <img class="flags" src="engelskflagga.jpeg">
         </div>
+
         <div v-else>
           <img class="flags" src="sverigeflagga.png">
-
         </div>
       </button>
+
     <div id="Links">
     <label id="fillInId">
       {{uiLabels.poll_id}}
@@ -73,8 +77,6 @@ export default {
   text-decoration:none;
 }
 
-
-
 .Split {
   height: 100%;
   width: 50%;
@@ -84,17 +86,17 @@ export default {
   overflow-x: hidden;
   padding-top: 20px;
 }
+
 .Left {
   left: 0;
   background: plum;
-
-
 }
+
 .Right {
   right: 0;
   background: seashell;
-
 }
+
 .middle>img{
   background-color: #FFFFFF;
   color: aliceblue;
@@ -107,17 +109,16 @@ export default {
 }
 
 #Links {
-
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   font-size: 20pt;
 }
+
 #participateLink{
   position: relative;
 }
-
 
 #LanguageButton{
   margin-left: 34em;
@@ -126,26 +127,21 @@ export default {
   background:none;
   border:none;
   cursor:pointer;
-
-
 }
 
 input{
   width: 50%;
   padding:12px 20px;
-
 }
+
 #fillInId{
   margin-top: 20em;
 }
-.flags{
 
+.flags{
   width: 2em;
   height: 2em;
   border-radius: 50%;
 }
-
-
-
 
 </style>
