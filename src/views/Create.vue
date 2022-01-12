@@ -21,7 +21,7 @@
     <div v-show="showDisplayPollId" id="display_pollId" class="gridColumnThree">
       <br><br>
 
-      <div id="speakbubble">
+      <div v-show="showSpeakBubble" id="speakbubble">
         <img src="pratbubbla.png">
       </div>
       <div v-show="showOnLastPage">
@@ -36,20 +36,23 @@
       <div v-show="viewQuestions" id="viewQuestionId">
         <div v-show="showButton">
         <button v-on:click="runPoll"  id="nextQuestionButton">
+          <img id="nextQuestionImage" src="gronPil.gif">
 
-          <img id="nextQuestionImage" src="pngpilen.png">
         </button>
         </div>
           <div id="questionInformation"> {{uiLabels.currentlyDisplayed}}<p class="saving"><span>.</span><span>.</span><span>.</span></p></div>
           <div id="questionDisplayed">
-            <h3>{{this.currentQuestion[1]}}</h3>
+          <h3>Question {{this.currentQuestion[0]}}:  {{this.currentQuestion[1]}}</h3>
+            <div v-for="(item,index) in this.currentAnswers[this.questionNumber]" v-bind:key="index" >
+              <div id="answerAlternativesHeader"> {{uiLabels.answerAlternative}} {{index+1}}:</div>
+              <div id="answerAlternatives">
+             {{item}}
+                <br>
+              </div>
+            </div>
 
-            {{this.currentAnswers[this.questionNumber]}}
 
 
-          </div>
-          <div id="goToNextQuestion">
-          <h4>{{uiLabels.nextQuestion}}</h4>
           </div>
 
 
@@ -133,7 +136,7 @@
         </div>
         </div>
 
-        <div id="checkBoxes">
+        <div id="checkBoxes" >
 
           <div class="correctAnswer" v-show="showAnswer1">
             <div class="checkboxesText"><p id="checkBoxText">{{uiLabels.checkboxes}}</p></div>
@@ -273,6 +276,7 @@ export default {
       showPlayPoll: false,
       showGoBackEditing: false,
       showGridColumnTwo: false,
+      showSpeakBubble:true,
       showOnLastPage: false,
       showOnSecondPage:false,
       showOnThirdPage: false,
@@ -282,6 +286,7 @@ export default {
       runQuestionNumber: 0,
       viewQuestions: false,
       currentAnswer:"",
+
       showButton: true,
       currentlyEditingQuestionIndex: 0,
       currentAnswers:[],
@@ -473,6 +478,8 @@ export default {
       this.currentAnswers.push(this.answers)
       this.listOfAll.push(this.listOfQuestionAndNumber)
 
+
+
       this.question='';
 
        console.log(this.listOfAll)
@@ -613,6 +620,8 @@ export default {
       this.showOnLastPage=false;
       this.showDisplayPollId=true;
       this.viewQuestions=true;
+      this.showSpeakBubble=false;
+
       if(this.listOfAll.length===this.questionNumber){
         this.showButton=false;
       }
@@ -865,6 +874,7 @@ body {
     height: 20em;
     width:13em;
     opacity:90%
+
   }
 
   #playPollButton {
@@ -1191,7 +1201,7 @@ body {
   height: 1em;
   font-size: 1em;
   border-radius: 25px;
-  background-color: #D2E4FD;
+  background-color: white;
   border: double 0.5em plum;
   color: plum;
   padding: 0.5em;
@@ -1207,6 +1217,7 @@ body {
   grid-area:b;
   font-size: 2em;
   border-radius: 1em;
+
   background-color: plum;
   border: double 0.5em #DA70D6;
   color: #FFFFFF;
@@ -1218,17 +1229,18 @@ body {
 
 #nextQuestionImage{
   grid-area:c;
-  width:12em;
-  height:12em;
-  margin-top:34em;
-  margin-left:2em;
+  width:6em;
+  height:4em;
+  margin-top:39em;
+  margin-left:1em;
+  overflow:hidden;
   cursor:pointer;
   position:absolute;
 }
 #nextQuestionButton{
   height:2em;
   width:2em;
-  background:#D2E4FD;
+  background:none;
   border:none;
 }
 @keyframes blink {
@@ -1314,6 +1326,17 @@ body {
 #filledinWrong{
   font-weight:bold;
   color:red;
+}
+
+#answerAlternatives{
+  font-size: 26px;
+  background: rgba(255, 255, 255, 0.55);
+  color:plum;
+
+}
+#answerAlternativesHeader{
+  background: rgba(147, 112, 219, 0.13);
+  font-size: 32px;
 }
 
 
