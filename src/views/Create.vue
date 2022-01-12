@@ -612,23 +612,24 @@ export default {
      },
     runPoll: function () {
       this.questionNumber=this.runQuestionNumber;
-      socket.emit("runQuestion", {pollId: this.pollId, questionNumber: this.questionNumber})
-      this.runQuestionNumber+=1;
-      this.showStartandPreviousNextPage=false;
-      this.showStartPoll = false;
-      this.showGoBackEditing = false;
-      this.showOnLastPage=false;
-      this.showDisplayPollId=true;
-      this.viewQuestions=true;
-      this.showSpeakBubble=false;
-
       if(this.listOfAll.length===this.questionNumber){
+        socket.emit('fromCreateSendPollFinished',{pollId: this.pollId})
         this.showButton=false;
+
+      }
+      else{
+        socket.emit("runQuestion", {pollId: this.pollId, questionNumber: this.questionNumber})
+        this.runQuestionNumber+=1;
+        this.showStartandPreviousNextPage=false;
+        this.showStartPoll = false;
+        this.showGoBackEditing = false;
+        this.showOnLastPage=false;
+        this.showDisplayPollId=true;
+        this.viewQuestions=true;
+        this.showSpeakBubble=false;
       }
 
-
-      console.log(this.runQuestionNumber);
-      this.currentQuestion=this.listOfAll[this.questionNumber]
+      //this.currentQuestion=this.listOfAll[this.questionNumber]
 
      /* this.currentAnswers=this.answers[this.questionNumber]*/
       /*Använd inte Question number på rad ovan det kommer bli index fel*/

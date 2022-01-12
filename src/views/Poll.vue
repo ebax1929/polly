@@ -219,7 +219,6 @@ export default {
     socket.on("toPollSendPollFinished", () =>{
       this.showDisplayLastPage = true;
       this.showDisplaySecondPage=false;
-      console.log('finishedWithRunPoll in POll value');
     })
 
     socket.on("newQuestion", q => {
