@@ -23,12 +23,12 @@
       <input type="text" v-model="id" placeholder="enter poll-id" >
     </label>
 
-
-
-
-
-        <router-link id="participateLink" v-bind:to="'/poll/'+id" tag="button"> <br> {{uiLabels.participatePoll}} </router-link>
-
+      <div v-if="id===''">
+      <h4>{{uiLabels.enterIdToParticipate}}</h4>
+        </div>
+      <div v-if="id!=''">
+        <router-link id="participateLink"  v-bind:to="'/poll/'+id" tag="button">  <br> {{uiLabels.participatePoll}} </router-link>
+      </div>
     </div>
     </div>
   </div>

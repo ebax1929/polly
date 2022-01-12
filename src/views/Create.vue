@@ -43,7 +43,7 @@
           <div id="questionInformation"> {{uiLabels.currentlyDisplayed}}<p class="saving"><span>.</span><span>.</span><span>.</span></p></div>
           <div id="questionDisplayed">
             <h3>{{this.currentQuestion}}</h3>
-            {{this.currentAnswers[this.questionNumber]}}
+            {{this.currentAnswers}}
 
           </div>
           <div id="goToNextQuestion">
@@ -159,6 +159,10 @@
         <button v-on:click="addQuestion" id="addQuestionButton" v-show="showAddQuestionButton">
           {{uiLabels.addQusetion}}
         </button>
+      <div id="filledinWrong" v-show="informationMissing" class="gubbenPollId">
+
+        {{uiLabels.gubbenInstructionsIfMissing}}
+      </div>
 
 <!--      Denna knappen finns till för att edit inte fungerar just nu-->
         <button v-on:click="saveQuestionAndContinueCreating"
@@ -279,6 +283,7 @@ export default {
       showButton: true,
       currentlyEditingQuestionIndex: 0,
       currentAnswers:[],
+      informationMissing:false,
       questionShowed: {
         q: "",
         a: [],
@@ -433,7 +438,13 @@ export default {
     },
 
     addQuestion: function () {
+      console.log(this.correctAnswer2);
+    if (this.question!='' && (this.answers[0] && this.answers[1] !='') && (this.correctAnswer1===true || this.correctAnswer2===true || this.correctAnswer3===true || this.correctAnswer4===true)){
+      this.informationMissing=false;
+      this.showOnThirdPage=true;
       this.questionNumber+=1;
+
+
       socket.emit("addQuestion",
           { pollId: this.pollId,
                        q: this.question,
@@ -450,6 +461,8 @@ export default {
       this.showPlayPoll = true;
       this.showOnSecondPage=true;
       this.showOnThirdPage=false;
+      this.showAnswer3=false;
+      this.showAnswer4=false;
 
       this.listOfQuestionAndNumber=[];
       this.listOfQuestionAndNumber.push(this.questionNumber , this.question)
@@ -462,7 +475,11 @@ export default {
 
        console.log(this.listOfAll)
       /*this.question='';*/
-
+    }
+    else{
+      this.informationMissing=true;
+      this.showOnThirdPage=false;
+    }
     },
 
     saveQuestionAndContinueCreating: function(){
@@ -505,6 +522,8 @@ export default {
       this.showPlayPoll = true;
       this.showOnSecondPage=true;
       this.showOnThirdPage=false;
+      this.informationMissing=false;
+      this.showSaveQuestionAndContinueCreating=false;
       console.log('currentlyEditingQuestionIndex', this.currentlyEditingQuestionIndex)
       this.listOfAll.splice(this.currentlyEditingQuestionIndex, 1,)
 
@@ -1283,6 +1302,10 @@ body {
   height:2em;
   cursor:pointer;
 
+}
+#filledinWrong{
+  font-weight:bold;
+  color:red;
 }
 
 

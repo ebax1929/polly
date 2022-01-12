@@ -38,6 +38,7 @@
 	"pleaseAnswerTheFollowingQuestion": "Please answer the following question",
 	"gubbenInstructions1": "Choose an option",
 	"gubbenInstructions2": "Enter your question",
+	"gubbenInstructionsIfMissing": "please fill in all fields",
 	"questionText": "Question:",
 	"newQuestion": "New Question",
 	"welcomeToQuiz": "Welcome to Quiz",
@@ -57,5 +58,6 @@
 	"voteQuestion": "Vote on the following question",
 	"countCorrect": "Result on Quiz:",
 	"outOf": "of",
-	"voteSubmitted": "Answered Vote-questions:"
+	"voteSubmitted": "Answered Vote-questions:",
+	"enterIdToParticipate": "ENTER POLL-ID TO PARTICIPATE"
 }
