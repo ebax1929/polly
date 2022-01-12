@@ -42,8 +42,10 @@
         </div>
           <div id="questionInformation"> {{uiLabels.currentlyDisplayed}}<p class="saving"><span>.</span><span>.</span><span>.</span></p></div>
           <div id="questionDisplayed">
-            <h3>{{this.currentQuestion}}</h3>
-            {{this.currentAnswers}}
+            <h3>{{this.currentQuestion[1]}}</h3>
+
+            {{this.currentAnswers[this.questionNumber]}}
+
 
           </div>
           <div id="goToNextQuestion">
@@ -468,7 +470,7 @@ export default {
       this.listOfQuestionAndNumber.push(this.questionNumber , this.question)
       this.listOfAll.pop()
 
-      this.currentAnswers.push([this.answers[0],this.answers[1]])
+      this.currentAnswers.push(this.answers)
       this.listOfAll.push(this.listOfQuestionAndNumber)
 
       this.question='';
@@ -619,7 +621,7 @@ export default {
       console.log(this.runQuestionNumber);
       this.currentQuestion=this.listOfAll[this.questionNumber]
 
-      this.currentAnswers=this.answers[this.questionNumber]
+     /* this.currentAnswers=this.answers[this.questionNumber]*/
       /*Använd inte Question number på rad ovan det kommer bli index fel*/
 
     }
