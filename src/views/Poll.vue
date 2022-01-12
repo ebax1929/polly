@@ -6,12 +6,16 @@
   <div class="bg bg3"></div>
   <div id="firstPage">
   <div v-show="showDisplay">
+
+
+    <div id="welcomeText">
   <h1> {{uiLabels.welcomeToQuiz}} </h1>
-    {{uiLabels.pollID}} {{pollId}}
+    </div>
+
 
     <section id="characters">
       <div id="headLine">
-        <h2>{{uiLabels.chooseYourCharacter}}</h2>
+        <h2>{{uiLabels.chooseYourCharacter}}: </h2>
       </div>
 
       <div class="wrapper">
@@ -52,7 +56,9 @@
       <div class="displayWelcomeCharacter" v-else-if="myCharacter==='car'"><img src="bilen.png"> </div>
     </div>
     <div class="welcomeName">
+
       <br> {{uiLabels.welcomeToMonopoll}} <br>
+
       <div class="classFn"> {{fn}}! </div>
       {{uiLabels.pleaseWait}}
     </div>
@@ -101,11 +107,11 @@
     <div class="linkPollId"> <br> {{pollId}} </div>
 -->
 
-    <div id="boxAroundCountAnswers">
+
     <div class="displayCorrectCounter"> {{uiLabels.countCorrect}} {{countCorrectAnswer}}
       {{uiLabels.outOf}} {{countQuizQuestions}} </div>
     <div class="displayVoteCounter"> {{uiLabels.voteSubmitted}} {{countVoteQuestions}}</div>
-    </div>
+   
 
     <div class="pleaseAnswer"  v-show="showPleaseAnswer"> {{uiLabels.pleaseAnswer}}</div>
     <div class="questionVote"  v-show="showIsQuestionVote"> {{uiLabels.voteQuestion}}</div>
@@ -873,5 +879,16 @@ img:hover { /*https://www.w3schools.com/howto/howto_css_shake_image.asp*/
     cursor:pointer;
     padding-top: 2em;
   }
+#headLine{
+  color: rgba(147, 112, 219, 0.69);
+}
+#welcomeText{
+  color: rgba(147, 112, 219, 0.69);
+
+}
+#name{
+  border: double 10px plum;
+  border-radius: 15px;
+}
 
 </style>

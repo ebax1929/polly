@@ -4,8 +4,6 @@
     <div class="bg bg2"></div>
     <div class="bg bg3"></div>
   <body>
-
-
   <div class="gridContainer">
     <div v-show="showPollId" id="create_pollId"> <br><br>
       <h1 class="enterPollId">{{uiLabels.enterPollId}}</h1><br>
@@ -636,6 +634,17 @@ export default {
       this.showDisplayPollId=true;
       this.viewQuestions=true;
 
+
+      this.questionNumber=this.runQuestionNumber
+      socket.emit('dataUpdate')
+      socket.emit("runQuestion", {pollId: this.pollId, questionNumber: this.questionNumber})
+      this.runQuestionNumber+=1;
+      this.showStartandPreviousNextPage=false;
+      this.showStartPoll = false;
+      this.showGoBackEditing = false;
+      this.showOnLastPage=false;
+      this.showDisplayPollId=true;
+      this.viewQuestions=true;
       this.questionNumber=this.runQuestionNumber;
       console.log('question number', this.runQuestionNumber)
       console.log('list of all length', this.listOfAll.length)
