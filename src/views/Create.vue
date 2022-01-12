@@ -47,7 +47,7 @@
 
           </div>
           <div id="goToNextQuestion">
-          <h4>Next question</h4>
+          <h4>{{uiLabels.nextQuestion}}</h4>
           </div>
 
 
@@ -134,8 +134,8 @@
         <div id="checkBoxes">
 
           <div class="correctAnswer" v-show="showAnswer1">
-             <p id="checkBoxText">{{uiLabels.checkboxes}}</p>
-            <label for="answer1">{{uiLabels.ans1}}</label>
+            <div class="checkboxesText"><p id="checkBoxText">{{uiLabels.checkboxes}}</p></div>
+          <label for="answer1">{{uiLabels.ans1}}</label>
             <input type="checkbox" id="answer1" name="anwser" value="answer1" v-model="correctAnswer1">
           </div>
 
@@ -979,15 +979,21 @@ body {
     margin-right:1em;
     margin-bottom: 3em;
     margin-top: 6em;
+    padding-top: 1em;
     width: 15em;
-    height: 7.5em;
+    height: 9.5em;
     text-align: center;
+    font-weight: bold;
+    color: seashell;
   }
   #checkBoxText{
   padding-right:2.75em;
   }
   .correctAnswer{
     padding-left:4em;
+  }
+  .checkboxesText{
+    text-decoration: underline;
   }
 
   #addQuestionButton {

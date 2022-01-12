@@ -59,5 +59,9 @@
 	"countCorrect": "Result on Quiz:",
 	"outOf": "of",
 	"voteSubmitted": "Answered Vote-questions:",
-	"enterIdToParticipate": "ENTER POLL-ID TO PARTICIPATE"
+
+	"enterIdToParticipate": "ENTER POLL-ID TO PARTICIPATE",
+
+	"nextQuestion": "Next question"
+
 }

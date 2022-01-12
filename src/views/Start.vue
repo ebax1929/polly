@@ -20,7 +20,7 @@
     <div id="Links">
     <label id="fillInId">
       {{uiLabels.poll_id}}
-      <input type="text" v-model="id" placeholder="enter poll-id" >
+      <input type="text" v-model="id" v-bind:placeholder="uiLabels.pollID" >
     </label>
 
       <div v-if="id===''">
