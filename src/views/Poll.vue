@@ -138,11 +138,11 @@
         </div>
       </div>
 
-<!--      <div class="goToResult">-->
-<!--        <router-link v-bind:to="'/result/'+pollId">-->
-<!--          {{uiLabels.seeEveryonesResult}}-->
-<!--        </router-link>-->
-<!--      </div>-->
+      <div>
+        <router-link class="goToResult" tag="button" v-bind:to="'/result/'+pollId">
+          {{uiLabels.seeEveryonesResult}}
+        </router-link>
+      </div>
 
 
     </div>
@@ -210,13 +210,13 @@ export default {
     })
     socket.emit('joinPoll', this.pollId)
 
-    socket.on("toPollSendPollFinished", (finished) =>{
-      this.skit= finished.finishedWithRunPoll;
+    socket.on("toPollSendPollFinished", () =>{
       this.showDisplayLastPage = true;
       this.showDisplaySecondPage=false;
-      console.log('finishedWithRunPoll in POll value', this.skit);
+      console.log('finishedWithRunPoll in POll value');
     })
-                                                                                socket.on("newQuestion", q => {
+
+    socket.on("newQuestion", q => {
       this.showDisplayOneAndAHalfPage=false;
       this.showDisplaySecondPage=true;
       this.question = q;
@@ -824,9 +824,10 @@ img:hover { /*https://www.w3schools.com/howto/howto_css_shake_image.asp*/
    border: double 1em #DA70D6;
    position:absolute;
    color: cornflowerblue;
-   top: 35em;
-   right:1em;
-   width: 8em;
+   top: 10em;
+   right: 15em;
+   width: 13em;
+   height: 5em;
    border-radius: 2em;
    padding: 1em;
    font-weight: bold;
@@ -837,9 +838,10 @@ img:hover { /*https://www.w3schools.com/howto/howto_css_shake_image.asp*/
   border: double 1em #DA70D6;
   position:absolute;
   color: green;
-  top:28em;
-  right:1em;
-  width: 8em;
+  top:10em;
+  left:15em;
+  width: 13em;
+  height: 5em;
   border-radius: 2em;
   padding: 1em;
   font-weight: bold;
@@ -847,19 +849,26 @@ img:hover { /*https://www.w3schools.com/howto/howto_css_shake_image.asp*/
 }
 
 .goToResult{
+    bottom:10em;
+    border: double 1em #DA70D6;
     transition-duration: 0.4s;
-    width: 8em;
-    height: 5em;
-    background-color: #549c4d;
-    border-radius: 10px;
-    color:white;
+    width: 15em;
+    height: 15em;
+    border-radius: 2em;
+    padding: 1em;
+    font-weight: bold;
+    background-color: seashell;
+    color:plum;
   }
 
 .goToResult:hover {
-    color:white;
-    width: 10em;
-    height: 6em;
-    border-radius: 10px;
+    color:plum;
+    width: 16em;
+    height: 16em;
+    border-radius: 2em;
+    padding: 1em;
+    font-weight: bold;
+    background-color: seashell;
     cursor:pointer;
   }
 

@@ -66,12 +66,8 @@ function sockets(io, socket, data) {
   })
 
   socket.on('fromCreateSendPollFinished', function(d) {
-    socket.emit('toPollSendPollFinished', data.finishedWithPoll(d.pollId, d.finishedWithRunPoll));
+    io.to(d.pollId).emit('toPollSendPollFinished');
     console.log('i am in sockets now', d.finishedWithRunPoll);
-  });
-
-  socket.on('switchLanguage', function(lang) {
-    socket.emit('init', data.getUILabels(lang));
   });
 
 }
