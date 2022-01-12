@@ -61,6 +61,7 @@ function sockets(io, socket, data) {
     io.to(d.pollId).emit('dataUpdate', data.getAnswers(d.pollId));
     io.to(d.pollId).emit('getTheAnswer', data.getCorrectAnswers(d.pollId, d.questionNumber));
     io.to(d.pollId).emit('allResults', data.getPoll(d.pollId))
+
   });
 
   socket.on('getResults', function(pollId) {

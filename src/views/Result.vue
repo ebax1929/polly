@@ -4,7 +4,6 @@
   <div class="bg bg2"></div>
   <div class="bg bg3"></div>
   <div v-for="(item,index) in allResults.questions" v-bind:key="index" id="questionTitle">
-    <h2 id="question">{{uiLabels.questiones}}</h2>
     <h3>{{item.q}}</h3>
     <Bars v-bind:data="allResults.answers[index]"/>
     <p> {{uiLabels.resultCorrectAnswer}} </p>
