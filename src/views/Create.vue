@@ -722,7 +722,7 @@ body {
     margin-top: 35px;
     background:white;
     margin-left:2em;
-    opacity: 70%;
+    opacity: 0.7;
   }
   #previewHeader{
     grid-area:b;
@@ -743,7 +743,7 @@ body {
     width:30em;
 
     background:aliceblue;
-    opacity: 70%;
+    opacity: 0.7;
     margin-left:5em;
     height:37em;
   }
@@ -753,7 +753,7 @@ body {
     width:13.3em;
     border-radius: 8px;
     background:mediumpurple;
-    optipacity: 1%;
+    optipacity: 0.1;
     overflow:hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -764,7 +764,7 @@ body {
 #editQuestionButton:hover {
   background-color: mediumpurple;
   color: white;
-  opacity: 75%;
+  opacity: 0.75;
   border-radius: 10px;
 }
 #createQuestion {
@@ -806,7 +806,7 @@ body {
     text-align: center;
     border-radius: 20px;
     grid-area:b;
-    opacity: 85%;
+    opacity: 0.85;
     cursor:pointer;
   }
   #createQuizInstructions{
@@ -828,7 +828,7 @@ body {
     text-align: center;
     border-radius: 20px;
     grid-area:b;
-    opacity: 85%;
+    opacity: 0.85;
     cursor:pointer;
   }
   #createVoteInstructions{
@@ -841,7 +841,7 @@ body {
 
   #create_pollId{
     background-color: plum;
-    optipacity: 1%;
+    optipacity: 0.1;
     margin-top: 2em;
     /*border: groove #00BFFF;*/
     color: white;
@@ -897,7 +897,7 @@ body {
   #displayGubben > img{
     height: 20em;
     width:13em;
-    opacity:90%
+    opacity:0.9;
 
   }
 
@@ -1163,7 +1163,7 @@ body {
     border: 2px solid white;
     color:white;
     border-radius: 2em;
-    opacity:95%
+    opacity:0.95;
   }
   #questionText{
     overflow: hidden;
