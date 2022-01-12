@@ -60,10 +60,9 @@
 	"countCorrect": "Resultat på Quiz:",
 	"outOf": "Av",
 	"voteSubmitted": "Besvarade röst-frågor:",
-
 	"enterIdToParticipate": "FYLL I POLL-ID FÖR ATT DELTA",
-
-	"nextQuestion": "Nästa Fråga"
+	"nextQuestion": "Nästa Fråga",
+	"seeEveryonesResult": "See everyones result"
 
 
 

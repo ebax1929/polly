@@ -129,6 +129,11 @@ Data.prototype.getAnswers = function(pollId) {
   return {}
 }
 
+Data.prototype.finishedWithPoll = function(finishedWithRunPoll = true){
+    console.log(finishedWithRunPoll)
+    return finishedWithRunPoll;
+}
+
 
 
 

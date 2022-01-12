@@ -44,7 +44,7 @@ function sockets(io, socket, data) {
 
   socket.on('joinPoll', function(pollId) {
     socket.join(pollId);
-    socket.emit('newQuestion', data.getQuestion(pollId))
+    //socket.emit('newQuestion', data.getQuestion(pollId))
     socket.emit('dataUpdate', data.getAnswers(pollId));
   });
 
@@ -64,7 +64,16 @@ function sockets(io, socket, data) {
     data = new Data();
     data.initializeData();
   })
- 
+
+  socket.on('fromCreateSendPollFinished', function(d) {
+    socket.emit('toPollSendPollFinished', data.finishedWithPoll(d.pollId, d.finishedWithRunPoll));
+    console.log('i am in sockets now', d.finishedWithRunPoll);
+  });
+
+  socket.on('switchLanguage', function(lang) {
+    socket.emit('init', data.getUILabels(lang));
+  });
+
 }
 
 module.exports = sockets;

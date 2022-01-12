@@ -126,6 +126,27 @@
     </div>
     </div>
   </section>
+
+  <section id="lastPage" v-show="showDisplayLastPage">
+    <div>
+
+      <div class="displayFinalResult">
+        <div class="displayCorrectCounterFinal"> {{uiLabels.countCorrect}} {{countCorrectAnswer}}
+          {{uiLabels.outOf}} {{countQuizQuestions}}
+        </div>
+        <div class="displayVoteCounterFinal"> {{uiLabels.voteSubmitted}} {{countVoteQuestions}}
+        </div>
+      </div>
+
+<!--      <div class="goToResult">-->
+<!--        <router-link v-bind:to="'/result/'+pollId">-->
+<!--          {{uiLabels.seeEveryonesResult}}-->
+<!--        </router-link>-->
+<!--      </div>-->
+
+
+    </div>
+  </section>
   </body>
 
 </template>
@@ -171,6 +192,9 @@ export default {
       countVoteQuestions: 0,
       countQuizQuestions:0,
       countCorrectAnswer:0,
+      showDisplayLastPage: false,
+      skit: false,
+
     }
   },
   created: function () {
@@ -186,7 +210,13 @@ export default {
     })
     socket.emit('joinPoll', this.pollId)
 
-    socket.on("newQuestion", q => {
+    socket.on("toPollSendPollFinished", (finished) =>{
+      this.skit= finished.finishedWithRunPoll;
+      this.showDisplayLastPage = true;
+      this.showDisplaySecondPage=false;
+      console.log('finishedWithRunPoll in POll value', this.skit);
+    })
+                                                                                socket.on("newQuestion", q => {
       this.showDisplayOneAndAHalfPage=false;
       this.showDisplaySecondPage=true;
       this.question = q;
@@ -249,13 +279,6 @@ export default {
       console.log(this.question[0])
 
     })
-    /*socket.on("answer", a=>{
-      this.answer123=a.answer
-      console.log(this.answer123)
-    });*/
-
-
-
   },
   methods: {
     /*transformSlotProps(props){
@@ -397,6 +420,7 @@ export default {
 
       }
 */
+
     },
     // displayCharacter: function(){
     //   if (myCharacter==="dog"){
@@ -792,9 +816,51 @@ img:hover { /*https://www.w3schools.com/howto/howto_css_shake_image.asp*/
     padding: 0px;
     width:90%
   }
-
+}
+.displayFinalResult{
 
 }
+.displayVoteCounterFinal{
+   border: double 1em #DA70D6;
+   position:absolute;
+   color: cornflowerblue;
+   top: 35em;
+   right:1em;
+   width: 8em;
+   border-radius: 2em;
+   padding: 1em;
+   font-weight: bold;
+   background-color: seashell;
+}
 
+.displayCorrectCounterFinal{
+  border: double 1em #DA70D6;
+  position:absolute;
+  color: green;
+  top:28em;
+  right:1em;
+  width: 8em;
+  border-radius: 2em;
+  padding: 1em;
+  font-weight: bold;
+  background-color: seashell;
+}
+
+.goToResult{
+    transition-duration: 0.4s;
+    width: 8em;
+    height: 5em;
+    background-color: #549c4d;
+    border-radius: 10px;
+    color:white;
+  }
+
+.goToResult:hover {
+    color:white;
+    width: 10em;
+    height: 6em;
+    border-radius: 10px;
+    cursor:pointer;
+  }
 
 </style>

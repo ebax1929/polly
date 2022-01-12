@@ -278,6 +278,7 @@ export default {
       showFinishedEditQuestionButton: false,
       showSaveQuestionAndContinueCreating: false,
       runQuestionNumber: 0,
+      finishedWithRunPoll: false,
       viewQuestions: false,
       currentAnswer:"",
       showButton: true,
@@ -613,6 +614,11 @@ export default {
       this.viewQuestions=true;
       if(this.listOfAll.length===this.questionNumber){
         this.showButton=false;
+        this.finishedWithRunPoll=true;
+        socket.emit('fromCreateSendPollFinished', {
+          pollId: this.pollId,
+          finishedWithRunPoll: this.finishedWithRunPoll})
+        console.log('value in create', this.finishedWithRunPoll)
       }
 
 
