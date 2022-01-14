@@ -650,6 +650,27 @@ img:hover {
     display:none;
   }
 
+.spelPlan{
+  display:none;
+}
+.monopolGubben{
+  display:none;
+}
+  .welcomeCharacter{
+    position:relative;
+    animation-name: none;
+    animation-duration: 0s;
+    animation-iteration-count: 0;
+  }
+  .welcomeName {
+    position:static;
+    margin-left:5em;
+  }
+  .welcomeName:before {
+   display:none;
+  }
+
+
   #secondPage {
     display: flex;
     flex-flow: column wrap;
