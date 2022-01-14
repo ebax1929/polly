@@ -3,6 +3,7 @@
   <div class="bg"></div>
     <div class="bg bg2"></div>
     <div class="bg bg3"></div>
+
   <body>
   <div class="gridContainer">
     <div v-show="showPollId" id="create_pollId"> <br><br>
@@ -10,9 +11,11 @@
       <input type="text" v-model="pollId" id="inputCreatPollId" autocomplete="off" v-bind:placeholder="uiLabels.enterPollId" >
       <br>
       <div v-if="pollId!=''">
+
     <button v-on:click="createPoll" id="createPollButton">
       {{uiLabels.createPollButton}}
     </button>
+
       </div>
     </div>
 
@@ -49,23 +52,10 @@
                 <br>
               </div>
             </div>
-
-
-
           </div>
-
-
-
-
-
-
-
-<!--        <button v-on:click="runPoll"  id=""> {{uiLabels.startPoll}} </button>-->
-
         </div>
+
       <div v-show="showOnSecondPage">
-
-
         <div class="gubbenPollId">
           {{uiLabels.gubbenInstructions1}}
         </div>
@@ -78,17 +68,14 @@
       <div v-show="showOnThirdPage">
         <div class="gubbenPollId">
           {{uiLabels.gubbenInstructions2}}
-
         </div>
       </div>
 
       <div v-show="showPlayPoll" id="gridPlayPoll">
         <button v-on:click="playPoll" id="playPollButton">
-
           {{uiLabels.finishedPoll}}
         </button>
       </div>
-
     </div>
 
     <div v-show="showGridColumnTwo">
@@ -107,12 +94,10 @@
 
       <div><input type="text" v-model="question" id ="inputQuestion" autocomplete="off"
                   v-bind:placeholder="uiLabels.enterYourQuestion"><div>
-<!--          <label for="answers"></label>-->
         <div id="answerField">
           <input v-for="(_, i) in answers"
                  v-model="answers[i]"
                  v-bind:key="'answer'+i" id="inputAnswer" v-bind:placeholder="uiLabels.answerAlternative + (1+i)">
-<!--        /* ta bort +1 om ngt blir knas */-->
         </div>
         <div style="margin-top: 1.5em">
           <button v-on:click="addAnswer" class="addAnswers" v-show="addAnswers">
@@ -168,24 +153,16 @@
         {{uiLabels.gubbenInstructionsIfMissing}}
       </div>
 
-<!--      Denna knappen finns till för att edit inte fungerar just nu-->
         <button v-on:click="saveQuestionAndContinueCreating"
                 id="saveQuestionAndContinueCreating"
                 v-show="showSaveQuestionAndContinueCreating">
           {{uiLabels.saveQuestionAndContinueCreating}}
         </button>
 
-
-
-<!--  DETTA ÄR KNAPP FÖR SAVE CHANGES; FUNKAR INTE JUST NU LÅTER KNAPPEN INTE SYNAS
-      <button v-on:click="finishedEditQuestion" id="saveChangesButton" v-show="showFinishedEditQuestionButton">
-        {{uiLabels.saveChanges}}
-      </button>-->
       <button v-on:click="deleteQuestion" id="deleteQuestionButton">
         {{uiLabels.deleteQusetion}}
       </button>
       </div>
-
 
           <div v-show="showStartAndPrevious" class="gridColumnOne">
 
@@ -212,9 +189,6 @@
     </div>
     <div id="start_poll" v-show="showStartPoll">
 
-<!--    <input type="number" v-model="questionNumber" id="inputQuestionNumber"> -->
-<!--   <button v-on:click="runQuestion" id="runQuestionButton"></button> -->
-
     </div>
 
     <div v-show="showStartandPreviousNextPage" class="gridColumnOneNextPage">
@@ -223,25 +197,16 @@
       </div>
         <div id="singleQuestion" v-for="(item,index) in listOfAll" v-bind:key="index">
          <p id="questionText">{{uiLabels.questionText}} {{item[0]}} {{item[1]}}</p>
-<!--          <button v-on:click="runQuestion(item[0])"  id="runQuest"> {{uiLabels.runQ}} </button>-->
-<!--          <router-link id="resultLink" v-bind:to="'/result/'+pollId">{{uiLabels.checkResult}}</router-link>-->
         </div>
     </div>
-
-
-
   </div>
 
 
   <div v-show="showResultButton">
-
     <router-link class="resultButton" tag="button" v-bind:to="'/result/'+pollId" >
       {{uiLabels.seeEveryonesResult}}
-
     </router-link>
   </div>
-
-
 
   </body>
 </template>
@@ -310,9 +275,7 @@ export default {
         q: "",
         a: [],
       },
-
       number: 0
-
     }
   },
   computed: {
@@ -346,7 +309,6 @@ export default {
       this.correctAnswer4 = q.correctAnswer4
       console.log(q)
     })
-    // socket.on('allQuestions', )
   },
   methods: {
     createPoll: function () {
@@ -379,15 +341,11 @@ export default {
       this.showOnThirdPage=true;
       this.showAddQuestionButton=true;
       this.answers = ["",""]
-
-
       if (this.countAnswer === 4 ){
         this.answers.pop();
-
       }
       if (this.countAnswer ===3 ) {
         this.answers.pop();
-
       }
     },
     createVote: function() {
@@ -411,14 +369,11 @@ export default {
       this.showOnThirdPage=true;
       this.showOnSecondPage=false;
       this.answers = ["",""]
-
       if (this.countAnswer === 4 ){
         this.answers.pop();
-
       }
       if (this.countAnswer ===3 ) {
         this.answers.pop();
-
       }
     } ,
 
@@ -468,7 +423,6 @@ export default {
       this.showOnThirdPage=true;
       this.questionNumber+=1;
 
-
       socket.emit("addQuestion",
           { pollId: this.pollId,
                        q: this.question,
@@ -487,20 +441,12 @@ export default {
       this.showOnThirdPage=false;
       this.showAnswer3=false;
       this.showAnswer4=false;
-
       this.listOfQuestionAndNumber=[];
       this.listOfQuestionAndNumber.push(this.questionNumber , this.question)
       this.listOfAll.pop()
-
       this.currentAnswers.push(this.answers)
       this.listOfAll.push(this.listOfQuestionAndNumber)
-
-
-
       this.question='';
-
-       console.log(this.listOfAll)
-      /*this.question='';*/
     }
     else{
       this.informationMissing=true;
@@ -552,9 +498,8 @@ export default {
       this.showSaveQuestionAndContinueCreating=false;
       console.log('currentlyEditingQuestionIndex', this.currentlyEditingQuestionIndex)
       this.listOfAll.splice(this.currentlyEditingQuestionIndex, 1,)
-
-
     },
+
     playPoll: function () {
       this.showPlayPoll = false;
       this.showStartAndPrevious = false;
@@ -567,8 +512,6 @@ export default {
       this.showOnLastPage=true;
       this.showOnSecondPage=false;
       this.showOnThirdPage=false;
-
-
     },
 
     goBackEditing: function () {
@@ -636,10 +579,6 @@ export default {
       this.showDisplayPollId=true;
       this.viewQuestions=true;
       this.questionNumber=this.runQuestionNumber
-
-      console.log('question number', this.runQuestionNumber)
-      console.log('list of all length', this.listOfAll.length)
-
       if(this.listOfAll.length===this.questionNumber +1){
         socket.emit("runQuestion", {pollId: this.pollId, questionNumber: this.questionNumber})
         this.showButton=false;
@@ -654,9 +593,6 @@ export default {
       }
 
       this.currentQuestion=this.listOfAll[this.questionNumber]
-
-     /* this.currentAnswers=this.answers[this.questionNumber]*/
-      /*Använd inte Question number på rad ovan det kommer bli index fel*/
 
     }
   }
@@ -723,16 +659,13 @@ body {
     margin-top: 35px;
     background:white;
     margin-left:2em;
-    opacity: 70%;
+    opacity: 0.7;
   }
   #previewHeader{
     grid-area:b;
     margin-top: 5px;
     text-align: center;
     color: slategray;
-    /*margin-left:3em;*/
-
-
   }
   .gridColumnOneNextPage{
 
@@ -742,9 +675,8 @@ body {
     margin-top: 2em;
     grid-area:b;
     width:30em;
-
     background:aliceblue;
-    opacity: 70%;
+    opacity: 0.7;
     margin-left:5em;
     height:37em;
   }
@@ -754,7 +686,7 @@ body {
     width:13.3em;
     border-radius: 8px;
     background:mediumpurple;
-    optipacity: 1%;
+    optipacity: 0.1;
     overflow:hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -765,7 +697,7 @@ body {
 #editQuestionButton:hover {
   background-color: mediumpurple;
   color: white;
-  opacity: 75%;
+  opacity: 0.75;
   border-radius: 10px;
 }
 #createQuestion {
@@ -773,18 +705,6 @@ body {
   height: 39em;
   width:50em;
 }
-  /*.gridColumnTwo{
-    !*grid-column: 2;
-    grid-row:1;
-    width: 100%;*!
-    border-radius: 20px;
-  }*/
- /* .gridColumnThree {
-    border: groove seashell;
-   !* grid-column: 4;
-    height: 100%;*!
-    width: 20em;
-  }*/
 
   #display_previousQuestion{
     margin-left: 0.3em;
@@ -807,7 +727,7 @@ body {
     text-align: center;
     border-radius: 20px;
     grid-area:b;
-    opacity: 85%;
+    opacity: 0.85;
     cursor:pointer;
   }
   #createQuizInstructions{
@@ -829,7 +749,7 @@ body {
     text-align: center;
     border-radius: 20px;
     grid-area:b;
-    opacity: 85%;
+    opacity: 0.85;
     cursor:pointer;
   }
   #createVoteInstructions{
@@ -842,11 +762,9 @@ body {
 
   #create_pollId{
     background-color: plum;
-    optipacity: 1%;
+    optipacity: 0.1;
     margin-top: 2em;
-    /*border: groove #00BFFF;*/
     color: white;
-    /*font-family: "Times New Roman", Times, serif;*/
     font-size: 100%;
     grid-area:b;
     text-align: center;
@@ -898,7 +816,7 @@ body {
   #displayGubben > img{
     height: 20em;
     width:13em;
-    opacity:90%
+    opacity:0.9;
 
   }
 
@@ -983,32 +901,6 @@ body {
     border: 1px solid white;
   }
 
-
-  #addAnsVote_id {
-    transition-duration: 0.4s;
-    width: 20%;
-    height: 5%;
-    background-color: #1E90FF;
-    border-radius: 10px;
-
-  }
-  #addAnsVote_id:hover {
-    background-color: #00BFFF;
-    color: #FF1493;
-    border-radius: 10px;
-  }
-  #removeAnswersVote{
-  transition-duration: 0.4s;
-  width: 20%;
-  height: 5%;
-  background-color: #1E90FF;
-  border-radius: 10px;
-  }
-  #removeAnswersVote:hover {
-    background-color: #00BFFF;
-    color: #FF1493;
-    border-radius: 10px;
-  }
   #checkBoxes{
     border-radius: 10px;
     background: rgba(221, 160, 221, 0.85);
@@ -1071,26 +963,6 @@ body {
     border-radius: 10px;
   }
 
-  #saveChangesButton {
-    transition-duration: 0.4s;
-    cursor:pointer;
-    width: 8em;
-    height: 3em;
-    color:white;
-    background-color: green;
-    margin-left:16em;
-    margin-top:-3.5px;
-    font-weight: bold;
-    border-radius: 10px;
-    position:absolute;
-  }
-
-  #saveChangesButton:hover {
-    background-color: rgba(0, 128, 0, 0.46);
-    color: white;
-    border-radius: 10px;
-  }
-
   #deleteQuestionButton{
     cursor:pointer;
     transition-duration: 0.4s;
@@ -1104,12 +976,10 @@ body {
     border-radius: 10px;
   }
   #deleteQuestionButton:hover {
-
     background-color: rgba(255, 0, 0, 0.43);
-  color: white;
-  border-radius: 10px;
+    color: white;
+    border-radius: 10px;
  }
-
 
   #goBackEditingButton{
     height:0em;
@@ -1134,13 +1004,6 @@ body {
     margin-top:-5.5em;
     cursor:pointer;
   }
-  #runQuestionButton {
-    transition-duration: 0.4s;
-    width: 100%;
-    height: 30%;
-    background-color: #1E90FF;
-    border-radius: 10px;
-  }
   #startPoll{
     width: 8em;
     height: 3em;
@@ -1148,7 +1011,6 @@ body {
     margin-top: -1em;
     margin-bottom: 1em;
     color: white;
-
     position:absolute;
     border: double white 2px;
     border-radius: 0.5em;
@@ -1173,8 +1035,6 @@ body {
     max-width: 10em;
     margin-left:1em;
   }
-
-
 
 #speakbubble > img {
   height: 12em;
@@ -1205,7 +1065,6 @@ body {
   position: absolute;
   left: 32.5em;
   top: 3em;
-
 }
 
 #questionDisplayed{
@@ -1218,7 +1077,6 @@ body {
   background-color: plum;
   border: double 0.5em #DA70D6;
   color: #FFFFFF;
-  /*padding: 1em;*/
   position: absolute;
   left: 10.5em;
   top: 4em
@@ -1260,26 +1118,16 @@ body {
 
 @keyframes blink {
 
-  /**
-   * At the start of the animation the dot
-   * has an opacity of .2
-   */
   0% {
     opacity: .2;
     font-size:4em;
   }
-  /**
-   * At 20% the dot is fully visible and
-   * then fades out slowly
-   */
+
   20% {
     opacity: 1;
     font-size:4em;
   }
-  /**
-   * Until it reaches an opacity of .2 and
-   * the animation can start again
-   */
+
   100% {
     opacity: .2;
     font-size:4em;
@@ -1287,43 +1135,17 @@ body {
 }
 
 .saving span {
-  /**
-   * Use the blink animation, which is defined above
-   */
   animation-name: blink;
-  /**
-   * The animation should take 1.4 seconds
-   */
   animation-duration: 1.4s;
-  /**
-   * It will repeat itself forever
-   */
   animation-iteration-count: infinite;
-  /**
-   * This makes sure that the starting style (opacity: .2)
-   * of the animation is applied before the animation starts.
-   * Otherwise we would see a short flash or would have
-   * to set the default styling of the dots to the same
-   * as the animation. Same applies for the ending styles.
-   */
   animation-fill-mode: both;
 }
 
 .saving span:nth-child(2) {
-  /**
-   * Starts the animation of the third dot
-   * with a delay of .2s, otherwise all dots
-   * would animate at the same time
-   */
   animation-delay: .2s;
 }
 
 .saving span:nth-child(3) {
-  /**
-   * Starts the animation of the third dot
-   * with a delay of .4s, otherwise all dots
-   * would animate at the same time
-   */
   animation-delay: .4s;
 }
 .plusSign{
